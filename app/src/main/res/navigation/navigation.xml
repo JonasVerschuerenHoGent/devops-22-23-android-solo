@@ -20,24 +20,20 @@
         android:name="com.example.test.SecondFragment"
         android:label="@string/second_fragment_label"
         tools:layout="@layout/fragment_second">
-
         <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
-        <action
-            android:id="@+id/action_SecondFragment_to_virtualMachineListFragment"
-            app:destination="@id/virtualMachineListFragment" />
+            android:id="@+id/action_SecondFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
     <fragment
-        android:id="@+id/virtualMachineListFragment"
-        android:name="com.example.test.VirtualMachineListFragment"
-        android:label="VirtualMachineListFragment" >
+        android:id="@+id/loginFragment"
+        android:name="com.example.test.LoginFragment"
+        android:label="LoginFragment" >
         <action
-            android:id="@+id/action_virtualMachineListFragment_to_virtualMachineDetailFragment"
-            app:destination="@id/virtualMachineDetailFragment" />
+            android:id="@+id/action_loginFragment_to_listUsersFragment"
+            app:destination="@id/listUsersFragment" />
     </fragment>
     <fragment
-        android:id="@+id/virtualMachineDetailFragment"
-        android:name="com.example.test.VirtualMachineDetailFragment"
-        android:label="VirtualMachineDetailFragment" />
+        android:id="@+id/listUsersFragment"
+        android:name="com.example.test.ListUsersFragment"
+        android:label="ListUsersFragment" />
 </navigation>
