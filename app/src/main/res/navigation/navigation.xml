@@ -27,5 +27,13 @@
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.test.LoginFragment"
-        android:label="LoginFragment" />
+        android:label="LoginFragment" >
+        <action
+            android:id="@+id/action_loginFragment_to_listUsersFragment"
+            app:destination="@id/listUsersFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/listUsersFragment"
+        android:name="com.example.test.ListUsersFragment"
+        android:label="ListUsersFragment" />
 </navigation>
