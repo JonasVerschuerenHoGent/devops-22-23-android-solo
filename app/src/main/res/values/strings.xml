@@ -17,4 +17,5 @@
     <string name="forgot_password">Wachtwoord vergeten?</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="manage_users">Beheer gebruikers</string>
 </resources>
