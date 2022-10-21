@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/loginLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/login_margin_wide"
+            android:layout_marginLeft="@dimen/login_margin_wide"
+            android:layout_marginTop="128dp"
+            android:text="@string/inloggen"
+            android:textColor="@color/material_dynamic_neutral20"
+            android:textSize="34sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/welkomTextLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/login_margin_wide"
+            android:layout_marginLeft="@dimen/login_margin_wide"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/asap"
+            android:text="@string/welkom_terug"
+            android:textColor="@color/material_dynamic_neutral50"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/loginLabel" />
+
+        <TextView
+            android:id="@+id/emailLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/login_margin_wide"
+            android:layout_marginLeft="@dimen/login_margin_wide"
+            android:layout_marginTop="@dimen/login_margin_wide"
+            android:fontFamily="@font/asap"
+            android:text="@string/email"
+            android:textColor="@color/maincolor"
+            android:textSize="26sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/welkomTextLabel" />
+
+        <EditText
+            android:id="@+id/editTextTextEmailAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/login_margin_wide"
+            android:layout_marginLeft="@dimen/login_margin_wide"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:inputType="textEmailAddress"
+            android:textColor="@color/material_dynamic_neutral20"
+            android:textSize="26sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/emailLabel" />
+
+        <TextView
+            android:id="@+id/passwordLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/login_margin_wide"
+            android:layout_marginLeft="@dimen/login_margin_wide"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/asap"
+            android:text="@string/password"
+            android:textColor="@color/maincolor"
+            android:textSize="26sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress" />
+
+        <EditText
+            android:id="@+id/editTextTextPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/login_margin_wide"
+            android:layout_marginLeft="@dimen/login_margin_wide"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:textColor="@color/material_dynamic_neutral20"
+            android:textSize="26sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/passwordLabel" />
+
+        <Button
+            android:id="@+id/loginButton"
+            android:layout_width="306dp"
+            android:layout_height="52dp"
+            android:layout_marginStart="@dimen/login_margin_wide"
+            android:layout_marginLeft="@dimen/login_margin_wide"
+            android:layout_marginTop="@dimen/login_margin_wide"
+            android:background="@color/maincolor"
+            android:fontFamily="@font/asap"
+            android:text="@string/login"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword" />
+
+        <TextView
+            android:id="@+id/passwoordVergetenLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/login_margin_wide"
+            android:layout_marginLeft="@dimen/login_margin_wide"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/asap"
+            android:text="@string/forgot_password"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/loginButton" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
