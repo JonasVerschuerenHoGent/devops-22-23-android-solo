@@ -1,4 +1,4 @@
-package com.example.test
+package com.example.test.screens.virtual_machines
 
 import android.content.Context
 import android.os.Bundle
@@ -9,6 +9,9 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
+import com.example.test.R
+import com.example.test.VirtualMachine
+import com.example.test.VirtualMachineMock
 import com.example.test.databinding.FragmentVirtualMachineListBinding
 
 class VirtualMachineListFragment : Fragment() {
@@ -22,7 +25,8 @@ class VirtualMachineListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_virtual_machine_list, container, false)
+        binding = DataBindingUtil.inflate(inflater,
+            R.layout.fragment_virtual_machine_list, container, false)
 
         listView = binding.virtualMachineList
         arrayList = VirtualMachineMock().virtualMachines

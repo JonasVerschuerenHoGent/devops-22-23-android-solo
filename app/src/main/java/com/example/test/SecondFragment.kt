@@ -29,13 +29,10 @@ class SecondFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.buttonSecond.setOnClickListener {
-            findNavController().navigate(R.id.action_SecondFragment_to_loginFragment)
+            findNavController().navigate(R.id.action_SecondFragment_to_listUsersFragment)
         }
         binding.goToListButton.setOnClickListener{
             findNavController().navigate(R.id.action_SecondFragment_to_virtualMachineListFragment)
         }
     }
-
-
-
 }

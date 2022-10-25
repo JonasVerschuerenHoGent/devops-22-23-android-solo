@@ -3,16 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
-
+    app:startDestination="@id/loginFragment">
     <fragment
-        android:id="@+id/FirstFragment"
-        android:name="com.example.test.FirstFragment"
-        android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first">
+        android:id="@+id/loginFragment"
+        android:name="com.example.test.screens.login.LoginFragment"
+        android:label="LoginFragment" >
 
         <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
+            android:id="@+id/action_loginFragment_to_SecondFragment"
             app:destination="@id/SecondFragment" />
     </fragment>
     <fragment
@@ -20,20 +18,28 @@
         android:name="com.example.test.SecondFragment"
         android:label="@string/second_fragment_label"
         tools:layout="@layout/fragment_second">
+
         <action
-            android:id="@+id/action_SecondFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/loginFragment"
-        android:name="com.example.test.screens.login.LoginFragment"
-        android:label="LoginFragment" >
-        <action
-            android:id="@+id/action_loginFragment_to_listUsersFragment"
+            android:id="@+id/action_SecondFragment_to_listUsersFragment"
             app:destination="@id/listUsersFragment" />
+        <action
+            android:id="@+id/action_SecondFragment_to_virtualMachineListFragment"
+            app:destination="@id/virtualMachineListFragment" />
     </fragment>
     <fragment
         android:id="@+id/listUsersFragment"
         android:name="com.example.test.screens.users.ListUsersFragment"
         android:label="ListUsersFragment" />
+    <fragment
+        android:id="@+id/virtualMachineListFragment"
+        android:name="com.example.test.screens.virtual_machines.VirtualMachineListFragment"
+        android:label="VirtualMachineListFragment" >
+        <action
+            android:id="@+id/action_virtualMachineListFragment_to_virtualMachineDetailFragment"
+            app:destination="@id/virtualMachineDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/virtualMachineDetailFragment"
+        android:name="com.example.test.screens.virtual_machines.VirtualMachineDetailFragment"
+        android:label="VirtualMachineDetailFragment" />
 </navigation>
