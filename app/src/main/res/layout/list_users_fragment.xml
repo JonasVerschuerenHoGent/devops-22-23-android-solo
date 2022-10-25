@@ -2,9 +2,8 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-
+    
     <data>
-
         <variable
             name="listUsersViewModel"
             type="com.example.test.screens.users.ListUsersViewModel" />
@@ -12,7 +11,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:context=".ListUsersFragment">
 
         <TextView
             android:id="@+id/ManageUsersLabel"
@@ -40,7 +40,6 @@
             android:layout_width="350dp"
             android:layout_height="581dp"
             android:layout_marginTop="@dimen/listusers_margin"
-            android:text="@{listUsersViewModel.usersListView}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/searchUsersSv" />

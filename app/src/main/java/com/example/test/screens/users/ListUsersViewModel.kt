@@ -6,17 +6,13 @@ import androidx.lifecycle.ViewModel
 
 class ListUsersViewModel : ViewModel() {
 
-    //The testdata for users
-    private var listUsers: MutableList<String>
-
     //live data objects
-    private val _usersListView = MutableLiveData<String>()
-    val usersListView: LiveData<String>
-        get() = _usersListView
-
+    private val _listUsers = MutableLiveData<Array<String>>()
+    val listUsers: LiveData<Array<String>>
+        get() = _listUsers
 
     init {
-        listUsers = mutableListOf(
+        _listUsers.value = arrayOf(
             "Jonas Verschueren",
             "Sean Van Den Branden",
             "Janne Van Schepdael",
