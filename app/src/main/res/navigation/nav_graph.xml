@@ -24,5 +24,20 @@
         <action
             android:id="@+id/action_SecondFragment_to_FirstFragment"
             app:destination="@id/FirstFragment" />
+        <action
+            android:id="@+id/action_SecondFragment_to_virtualMachineListFragment"
+            app:destination="@id/virtualMachineListFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/virtualMachineListFragment"
+        android:name="com.example.test.VirtualMachineListFragment"
+        android:label="VirtualMachineListFragment" >
+        <action
+            android:id="@+id/action_virtualMachineListFragment_to_virtualMachineDetailFragment"
+            app:destination="@id/virtualMachineDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/virtualMachineDetailFragment"
+        android:name="com.example.test.VirtualMachineDetailFragment"
+        android:label="VirtualMachineDetailFragment" />
 </navigation>
