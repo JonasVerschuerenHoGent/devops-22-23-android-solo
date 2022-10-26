@@ -10,8 +10,8 @@ import android.widget.*
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
 import com.example.test.R
-import com.example.test.VirtualMachine
-import com.example.test.VirtualMachineMock
+import com.example.test.domain.VirtualMachine
+import com.example.test.domain.VirtualMachineMock
 import com.example.test.databinding.FragmentVirtualMachineListBinding
 
 class VirtualMachineListFragment : Fragment() {

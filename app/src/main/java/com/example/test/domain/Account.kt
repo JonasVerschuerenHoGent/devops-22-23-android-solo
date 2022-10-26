@@ -1,4 +1,4 @@
-package com.example.test
+package com.example.test.domain
 
 data class Account(
     var id: Int,
