@@ -1,4 +1,4 @@
-package com.example.test
+package com.example.test.domain
 
 import java.util.*
 import kotlin.collections.ArrayList
@@ -19,7 +19,8 @@ class VirtualMachineMock() {
         var output = ArrayList<VirtualMachine>();
 
         for(i in 0..19){
-            output.add(VirtualMachine(
+            output.add(
+                VirtualMachine(
                 "VM-name-${i}",
                 i,
                 "HOSTNAME-${i}",
@@ -35,7 +36,8 @@ class VirtualMachineMock() {
                 random.nextInt(8)+1,
                 random.nextInt(13)+4,
                 128
-            ))
+            )
+            )
         }
         return output
     }

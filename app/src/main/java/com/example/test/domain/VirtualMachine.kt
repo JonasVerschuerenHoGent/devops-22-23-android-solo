@@ -1,6 +1,4 @@
-package com.example.test
-
-import java.util.Random
+package com.example.test.domain
 
 data class VirtualMachine(
     var name: String,
