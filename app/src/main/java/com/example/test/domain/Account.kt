@@ -8,5 +8,6 @@ data class Account(
     var education: String,
     var externType: String?,
     var phoneNr: String,
-    var role: Role
+    var role: Role,
+    var backupContact: Account
 )
