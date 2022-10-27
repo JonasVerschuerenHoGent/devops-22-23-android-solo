@@ -34,7 +34,10 @@ class VirtualMachineListFragment : Fragment() {
         listView.adapter = adapter
         listView.setOnItemClickListener { parent, view, position, id ->
             Toast.makeText(this.context, "Clicked item : $position",Toast.LENGTH_SHORT).show()
-            findNavController().navigate(R.id.action_virtualMachineListFragment_to_virtualMachineDetailFragment)
+
+            findNavController()
+                .navigate(VirtualMachineListFragmentDirections
+                .actionVirtualMachineListFragmentToVirtualMachineDetailFragment(position))
         }
         return binding.root
     }
