@@ -1,16 +1,17 @@
 package com.example.test.screens.users
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.Toast
+import android.widget.*
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import com.example.test.R
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
+import com.example.test.*
 import com.example.test.databinding.ListUsersFragmentBinding
 
 
@@ -24,6 +25,8 @@ class ListUsersFragment : Fragment() {
 
     //viewModel
     private lateinit var viewModel: ListUsersViewModel
+
+    private var arraylist: ArrayList<Account> = ArrayList()
 
     override fun onCreateView( inflater: LayoutInflater, container: ViewGroup?,
                                savedInstanceState: Bundle?): View? {
@@ -42,9 +45,11 @@ class ListUsersFragment : Fragment() {
         // the binding can observe LiveData updates
         binding.setLifecycleOwner(this)
 
+        arraylist = AccountMock().users
+
 
         //Add items to the ListView and make it clickable
-        val arrayAdapter: ArrayAdapter<String> = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, viewModel.listUsers.value!!)
+        val arrayAdapter: ArrayAdapter<Account> = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, arraylist)
         binding.usersLv.adapter = arrayAdapter
         binding.usersLv.onItemClickListener = object: AdapterView.OnItemClickListener{
             override fun onItemClick(
@@ -53,7 +58,10 @@ class ListUsersFragment : Fragment() {
                 position: Int,
                 id: Long
             ) {
-                Toast.makeText(requireContext(), "Clicked item = " + viewModel.listUsers.value!!.get(position), Toast.LENGTH_LONG).show()
+                findNavController()
+                    .navigate(ListUsersFragmentDirections
+                        .actionListUsersFragmentToUserFragment(position))
+                Toast.makeText(requireContext(), "Clicked item = " + arraylist.get(position), Toast.LENGTH_LONG).show()
             }
 
         }
@@ -61,6 +69,30 @@ class ListUsersFragment : Fragment() {
 
         return binding.root
     }
+
+    class UserAdapter(private val context: Context, private val arrayList: java.util.ArrayList<Account>) : BaseAdapter() {
+        private lateinit var state: TextView
+        private lateinit var name: TextView
+        override fun getCount(): Int {
+            return arrayList.size
+        }
+        override fun getItem(position: Int): Any {
+            return position
+        }
+        override fun getItemId(position: Int): Long {
+            return position.toLong()
+        }
+        override fun getView(position: Int, convertView: View?, parent: ViewGroup): View? {
+            var convertView = convertView
+            convertView = LayoutInflater.from(context).inflate(R.layout.vm_item, parent, false)
+            name = convertView?.findViewById(R.id.vm_name_textview)!!
+            name.text = arrayList[position].name
+            state = convertView?.findViewById(R.id.vm_state_textview)!!
+            state.text = arrayList[position].state.toString()
+            return convertView
+        }
+    }
+
 
 
 

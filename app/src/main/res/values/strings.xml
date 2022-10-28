@@ -20,4 +20,5 @@
     <string name="manage_users">Beheer gebruikers</string>
     <string name="list_of_users">List of users</string>
     <string name="list_of_vms">List of VMs</string>
+    <string name="beheer_gebruiker">Beheer gebruiker</string>
 </resources>
