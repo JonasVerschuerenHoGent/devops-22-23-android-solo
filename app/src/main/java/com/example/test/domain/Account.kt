@@ -1,4 +1,4 @@
-package com.example.test
+package com.example.test.domain
 
 data class Account(
     var id: Int,
@@ -8,5 +8,6 @@ data class Account(
     var education: String,
     var externType: String?,
     var phoneNr: String,
-    var role: Role
+    var role: Role,
+    var backupContact: Account
 )

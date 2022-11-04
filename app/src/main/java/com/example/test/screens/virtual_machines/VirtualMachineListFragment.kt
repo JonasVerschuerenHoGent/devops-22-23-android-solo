@@ -10,8 +10,8 @@ import android.widget.*
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
 import com.example.test.R
-import com.example.test.VirtualMachine
-import com.example.test.VirtualMachineMock
+import com.example.test.domain.VirtualMachine
+import com.example.test.domain.VirtualMachineMock
 import com.example.test.databinding.FragmentVirtualMachineListBinding
 
 class VirtualMachineListFragment : Fragment() {
@@ -34,7 +34,10 @@ class VirtualMachineListFragment : Fragment() {
         listView.adapter = adapter
         listView.setOnItemClickListener { parent, view, position, id ->
             Toast.makeText(this.context, "Clicked item : $position",Toast.LENGTH_SHORT).show()
-            findNavController().navigate(R.id.action_virtualMachineListFragment_to_virtualMachineDetailFragment)
+
+            findNavController()
+                .navigate(VirtualMachineListFragmentDirections
+                .actionVirtualMachineListFragmentToVirtualMachineDetailFragment(position))
         }
         return binding.root
     }
