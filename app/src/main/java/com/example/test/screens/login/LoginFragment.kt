@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.NavigationUI
 import com.example.test.R
 import com.example.test.databinding.FragmentLoginBinding
 
@@ -16,17 +17,18 @@ class LoginFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
-            super.onCreate(savedInstanceState)
-            binding = DataBindingUtil.inflate(inflater, R.layout.fragment_login, container, false)
-            return binding.root
+        super.onCreate(savedInstanceState)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_login, container, false)
+
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.loginButton.setOnClickListener{
+        binding.loginButton.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_SecondFragment)
         }
     }

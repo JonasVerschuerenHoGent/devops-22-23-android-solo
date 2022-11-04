@@ -27,7 +27,7 @@ class VirtualMachineDetailFragment : Fragment() {
             false
         )
         val args = VirtualMachineDetailFragmentArgs.fromBundle(requireArguments())
-        val myVM = VirtualMachineMock().virtualMachines[args.id]
+        val myVM = VirtualMachineMock().virtualMachines[args.vmId]
         binding.myVM = myVM
 
         binding.textviewName.text = "Name: ${myVM.name}"

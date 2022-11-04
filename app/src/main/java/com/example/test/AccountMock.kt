@@ -1,6 +1,9 @@
 package com.example.test
 
 
+import com.example.test.domain.Account
+import com.example.test.domain.Department
+import com.example.test.domain.Role
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -26,9 +29,9 @@ class AccountMock() {
                 "Education ${i}",
                 "Extern type ${i}",
                 "Phone number ${i}",
-                roles[random.nextInt(roles.size-1)]
+                roles[random.nextInt(roles.size-1)],
+                "Backup contact ${i}"
             ))
-
         }
         return output
     }

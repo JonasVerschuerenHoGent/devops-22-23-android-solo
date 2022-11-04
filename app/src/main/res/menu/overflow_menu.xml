@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/listUsersFragment"
+        android:title="Users" />
+    <item
+        android:id="@+id/virtualMachineListFragment"
+        android:title="Virtual machines" />
+</menu>

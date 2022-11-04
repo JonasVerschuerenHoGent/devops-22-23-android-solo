@@ -10,10 +10,10 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import com.example.test.Account
 import com.example.test.AccountMock
 import com.example.test.R
 import com.example.test.databinding.UserDetailFragmentBinding
+import com.example.test.domain.Account
 
 
 /**

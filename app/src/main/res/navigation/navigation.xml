@@ -45,7 +45,11 @@
     <fragment
         android:id="@+id/virtualMachineDetailFragment"
         android:name="com.example.test.screens.virtual_machines.VirtualMachineDetailFragment"
-        android:label="VirtualMachineDetailFragment" />
+        android:label="VirtualMachineDetailFragment" >
+            <argument
+                android:name="vmId"
+                app:argType="integer" />
+    </fragment>
     <fragment
         android:id="@+id/userFragment"
         android:name="com.example.test.screens.users.UserFragment"

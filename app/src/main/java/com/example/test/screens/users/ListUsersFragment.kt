@@ -13,6 +13,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.example.test.*
 import com.example.test.databinding.ListUsersFragmentBinding
+import com.example.test.domain.Account
 
 
 /**
@@ -70,28 +71,28 @@ class ListUsersFragment : Fragment() {
         return binding.root
     }
 
-    class UserAdapter(private val context: Context, private val arrayList: java.util.ArrayList<Account>) : BaseAdapter() {
-        private lateinit var state: TextView
-        private lateinit var name: TextView
-        override fun getCount(): Int {
-            return arrayList.size
-        }
-        override fun getItem(position: Int): Any {
-            return position
-        }
-        override fun getItemId(position: Int): Long {
-            return position.toLong()
-        }
-        override fun getView(position: Int, convertView: View?, parent: ViewGroup): View? {
-            var convertView = convertView
-            convertView = LayoutInflater.from(context).inflate(R.layout.vm_item, parent, false)
-            name = convertView?.findViewById(R.id.vm_name_textview)!!
-            name.text = arrayList[position].name
-            state = convertView?.findViewById(R.id.vm_state_textview)!!
-            state.text = arrayList[position].state.toString()
-            return convertView
-        }
-    }
+//    class UserAdapter(private val context: Context, private val arrayList: java.util.ArrayList<Account>) : BaseAdapter() {
+//        private lateinit var state: TextView
+//        private lateinit var name: TextView
+//        override fun getCount(): Int {
+//            return arrayList.size
+//        }
+//        override fun getItem(position: Int): Any {
+//            return position
+//        }
+//        override fun getItemId(position: Int): Long {
+//            return position.toLong()
+//        }
+//        override fun getView(position: Int, convertView: View?, parent: ViewGroup): View? {
+//            var convertView = convertView
+//            convertView = LayoutInflater.from(context).inflate(R.layout.vm_item, parent, false)
+//            name = convertView?.findViewById(R.id.vm_name_textview)!!
+//            name.text = arrayList[position].name
+//            state = convertView?.findViewById(R.id.vm_state_textview)!!
+//            state.text = arrayList[position].state.toString()
+//            return convertView
+//        }
+//    }
 
 
 

@@ -3,7 +3,7 @@ package com.example.test.screens.users
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.test.Account
+import com.example.test.domain.Account
 
 class UserViewModel : ViewModel() {
 
