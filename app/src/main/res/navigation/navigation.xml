@@ -29,7 +29,11 @@
     <fragment
         android:id="@+id/listUsersFragment"
         android:name="com.example.test.screens.users.ListUsersFragment"
-        android:label="ListUsersFragment" />
+        android:label="ListUsersFragment" >
+        <action
+            android:id="@+id/action_listUsersFragment_to_userFragment"
+            app:destination="@id/userFragment" />
+    </fragment>
     <fragment
         android:id="@+id/virtualMachineListFragment"
         android:name="com.example.test.screens.virtual_machines.VirtualMachineListFragment"
@@ -41,9 +45,13 @@
     <fragment
         android:id="@+id/virtualMachineDetailFragment"
         android:name="com.example.test.screens.virtual_machines.VirtualMachineDetailFragment"
-        android:label="VirtualMachineDetailFragment" >
+        android:label="VirtualMachineDetailFragment" />
+    <fragment
+        android:id="@+id/userFragment"
+        android:name="com.example.test.screens.users.UserFragment"
+        android:label="UserFragment" >
         <argument
-            android:name="id"
+            android:name="userId"
             app:argType="integer" />
     </fragment>
 </navigation>
