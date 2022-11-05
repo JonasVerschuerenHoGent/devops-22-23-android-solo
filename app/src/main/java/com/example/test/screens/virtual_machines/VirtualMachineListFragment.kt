@@ -25,17 +25,17 @@ class VirtualMachineListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DataBindingUtil.inflate(inflater,
-            R.layout.fragment_virtual_machine_list, container, false)
+            binding = DataBindingUtil.inflate(inflater,
+                R.layout.fragment_virtual_machine_list, container, false)
 
-        listView = binding.virtualMachineList
-        arrayList = VirtualMachineMock().virtualMachines
-        adapter = this.context?.let { VirtualMachinesAdapter(it, arrayList) }
-        listView.adapter = adapter
-        listView.setOnItemClickListener { parent, view, position, id ->
-            Toast.makeText(this.context, "Clicked item : $position",Toast.LENGTH_SHORT).show()
+            listView = binding.virtualMachineList
+            arrayList = VirtualMachineMock().virtualMachines
+            adapter = this.context?.let { VirtualMachinesAdapter(it, arrayList) }
+            listView.adapter = adapter
+            listView.setOnItemClickListener { parent, view, position, id ->
+                Toast.makeText(this.context, "Clicked item : $position",Toast.LENGTH_SHORT).show()
 
-            findNavController()
+                findNavController()
                 .navigate(VirtualMachineListFragmentDirections
                 .actionVirtualMachineListFragmentToVirtualMachineDetailFragment(position))
         }

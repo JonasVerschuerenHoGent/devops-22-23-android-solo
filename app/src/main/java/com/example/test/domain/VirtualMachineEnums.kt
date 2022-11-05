@@ -2,16 +2,14 @@ package com.example.test.domain
 
 enum class Mode(val printableName: String) {
     IAAS("IAAS"),
-    SAAS("SAAS"),
-    PAAS("PAAS")
-}
-enum class Template(val printableName: String) {
     AI("AI template"),
     MS_SQL("Microsoft SQL Server template"),
     MySQL("MySQL template"),
     PostgreSQL("PostgreSQL template"),
     MongoDB("MongoDB template")
+
 }
+
 enum class Availability(val printableName: String) {
     BUSINESS_HOURS("Business hours"),
     ALWAYS("24/7")

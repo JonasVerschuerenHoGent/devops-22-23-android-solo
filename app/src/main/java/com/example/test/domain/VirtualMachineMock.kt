@@ -2,6 +2,10 @@ package com.example.test.domain
 
 import java.util.*
 import kotlin.collections.ArrayList
+import java.util.Calendar;
+import java.util.Date;
+
+
 
 class VirtualMachineMock() {
     var virtualMachines: ArrayList<VirtualMachine>
@@ -12,7 +16,6 @@ class VirtualMachineMock() {
         var random: Random = Random();
 
         var modes = Mode.values()
-        var templates = Template.values()
         var availabilities = Availability.values()
         var states = State.values()
 
@@ -26,7 +29,6 @@ class VirtualMachineMock() {
                 "HOSTNAME-${i}",
                 "abcdef",
                 modes[random.nextInt(modes.size-1)],
-                templates[random.nextInt(templates.size-1)],
                 random.nextInt(8),
                 availabilities[random.nextInt(availabilities.size-1)],
                 random.nextInt(6),
@@ -35,8 +37,14 @@ class VirtualMachineMock() {
                 states[random.nextInt(states.size-1)],
                 random.nextInt(8)+1,
                 random.nextInt(13)+4,
-                128
-            )
+                128,
+                true,
+                 requestDate = Calendar.getInstance().time,
+                 beginDate = Calendar.getInstance().time,
+                 endDate = Calendar.getInstance().time,
+
+
+                    )
             )
         }
         return output
