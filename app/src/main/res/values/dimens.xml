@@ -2,4 +2,5 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="login_margin_wide">54dp</dimen>
     <dimen name="listusers_margin">32dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
 </resources>
