@@ -1,5 +1,6 @@
 package com.example.test
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
@@ -17,6 +18,7 @@ class SecondFragment : Fragment() {
 
     private lateinit var binding: FragmentSecondBinding
 
+    @SuppressLint("RestrictedApi")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -46,7 +48,6 @@ class SecondFragment : Fragment() {
                 return false
             }
         }, viewLifecycleOwner)
-
         return binding.root
     }
 

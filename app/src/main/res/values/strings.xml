@@ -21,4 +21,6 @@
     <string name="list_of_users">List of users</string>
     <string name="list_of_vms">List of VMs</string>
     <string name="beheer_gebruiker">Beheer gebruiker</string>
+    <string name="virtual_machines">Virtual machines</string>
+    <string name="users">Users</string>
 </resources>
