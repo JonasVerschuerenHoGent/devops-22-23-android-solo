@@ -57,6 +57,12 @@ class UserFragment : Fragment() {
                         requireView().findNavController()
                     )
                 }
+                if(menuItem.itemId == R.id.projectListFragment){
+                    return NavigationUI.onNavDestinationSelected(
+                        menuItem,
+                        requireView().findNavController()
+                    )
+                }
                 return false
             }
         }, viewLifecycleOwner)

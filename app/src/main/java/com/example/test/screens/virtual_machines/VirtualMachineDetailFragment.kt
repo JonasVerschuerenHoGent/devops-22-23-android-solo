@@ -57,13 +57,18 @@ class VirtualMachineDetailFragment : Fragment() {
                         requireView().findNavController()
                     )
                 }
+                if(menuItem.itemId == R.id.projectListFragment){
+                    return NavigationUI.onNavDestinationSelected(
+                        menuItem,
+                        requireView().findNavController()
+                    )
+                }
                 return false
             }
         }, viewLifecycleOwner)
 
         val args = VirtualMachineDetailFragmentArgs.fromBundle(requireArguments())
         val myVM = VirtualMachineMock().virtualMachines[args.vmId]
-        val myVM = VirtualMachineMock().virtualMachines[args.id]
         binding.myVM = myVM
 
         binding.textviewName.text = "Name: ${myVM.name}"

@@ -45,6 +45,12 @@ class SecondFragment : Fragment() {
                         requireView().findNavController()
                     )
                 }
+                if(menuItem.itemId == R.id.projectListFragment){
+                    return NavigationUI.onNavDestinationSelected(
+                        menuItem,
+                        requireView().findNavController()
+                    )
+                }
                 return false
             }
         }, viewLifecycleOwner)
@@ -57,10 +63,13 @@ class SecondFragment : Fragment() {
 
 
         binding.buttonSecond.setOnClickListener {
-            findNavController().navigate(R.id.action_SecondFragment_to_projectListFragment)
+            findNavController().navigate(R.id.action_SecondFragment_to_listUsersFragment)
         }
         binding.goToListButton.setOnClickListener{
             findNavController().navigate(R.id.action_SecondFragment_to_virtualMachineListFragment)
+        }
+        binding.goToListProjectsBtn.setOnClickListener{
+            findNavController().navigate(R.id.action_SecondFragment_to_projectListFragment)
         }
     }
 
