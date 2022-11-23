@@ -65,18 +65,9 @@ class VirtualMachineListFragment : Fragment() {
         listView.adapter = adapter
         listView.setOnItemClickListener { parent, view, position, id ->
             Toast.makeText(this.context, "Clicked item : $position", Toast.LENGTH_SHORT).show()
-            listView = binding.virtualMachineList
-            arrayList = VirtualMachineMock().virtualMachines
-            adapter = this.context?.let { VirtualMachinesAdapter(it, arrayList) }
-            listView.adapter = adapter
-            listView.setOnItemClickListener { parent, view, position, id ->
-                Toast.makeText(this.context, "Clicked item : $position", Toast.LENGTH_SHORT).show()
-
-                findNavController()
-                    .navigate(VirtualMachineListFragmentDirections
-                        .actionVirtualMachineListFragmentToVirtualMachineDetailFragment(position))
-            }
-
+            findNavController()
+                .navigate(VirtualMachineListFragmentDirections
+                    .actionVirtualMachineListFragmentToVirtualMachineDetailFragment(position))
         }
         return binding.root
     }

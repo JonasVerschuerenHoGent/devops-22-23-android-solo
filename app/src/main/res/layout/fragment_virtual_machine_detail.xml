@@ -12,6 +12,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="56dp"
         tools:context=".SecondFragment">
 
         <TextView
@@ -23,7 +24,7 @@
             android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="VM name"/>
+            tools:text="VM name" />
 
         <TextView
             android:id="@+id/textview_hostname"
@@ -34,7 +35,7 @@
             android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textview_name"
-            tools:text="VM hostname"/>
+            tools:text="VM hostname" />
 
         <TextView
             android:id="@+id/textview_fqdn"
@@ -45,7 +46,7 @@
             android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textview_hostname"
-            tools:text="fqdn"/>
+            tools:text="fqdn" />
 
         <TextView
             android:id="@+id/textview_mode"
@@ -56,7 +57,7 @@
             android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textview_fqdn"
-            tools:text="mode"/>
+            tools:text="mode" />
 
         <TextView
             android:id="@+id/textview_template"
@@ -67,7 +68,7 @@
             android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textview_mode"
-            tools:text="template"/>
+            tools:text="template" />
 
         <TextView
             android:id="@+id/textview_backup"
@@ -78,7 +79,7 @@
             android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textview_template"
-            tools:text="backup"/>
+            tools:text="backup" />
 
         <TextView
             android:id="@+id/textview_availability"
@@ -89,7 +90,7 @@
             android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textview_backup"
-            tools:text="availability"/>
+            tools:text="availability" />
 
         <TextView
             android:id="@+id/textview_host"
@@ -100,7 +101,7 @@
             android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textview_availability"
-            tools:text="host"/>
+            tools:text="host" />
 
         <TextView
             android:id="@+id/textview_cluster"
@@ -111,7 +112,7 @@
             android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textview_host"
-            tools:text="cluster"/>
+            tools:text="cluster" />
 
         <TextView
             android:id="@+id/textview_ports"
@@ -122,7 +123,7 @@
             android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textview_cluster"
-            tools:text="ports"/>
+            tools:text="ports" />
 
         <TextView
             android:id="@+id/textview_state"
@@ -133,7 +134,7 @@
             android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textview_ports"
-            tools:text="state"/>
+            tools:text="state" />
 
         <TextView
             android:id="@+id/textview_vcpu"
@@ -144,7 +145,7 @@
             android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textview_state"
-            tools:text="vcpu"/>
+            tools:text="vcpu" />
 
         <TextView
             android:id="@+id/textview_memory"
@@ -155,7 +156,7 @@
             android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textview_vcpu"
-            tools:text="memory"/>
+            tools:text="memory" />
 
         <TextView
             android:id="@+id/textview_storage"
@@ -166,7 +167,7 @@
             android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textview_memory"
-            tools:text="storage"/>
+            tools:text="storage" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
