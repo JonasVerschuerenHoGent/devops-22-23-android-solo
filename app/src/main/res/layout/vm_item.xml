@@ -1,17 +1,66 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="horizontal"
-    android:layout_gravity="center_horizontal">
+    android:layout_height="match_parent">
+
     <TextView
         android:id="@+id/vm_name_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Name" />
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Name"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
-        android:id="@+id/vm_state_textview"
+        android:id="@+id/vm_active_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="HomeTown"
-        android:layout_marginLeft="16dp"/>
-</LinearLayout>
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:text="inactief"
+        android:textStyle="italic"
+        app:layout_constraintBaseline_toBaselineOf="@+id/vm_name_textview"
+        app:layout_constraintStart_toEndOf="@+id/vm_name_textview" />
+
+    <TextView
+        android:id="@+id/vm_memory_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
+        android:text="memory"
+        app:layout_constraintStart_toEndOf="@+id/vm_vcpu_textview"
+        app:layout_constraintTop_toBottomOf="@+id/vm_name_textview" />
+
+    <TextView
+        android:id="@+id/vm_vcpu_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="4dp"
+        android:text="vcpu"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/vm_name_textview"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/vm_storage_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
+        android:text="storage"
+        app:layout_constraintStart_toEndOf="@+id/vm_memory_textview"
+        app:layout_constraintTop_toBottomOf="@+id/vm_name_textview" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -14,6 +14,7 @@ import com.example.test.R
 import com.example.test.domain.VirtualMachine
 import com.example.test.domain.VirtualMachineMock
 import com.example.test.databinding.FragmentVirtualMachineListBinding
+import java.util.Calendar
 
 class VirtualMachineListFragment : Fragment() {
     private lateinit var binding: FragmentVirtualMachineListBinding
@@ -77,8 +78,12 @@ class VirtualMachinesAdapter(
     private val context: Context,
     private val arrayList: java.util.ArrayList<VirtualMachine>,
 ) : BaseAdapter() {
-    private lateinit var state: TextView
+    private lateinit var active: TextView
     private lateinit var name: TextView
+    private lateinit var vcpu: TextView
+    private lateinit var memory: TextView
+    private lateinit var storage: TextView
+
     override fun getCount(): Int {
         return arrayList.size
     }
@@ -94,10 +99,33 @@ class VirtualMachinesAdapter(
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View? {
         var convertView = convertView
         convertView = LayoutInflater.from(context).inflate(R.layout.vm_item, parent, false)
+
+        //name
         name = convertView?.findViewById(R.id.vm_name_textview)!!
         name.text = arrayList[position].name
-        state = convertView?.findViewById(R.id.vm_state_textview)!!
-        state.text = arrayList[position].state.toString()
+
+        //state
+        active = convertView?.findViewById(R.id.vm_active_textview)!!
+
+        if(arrayList[position].beginDate <= Calendar.getInstance().time && //startDate is in past
+            arrayList[position].endDate > Calendar.getInstance().time && //endDate is in future
+            arrayList[position].beginDate < arrayList[position].endDate//startdate is before enddate
+        ){
+            active.text =  "actief"
+        }
+
+        //vcpu
+        vcpu = convertView?.findViewById(R.id.vm_vcpu_textview)!!
+        vcpu.text = "#vCPU: " + arrayList[position].vCPUAmount.toString()
+
+        //memory
+        memory = convertView?.findViewById(R.id.vm_memory_textview)!!
+        memory.text = "Geheugen(GB): " + arrayList[position].memoryAmount.toString()
+
+        //storage
+        storage = convertView?.findViewById(R.id.vm_storage_textview)!!
+        storage.text = "Opslag(GB): " + arrayList[position].storageAmount.toString() //"debug: " + arrayList[position].endDate.toString()
+
         return convertView
     }
 }

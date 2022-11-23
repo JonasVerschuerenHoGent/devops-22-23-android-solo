@@ -1,10 +1,8 @@
 package com.example.test.domain
 
+import java.time.LocalDate
+import java.time.ZoneId
 import java.util.*
-import kotlin.collections.ArrayList
-import java.util.Calendar;
-import java.util.Date;
-
 
 
 class VirtualMachineMock() {
@@ -14,7 +12,6 @@ class VirtualMachineMock() {
     }
     private fun createVirtualMachineMockArray(): ArrayList<VirtualMachine>{
         var random: Random = Random();
-
         var modes = Mode.values()
         var availabilities = Availability.values()
         var states = State.values()
@@ -39,14 +36,23 @@ class VirtualMachineMock() {
                 random.nextInt(13)+4,
                 128,
                 true,
-                 requestDate = Calendar.getInstance().time,
-                 beginDate = Calendar.getInstance().time,
-                 endDate = Calendar.getInstance().time,
-
-
-                    )
+                 requestDate = giveDateWithDayOffset(-10),//Calendar.getInstance().time,
+                 beginDate = giveDateWithDayOffset(-5),//Calendar.getInstance().time,
+                 endDate = giveDateWithDayOffset(1)//Calendar.getInstance().time,
+                //change these^ offsets to play around with active/inactive vms
+                )
             )
         }
         return output
     }
+
+
+
+    private fun giveDateWithDayOffset(offset: Long): Date{
+        val defaultZoneId: ZoneId = ZoneId.systemDefault()
+        var localDate = LocalDate.now().plusDays(offset)
+
+        return Date.from(localDate.atStartOfDay(defaultZoneId).toInstant());
+    }
+
 }
