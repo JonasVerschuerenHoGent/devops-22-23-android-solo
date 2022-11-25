@@ -46,13 +46,8 @@ class VirtualMachineMock() {
         return output
     }
 
-
-
-    private fun giveDateWithDayOffset(offset: Long): Date{
-        val defaultZoneId: ZoneId = ZoneId.systemDefault()
-        var localDate = LocalDate.now().plusDays(offset)
-
-        return Date.from(localDate.atStartOfDay(defaultZoneId).toInstant());
+    private fun giveDateWithDayOffset(offset: Long): LocalDate{
+        return LocalDate.now().plusDays(offset)
     }
 
 }

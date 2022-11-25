@@ -18,6 +18,8 @@ import com.example.test.domain.VirtualMachine
 import com.example.test.domain.VirtualMachineMock
 import com.example.test.interfaces.VirtualMachineApi
 import com.example.test.utils.RetrofitBuilder
+import java.time.LocalDate
+import java.util.*
 
 class VirtualMachineDetailFragment : Fragment() {
 
@@ -71,13 +73,13 @@ class VirtualMachineDetailFragment : Fragment() {
         val myVM = VirtualMachineMock().virtualMachines[args.vmId]
         binding.myVM = myVM
 
-        binding.textviewName.text = "Name: ${myVM.name}"
-        binding.textviewHostname.text = "Hostname: ${myVM.hostname}"
-        binding.textviewFqdn.text = "FQDN: ${myVM.fqdn}"
-        binding.textviewMode.text = "Mode: ${myVM.mode.printableName}"
-        binding.textviewTemplate.text = "Template: ${myVM.mode.printableName}"
+        binding.textviewName.text = "${myVM.name}"
+        binding.textviewHostname.text = "${myVM.hostname}"
+        binding.textviewFqdn.text = "${myVM.fqdn}"
+        binding.textviewMode.text = "${myVM.mode.printableName}"
+        //binding.textviewTemplate.text = "${myVM.mode.printableName}"
 
-        var backupText = "Backup: "
+        var backupText = ""
         backupText += when(myVM.backupFrequency){
             0 -> "none"
             1 -> "daily"
@@ -88,21 +90,34 @@ class VirtualMachineDetailFragment : Fragment() {
         }
         binding.textviewBackup.text = backupText
 
-        binding.textviewAvailability.text = "Availability: ${myVM.availability.printableName}"
-        binding.textviewHost.text = "Host: ${myVM.hostname}"
-        binding.textviewCluster.text = "Cluster: ${myVM.cluster}"
+        binding.textviewAvailability.text = "${myVM.availability.printableName}"
+        binding.textviewHost.text = "${myVM.hostServer}"
+        binding.textviewCluster.text = "${myVM.cluster}"
 
-        var ports = "Ports: "
+        var ports = ""
         for(p in myVM.ports){
             ports += "${p}; "
         }
         binding.textviewPorts.text = ports
 
-        binding.textviewState.text = "State: ${myVM.state.printableName}"
-        binding.textviewVcpu.text = "#vCPU: ${myVM.vCPUAmount}"
-        binding.textviewMemory.text = "Memory (GB): ${myVM.memoryAmount}"
-        binding.textviewStorage.text = "Storage (GB): ${myVM.storageAmount}"
+        if(myVM.beginDate <= LocalDate.now() && //startDate is in past
+            myVM.endDate > LocalDate.now()&& //endDate is in future
+            myVM.beginDate < myVM.endDate//startdate is before enddate
+        ){
+            binding.textviewState.text =  "actief"
+        }
+        else{
+            binding.textviewState.text = "inactief"
+        }
 
+        //binding.textviewState.text = "${myVM.state.printableName}"
+        binding.textviewVcpu.text = "${myVM.vCPUAmount}"
+        binding.textviewMemory.text = "${myVM.memoryAmount}"
+        binding.textviewStorage.text = "${myVM.storageAmount}"
+
+        binding.textviewBegindate.text = "${myVM.beginDate.toString()}"
+        binding.textviewEnddate.text = "${myVM.endDate}"
+        binding.textviewRequestdate.text = "${myVM.requestDate}"
 
         return binding.root
     }

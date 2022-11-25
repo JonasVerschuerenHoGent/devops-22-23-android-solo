@@ -14,6 +14,7 @@ import com.example.test.R
 import com.example.test.domain.VirtualMachine
 import com.example.test.domain.VirtualMachineMock
 import com.example.test.databinding.FragmentVirtualMachineListBinding
+import java.time.LocalDate
 import java.util.Calendar
 
 class VirtualMachineListFragment : Fragment() {
@@ -107,11 +108,14 @@ class VirtualMachinesAdapter(
         //state
         active = convertView?.findViewById(R.id.vm_active_textview)!!
 
-        if(arrayList[position].beginDate <= Calendar.getInstance().time && //startDate is in past
-            arrayList[position].endDate > Calendar.getInstance().time && //endDate is in future
+        if(arrayList[position].beginDate <= LocalDate.now() && //startDate is in past
+            arrayList[position].endDate > LocalDate.now() && //endDate is in future
             arrayList[position].beginDate < arrayList[position].endDate//startdate is before enddate
         ){
             active.text =  "actief"
+        }
+        else{
+            active.text =  "inactief"
         }
 
         //vcpu

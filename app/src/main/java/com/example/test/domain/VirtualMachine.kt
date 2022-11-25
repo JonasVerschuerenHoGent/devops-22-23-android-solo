@@ -1,5 +1,6 @@
 package com.example.test.domain
 
+import java.time.LocalDate
 import java.util.Date
 
 data class VirtualMachine(
@@ -18,7 +19,7 @@ data class VirtualMachine(
     var memoryAmount: Int,
     var storageAmount: Int,
     var highAvailability: Boolean,
-    var requestDate: Date,
-    var beginDate: Date,
-    var endDate: Date
+    var requestDate: LocalDate,
+    var beginDate: LocalDate,
+    var endDate: LocalDate
 )
