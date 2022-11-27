@@ -1,4 +1,4 @@
-package com.example.test.screens.Project
+package com.example.test.screens.project
 
 import android.content.Context
 import android.os.Bundle
@@ -17,7 +17,6 @@ import com.example.test.R
 import com.example.test.databinding.ProjectFragmentItemListBinding
 import com.example.test.domain.Project
 import com.example.test.domain.ProjectMock
-import kotlinx.android.synthetic.main.project_fragment_item_list.*
 
 
 /**
