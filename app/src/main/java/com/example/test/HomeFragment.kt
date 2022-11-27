@@ -9,14 +9,14 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
-import com.example.test.databinding.FragmentSecondBinding
+import com.example.test.databinding.FragmentHomeBinding
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
  */
-class SecondFragment : Fragment() {
+class HomeFragment : Fragment() {
 
-    private lateinit var binding: FragmentSecondBinding
+    private lateinit var binding: FragmentHomeBinding
 
     @SuppressLint("RestrictedApi")
     override fun onCreateView(
@@ -24,7 +24,7 @@ class SecondFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_second, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
 
         val menuHost = requireActivity()
         menuHost.addMenuProvider(object: MenuProvider {
