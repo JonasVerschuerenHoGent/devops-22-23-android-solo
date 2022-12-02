@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.core.view.MenuProvider
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
@@ -24,9 +25,6 @@ class UserFragment : Fragment() {
 
     //binding
     private lateinit var binding: UserDetailFragmentBinding
-
-    //viewModel
-    private lateinit var viewModel: UserViewModel
 
     private var arraylist: ArrayList<Account> = ArrayList()
 
@@ -67,8 +65,11 @@ class UserFragment : Fragment() {
             }
         }, viewLifecycleOwner)
 
-        //Get the viewModel
-        viewModel = ViewModelProvider(this).get(UserViewModel::class.java)
+        //viewModel
+        val viewModelFactory = UserViewModelFactory(args.userId)
+        val viewModel: UserViewModel by viewModels{viewModelFactory}
+
+        //viewModel = ViewModelProvider(this).get(UserViewModel::class.java)
 
         // Set the viewmodel for databinding - this allows the bound layout access to all of the
         // data in the VieWModel
@@ -81,7 +82,7 @@ class UserFragment : Fragment() {
 
         //Add items to the ListView and make it clickable
         arraylist = AccountMock().users
-        binding.userNameLbl.text = arraylist[args.userId].name
+        //binding.userNameLbl.text = arraylist[args.userId].name
 
 
         return binding.root
