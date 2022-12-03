@@ -11,6 +11,8 @@ interface VirtualMachineApi {
   fun getVirtualMachineByID(@Path("id") id:String) : Call<VirtualMachine>
   @GET("virtualmachines/project/{projectId}")
   fun getVirtualMachineByProject(@Path("projectId") projectId:String) : Call<List<VirtualMachine>>
+  @GET("virtualmachines/")
+  fun getVirtualMachines() : Call<List<VirtualMachine>>
 
 
 }

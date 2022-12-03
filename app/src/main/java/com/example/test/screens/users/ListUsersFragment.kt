@@ -14,6 +14,8 @@ import androidx.navigation.ui.NavigationUI
 import com.example.test.*
 import com.example.test.databinding.ListUsersFragmentBinding
 import com.example.test.domain.Account
+import com.example.test.interfaces.AccountApi
+import com.example.test.utils.RetrofitBuilder
 
 
 /**
@@ -23,7 +25,6 @@ class ListUsersFragment : Fragment() {
 
     //binding
     private lateinit var binding: ListUsersFragmentBinding
-
     //viewModel
     private lateinit var viewModel: ListUsersViewModel
 
@@ -31,7 +32,6 @@ class ListUsersFragment : Fragment() {
 
     override fun onCreateView( inflater: LayoutInflater, container: ViewGroup?,
                                savedInstanceState: Bundle?): View? {
-
         // Inflate view and obtain an instance of the binding class
         binding = DataBindingUtil.inflate(inflater, R.layout.list_users_fragment, container, false)
 
