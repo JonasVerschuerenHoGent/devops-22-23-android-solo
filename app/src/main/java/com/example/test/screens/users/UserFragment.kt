@@ -15,6 +15,9 @@ import com.example.test.AccountMock
 import com.example.test.R
 import com.example.test.databinding.UserDetailFragmentBinding
 import com.example.test.domain.Account
+import com.example.test.interfaces.AccountApi
+import com.example.test.interfaces.VirtualMachineApi
+import com.example.test.utils.RetrofitBuilder
 
 
 /**
@@ -24,7 +27,7 @@ class UserFragment : Fragment() {
 
     //binding
     private lateinit var binding: UserDetailFragmentBinding
-
+    private lateinit var accountApi: AccountApi
     //viewModel
     private lateinit var viewModel: UserViewModel
 
@@ -32,6 +35,7 @@ class UserFragment : Fragment() {
 
     override fun onCreateView( inflater: LayoutInflater, container: ViewGroup?,
                                savedInstanceState: Bundle?): View? {
+
         val args = UserFragmentArgs.fromBundle(requireArguments())
 
         // Inflate view and obtain an instance of the binding class

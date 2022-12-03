@@ -14,6 +14,8 @@ import com.example.test.R
 import com.example.test.domain.VirtualMachine
 import com.example.test.domain.VirtualMachineMock
 import com.example.test.databinding.FragmentVirtualMachineListBinding
+import com.example.test.interfaces.VirtualMachineApi
+import com.example.test.utils.RetrofitBuilder
 import java.time.LocalDate
 import java.util.Calendar
 
@@ -21,6 +23,7 @@ class VirtualMachineListFragment : Fragment() {
     private lateinit var binding: FragmentVirtualMachineListBinding
 
     private lateinit var listView: ListView
+    private lateinit var virtualMachineApi : VirtualMachineApi
     private var arrayList: ArrayList<VirtualMachine> = ArrayList()
     var adapter: VirtualMachinesAdapter? = null
 
@@ -28,6 +31,7 @@ class VirtualMachineListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
+        virtualMachineApi = RetrofitBuilder.getInstance().create(VirtualMachineApi::class.java)
         binding = DataBindingUtil.inflate(inflater,
             R.layout.fragment_virtual_machine_list, container, false)
 
