@@ -2,23 +2,16 @@ package com.example.test.screens.users
 
 import android.os.Bundle
 import android.view.*
-import androidx.fragment.app.Fragment
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.Toast
 import androidx.core.view.MenuProvider
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.example.test.AccountMock
 import com.example.test.R
 import com.example.test.databinding.UserDetailFragmentBinding
 import com.example.test.domain.Account
-import com.example.test.interfaces.AccountApi
-import com.example.test.interfaces.VirtualMachineApi
-import com.example.test.utils.RetrofitBuilder
 
 
 /**
@@ -28,10 +21,6 @@ class UserFragment : Fragment() {
 
     //binding
     private lateinit var binding: UserDetailFragmentBinding
-
-    //viewModel
-    private lateinit var viewModel: UserViewModel
-
     private var arraylist: ArrayList<Account> = ArrayList()
 
     override fun onCreateView( inflater: LayoutInflater, container: ViewGroup?,
