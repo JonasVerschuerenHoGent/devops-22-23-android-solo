@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/projects"
+        android:enabled="true"
+        android:title="@string/projects" />
+
+    <item
+        android:id="@+id/virtualMachines"
+        android:enabled="true"
+        android:title="@string/virtual_machines" />
+
+    <item
+        android:id="@+id/users"
+        android:enabled="true"
+        android:title="@string/users" />
+
+</menu>
