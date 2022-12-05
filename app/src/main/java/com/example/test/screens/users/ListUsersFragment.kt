@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.widget.*
 import androidx.core.view.MenuProvider
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
@@ -28,7 +29,8 @@ class ListUsersFragment : Fragment() {
     //viewModel
     private lateinit var viewModel: ListUsersViewModel
 
-    private var arraylist: ArrayList<Account> = ArrayList()
+//    private var arraylist: ArrayList<Account> = ArrayList()
+    private lateinit var adapter: ListUsersAdapter
 
     override fun onCreateView( inflater: LayoutInflater, container: ViewGroup?,
                                savedInstanceState: Bundle?): View? {
@@ -36,7 +38,7 @@ class ListUsersFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.list_users_fragment, container, false)
 
         //code for overflow menu
-        val menuHost = requireActivity()
+      /*  val menuHost = requireActivity()
         menuHost.addMenuProvider(object: MenuProvider {
             override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
                 menuInflater.inflate(R.menu.overflow_menu, menu)
@@ -63,10 +65,11 @@ class ListUsersFragment : Fragment() {
                 }
                 return false
             }
-        }, viewLifecycleOwner)
+        }, viewLifecycleOwner) */
 
+        val viewModelFactory = ListUsersViewModelFactory();
         //Get the viewModel
-        viewModel = ViewModelProvider(this).get(ListUsersViewModel::class.java)
+        viewModel = ViewModelProvider(this, viewModelFactory).get(ListUsersViewModel::class.java)
 
         // Set the viewmodel for databinding - this allows the bound layout access to all of the
         // data in the VieWModel
@@ -74,13 +77,12 @@ class ListUsersFragment : Fragment() {
 
         // Specify the current activity as the lifecycle owner of the binding. This is used so that
         // the binding can observe LiveData updates
-        binding.setLifecycleOwner(this)
-
-        arraylist = AccountMock().users
-
-
+        binding.lifecycleOwner = this
+       // arraylist = AccountMock().users
+        adapter = ListUsersAdapter(AccountClickListener { accountID: Int -> Toast.makeText(context, accountID, Toast.LENGTH_SHORT).show() })
+        binding.userList.adapter = adapter
         //Add items to the ListView and make it clickable
-        val arrayAdapter: ArrayAdapter<Account> = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, arraylist)
+     /*   val arrayAdapter: ArrayAdapter<Account> = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, arraylist)
         binding.usersLv.adapter = arrayAdapter
         binding.usersLv.onItemClickListener = object: AdapterView.OnItemClickListener{
             override fun onItemClick(
@@ -95,7 +97,8 @@ class ListUsersFragment : Fragment() {
                 Toast.makeText(requireContext(), "Clicked item = " + arraylist.get(position), Toast.LENGTH_LONG).show()
             }
 
-        }
+        } */
+        viewModel.listUsers.observe(viewLifecycleOwner, Observer { adapter.submitList(it) })
 
 
         return binding.root
