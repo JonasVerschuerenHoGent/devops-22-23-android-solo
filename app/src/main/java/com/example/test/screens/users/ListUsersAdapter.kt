@@ -1,6 +1,5 @@
 package com.example.test.screens.users
 
-import android.os.Binder
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -9,7 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.test.databinding.UserListItemBinding
 import com.example.test.domain.Account
 
-class ListUsersAdapter(val clickListener: AccountClickListener) : ListAdapter<Account, ViewHolder>(AccountDiffCallback()) {
+class ListUsersAdapter(val clickListener: AccountListener) : ListAdapter<Account, ViewHolder>(AccountDiffCallback()) {
+
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = getItem(position)
         holder.bind(clickListener, item)
@@ -23,8 +23,11 @@ class ListUsersAdapter(val clickListener: AccountClickListener) : ListAdapter<Ac
 }
 
 class ViewHolder(val binding : UserListItemBinding) : RecyclerView.ViewHolder(binding.root) {
-    fun bind(clickListener: AccountClickListener, item : Account) {
-        binding.textView.text = item.name
+
+    fun bind(clickListener: AccountListener, item : Account) {
+        binding.textviewName.text = item.name
+        binding.textviewDepartment.text = item.department.toString()
+        binding.textviewRole.text = item.role.toString()
         binding.account = item
         binding.clickListener = clickListener
         binding.executePendingBindings()
@@ -50,8 +53,6 @@ class AccountDiffCallback: DiffUtil.ItemCallback<Account>() {
     }
 }
 
-
-class AccountClickListener(val clickListener: (accountID: Int) -> Unit ) {
-    fun onclick(account : Account) = clickListener(account.id);
-
+class AccountListener(val clickListener: (accountID: Int) -> Unit ) {
+    fun onClick(account : Account) = clickListener(account.id)
 }

@@ -3,9 +3,12 @@ package com.example.test.screens.users
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.test.AccountMock
 import com.example.test.domain.Account
 import com.example.test.domain.Department
 import com.example.test.domain.Role
+import kotlinx.coroutines.launch
 
 class ListUsersViewModel : ViewModel() {
 
@@ -15,64 +18,13 @@ class ListUsersViewModel : ViewModel() {
         get() = _listAccount
 
     init {
-        _listAccount.value = listOf(
-            Account(
-                1,
-                "Test@Test.be",
-                "Tester",
-                Department.DIT,
-                "Talen",
-                "hi",
-                "045897-63015",
-                Role.Admin,
-                "Tester@tester.gmail.com"
-            ),
-            Account(
-                2,
-                "Test@Test.be",
-                "Tester",
-                Department.DIT,
-                "Talen",
-                "hi",
-                "045897-63015",
-                Role.Admin,
-                "Tester@tester.gmail.com"
-            ),
-            Account(
-                3,
-                "Test@Test.be",
-                "Tester",
-                Department.DIT,
-                "Talen",
-                "hi",
-                "045897-63015",
-                Role.Admin,
-                "Tester@tester.gmail.com"
-            ),
-            Account(
-                4,
-                "Test@Test.be",
-                "Tester",
-                Department.DIT,
-                "Talen",
-                "hi",
-                "045897-63015",
-                Role.Admin,
-                "Tester@tester.gmail.com"
-            ),
-            Account(
-                5,
-                "Test@Test.be",
-                "Tester",
-                Department.DIT,
-                "Talen",
-                "hi",
-                "045897-63015",
-                Role.Admin,
-                "Tester@tester.gmail.com"
-            )
+        initializeLiveData()
+    }
 
-        )
+    private fun initializeLiveData(){
+        viewModelScope.launch {
+            _listAccount.value = AccountMock().users
+        }
     }
 
 }
