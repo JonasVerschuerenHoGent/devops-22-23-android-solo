@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/projectListFragment"
-        android:title="@string/projects"/>
-    <item
-        android:id="@+id/virtualMachineListFragment"
-        android:title="@string/virtual_machines" />
-    <item
-        android:id="@+id/listUsersFragment"
-        android:title="@string/users" />
+        android:id="@+id/aboutFragment"
+        android:title="@string/about"/>
+
 </menu>

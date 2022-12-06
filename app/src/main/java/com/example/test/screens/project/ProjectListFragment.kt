@@ -40,35 +40,6 @@ class ProjectListFragment : Fragment() {
         listView = binding.projectNames
         arrayList = ProjectMock().projects
 
-        //code for overflow menu
-        val menuHost = requireActivity()
-        menuHost.addMenuProvider(object : MenuProvider {
-            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
-                menuInflater.inflate(R.menu.overflow_menu, menu)
-            }
-
-            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-                if (menuItem.itemId == R.id.listUsersFragment) {
-                    return NavigationUI.onNavDestinationSelected(
-                        menuItem,
-                        requireView().findNavController()
-                    )
-                }
-                if (menuItem.itemId == R.id.virtualMachineListFragment) {
-                    return NavigationUI.onNavDestinationSelected(
-                        menuItem,
-                        requireView().findNavController()
-                    )
-                }
-                if(menuItem.itemId == R.id.projectListFragment){
-                    return NavigationUI.onNavDestinationSelected(
-                        menuItem,
-                        requireView().findNavController()
-                    )
-                }
-                return false
-            }
-        }, viewLifecycleOwner)
 
         adapter = this.context?.let {ProjectsAdapter(it,arrayList) }
         listView.adapter = adapter

@@ -25,4 +25,5 @@
     <string name="list_of_projects">List of projects</string>
     <string name="projects">Projects</string>
     <string name="title_activity_login">LoginActivity</string>
+    <string name="about">About</string>
 </resources>
