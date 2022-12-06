@@ -6,16 +6,22 @@ import android.content.SharedPreferences
 import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
+import android.view.SurfaceControl.Transaction
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import com.example.test.databinding.ActivityMainBinding
 import com.example.test.screens.login.LoginActivity
+import com.example.test.screens.project.ProjectListFragment
+import com.example.test.screens.users.ListUsersFragment
+import com.example.test.screens.users.UserFragment
+import com.example.test.screens.virtual_machines.VirtualMachineListFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -40,6 +46,7 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         val navController = this.findNavController(R.id.nav_host_fragment)
+
         appBarConfiguration = AppBarConfiguration(navController.graph, binding.drawerLayout)
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration)
         NavigationUI.setupWithNavController(binding.navView, navController)
@@ -47,27 +54,18 @@ class MainActivity : AppCompatActivity() {
         //setup bottom nav bar
         findViewById<BottomNavigationView>(R.id.bottomNavigationView).setupWithNavController(navController)
         binding.bottomNavigationView.setOnItemSelectedListener {
+            lateinit var fragment: Fragment
             when(it.itemId) {
-                R.id.projects -> {
-                    Log.d("mainActivity", "projectlistfragment is clicked")
-                    NavigationUI.onNavDestinationSelected(it, navController)
-                }
-                R.id.virtualMachines -> {
-                    NavigationUI.onNavDestinationSelected(it, navController)
-                }
-                R.id.users -> {
-                    NavigationUI.onNavDestinationSelected(it, navController)
-                }
-                else -> false
+                R.id.projects -> fragment = ProjectListFragment()
+                R.id.virtualMachines -> fragment = VirtualMachineListFragment()
+                R.id.users -> fragment = ListUsersFragment()
             }
+            supportFragmentManager.beginTransaction().replace(R.id.drawerLayout, fragment).commit()
+            true
         }
 
     }
 
-
-    private fun replaceFragment(fragment: Fragment) {
-        supportFragmentManager.beginTransaction().replace(R.id.drawerLayout, fragment).commit()
-    }
 
     override fun onSupportNavigateUp(): Boolean {
         val navController = this.findNavController(R.id.nav_host_fragment)
