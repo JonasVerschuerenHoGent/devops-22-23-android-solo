@@ -6,8 +6,12 @@ import android.content.SharedPreferences
 import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.SurfaceControl.Transaction
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.MenuProvider
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -41,11 +45,27 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        val navController = this.findNavController(R.id.nav_host_fragment)
 
-        //setup overflow- and drawermenu
+        //code for overflow menu
+        addMenuProvider(object: MenuProvider {
+            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+                menuInflater.inflate(R.menu.overflow_menu, menu)
+            }
+
+            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+                if(menuItem.itemId == R.id.aboutFragment) {
+                    return NavigationUI.onNavDestinationSelected(menuItem, navController)
+                }
+                return false
+            }
+
+        })
+
+        //setup drawermenu
         setSupportActionBar(toolbar)
 
-        val navController = this.findNavController(R.id.nav_host_fragment)
+
 
         appBarConfiguration = AppBarConfiguration(navController.graph, binding.drawerLayout)
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration)

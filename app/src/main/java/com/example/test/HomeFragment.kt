@@ -3,9 +3,11 @@ package com.example.test
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.*
+import androidx.core.view.MenuHost
 import androidx.fragment.app.Fragment
 import androidx.core.view.MenuProvider
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Lifecycle
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
@@ -26,41 +28,12 @@ class HomeFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
 
-        val menuHost = requireActivity()
-        menuHost.addMenuProvider(object: MenuProvider {
-            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
-                menuInflater.inflate(R.menu.overflow_menu, menu)
-            }
-
-            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-                if(menuItem.itemId == R.id.listUsersFragment){
-                    return NavigationUI.onNavDestinationSelected(
-                        menuItem,
-                        requireView().findNavController()
-                    )
-                }
-                if(menuItem.itemId == R.id.virtualMachineListFragment){
-                    return NavigationUI.onNavDestinationSelected(
-                        menuItem,
-                        requireView().findNavController()
-                    )
-                }
-                if(menuItem.itemId == R.id.projectListFragment){
-                    return NavigationUI.onNavDestinationSelected(
-                        menuItem,
-                        requireView().findNavController()
-                    )
-                }
-                return false
-            }
-        }, viewLifecycleOwner)
         return binding.root
     }
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
 
         binding.buttonSecond.setOnClickListener {
             findNavController().navigate(R.id.action_SecondFragment_to_listUsersFragment)
