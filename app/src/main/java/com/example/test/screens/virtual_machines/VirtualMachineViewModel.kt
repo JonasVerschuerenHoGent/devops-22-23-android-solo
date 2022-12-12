@@ -11,9 +11,10 @@ import kotlinx.coroutines.launch
 class VirtualMachineViewModel(val id: Int) : ViewModel() {
 
     //live data objects
-    private val _vms = MutableLiveData<VirtualMachine>()
+    private val _vm = MutableLiveData<VirtualMachine>()
     val vm: LiveData<VirtualMachine>
-        get() = _vms
+        get() = _vm
+
 
     init {
         initializeLiveData()
@@ -21,7 +22,7 @@ class VirtualMachineViewModel(val id: Int) : ViewModel() {
 
     private fun initializeLiveData(){
         viewModelScope.launch {
-            _vms.value = VirtualMachineMock().virtualMachines[id]
+            _vm.value = VirtualMachineMock().virtualMachines[id]
         }
     }
 }

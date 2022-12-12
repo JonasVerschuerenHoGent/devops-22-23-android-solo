@@ -33,12 +33,12 @@ class VirtualMachineListFragment : Fragment() {
         binding.virtualMachineListViewModel = viewModel
         binding.lifecycleOwner = this
 
-        val adapter = VirtualMachinesAdapter( VirtualMachineListener { virtualMachineID ->
-            findNavController().navigate(
-                VirtualMachineListFragmentDirections.actionVirtualMachineListFragmentToVirtualMachineDetailFragment(
-                    virtualMachineID
-                )
-            )
+        val adapter = VirtualMachinesAdapter( VirtualMachineListener {
+            virtualMachineID ->
+            findNavController().navigate(VirtualMachineListFragmentDirections.
+            actionVirtualMachineListFragmentToVirtualMachineDetailFragment(
+                virtualMachineID
+            ))
         })
 
         val recyclerView = binding.virtualMachineList

@@ -37,10 +37,13 @@ class VirtualMachineViewHolder(val binding: VmItemBinding) : RecyclerView.ViewHo
         else{
             binding.vmActiveTextview.text = "inactief"
         }
-        binding.vmMemoryTextview.text = item.memoryAmount.toString()
+
         binding.vmNameTextview.text = item.name
+
         binding.vmVcpuTextview.text = item.vCPUAmount.toString()
-        binding.vmStorageTextview.text = item.storageAmount.toString()
+        binding.vmStorageTextview.text = item.storageAmount.toString() + "GB"
+        binding.vmMemoryTextview.text = item.memoryAmount.toString() + "GB"
+
         binding.vmItem = item
         binding.clickListener = clickListener
         binding.executePendingBindings()

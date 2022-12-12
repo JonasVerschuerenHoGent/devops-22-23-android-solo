@@ -13,22 +13,25 @@ import com.example.test.R
 import com.example.test.databinding.UserDetailFragmentBinding
 import com.example.test.domain.Account
 
-
-/**
- * A simple [Fragment] subclass as the default destination in the navigation.
- */
 class UserFragment : Fragment() {
 
     //binding
     private lateinit var binding: UserDetailFragmentBinding
     private var arraylist: ArrayList<Account> = ArrayList()
 
-    override fun onCreateView( inflater: LayoutInflater, container: ViewGroup?,
-                               savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?): View? {
         val args = UserFragmentArgs.fromBundle(requireArguments())
 
         // Inflate view and obtain an instance of the binding class
-        binding = DataBindingUtil.inflate(inflater, R.layout.user_detail_fragment, container, false)
+        binding = DataBindingUtil.inflate(
+            inflater,
+            R.layout.user_detail_fragment,
+            container,
+            false
+        )
 
         //code for overflow menu
         val menuHost = requireActivity()
@@ -64,15 +67,13 @@ class UserFragment : Fragment() {
         val viewModelFactory = UserViewModelFactory(args.userId)
         val viewModel: UserViewModel by viewModels{viewModelFactory}
 
-        //viewModel = ViewModelProvider(this).get(UserViewModel::class.java)
-
         // Set the viewmodel for databinding - this allows the bound layout access to all of the
         // data in the VieWModel
         binding.usersViewModel = viewModel
 
         // Specify the current activity as the lifecycle owner of the binding. This is used so that
         // the binding can observe LiveData updates
-        binding.setLifecycleOwner(this)
+        binding.lifecycleOwner = this
 
 
         //Add items to the ListView and make it clickable
