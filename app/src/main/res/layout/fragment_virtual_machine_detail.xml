@@ -5,7 +5,10 @@
 
     <data>
         <variable
-            name="myVM"
+            name="virtualMachineViewModel"
+            type="com.example.test.domain.VirtualMachine"/>
+        <variable
+            name="myVm"
             type="com.example.test.domain.VirtualMachine"/>
     </data>
 

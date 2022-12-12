@@ -14,12 +14,12 @@ import com.example.test.*
 import com.example.test.databinding.ListUsersFragmentBinding
 
 class ListUsersFragment : Fragment() {
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         val binding: ListUsersFragmentBinding =
             DataBindingUtil.inflate(inflater, R.layout.list_users_fragment, container, false)
 

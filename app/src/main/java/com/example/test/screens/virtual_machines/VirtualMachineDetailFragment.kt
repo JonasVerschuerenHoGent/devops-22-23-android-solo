@@ -22,7 +22,7 @@ import java.time.LocalDate
 import java.util.*
 
 class VirtualMachineDetailFragment : Fragment() {
-
+/*
     private lateinit var binding: FragmentVirtualMachineDetailBinding
     private lateinit var virtualMachineApi : VirtualMachineApi
     override fun onCreateView(
@@ -71,7 +71,7 @@ class VirtualMachineDetailFragment : Fragment() {
 
         val args = VirtualMachineDetailFragmentArgs.fromBundle(requireArguments())
         val myVM = VirtualMachineMock().virtualMachines[args.vmId]
-        binding.myVM = myVM
+        binding.myVm = myVM
 
         binding.textviewName.text = "${myVM.name}"
         binding.textviewHostname.text = "${myVM.hostname}"
@@ -120,5 +120,5 @@ class VirtualMachineDetailFragment : Fragment() {
         binding.textviewRequestdate.text = "${myVM.requestDate}"
 
         return binding.root
-    }
+    }*/
 }
