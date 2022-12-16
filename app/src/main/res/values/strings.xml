@@ -41,4 +41,5 @@
     <string name="fqdn">FQDN:</string>
     <string name="hostnaam">Hostnaam:</string>
     <string name="naam_vm">Naam VM:</string>
+    <string name="about">About</string>
 </resources>

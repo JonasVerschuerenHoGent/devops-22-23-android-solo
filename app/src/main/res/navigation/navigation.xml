@@ -61,4 +61,8 @@
             android:id="@+id/action_projectListFragment_to_virtualMachineListFragment"
             app:destination="@id/virtualMachineListFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="com.example.test.screens.about.AboutFragment"
+        android:label="AboutFragment" />
 </navigation>
