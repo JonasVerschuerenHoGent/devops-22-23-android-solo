@@ -1,0 +1,42 @@
+Index: app/src/main/java/com/example/test/screens/Project/ProjectListFragment.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/test/screens/Project/ProjectListFragment.kt b/app/src/main/java/com/example/test/screens/project/ProjectListFragment.kt
+rename from app/src/main/java/com/example/test/screens/Project/ProjectListFragment.kt
+rename to app/src/main/java/com/example/test/screens/project/ProjectListFragment.kt
+--- a/app/src/main/java/com/example/test/screens/Project/ProjectListFragment.kt	
++++ b/app/src/main/java/com/example/test/screens/project/ProjectListFragment.kt	
+@@ -1,4 +1,4 @@
+-package com.example.test.screens.Project
++package com.example.test.screens.project
+ 
+ import android.content.Context
+ import android.os.Bundle
+@@ -17,7 +17,8 @@
+ import com.example.test.databinding.ProjectFragmentItemListBinding
+ import com.example.test.domain.Project
+ import com.example.test.domain.ProjectMock
+-import kotlinx.android.synthetic.main.project_fragment_item_list.*
++import com.example.test.interfaces.ProjectApi
++import com.example.test.utils.RetrofitBuilder
+ 
+ 
+ /**
+@@ -29,6 +30,7 @@
+     private lateinit var listView: ListView
+     private var arrayList: ArrayList<Project> = ArrayList()
+     private var adapter : ProjectsAdapter? = null
++    private lateinit var projectApi : ProjectApi
+ 
+ 
+     override fun onCreateView(
+@@ -37,6 +39,7 @@
+     ): View? {
+         binding = DataBindingUtil.inflate(inflater,
+             R.layout.project_fragment_item_list, container, false)
++        projectApi = RetrofitBuilder.getInstance().create(ProjectApi::class.java)
+ 
+         listView = binding.projectNames
+         arrayList = ProjectMock().projects

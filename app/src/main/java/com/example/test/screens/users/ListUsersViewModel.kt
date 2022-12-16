@@ -3,23 +3,28 @@ package com.example.test.screens.users
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.test.AccountMock
+import com.example.test.domain.Account
+import com.example.test.domain.Department
+import com.example.test.domain.Role
+import kotlinx.coroutines.launch
 
 class ListUsersViewModel : ViewModel() {
 
     //live data objects
-    private val _listUsers = MutableLiveData<Array<String>>()
-    val listUsers: LiveData<Array<String>>
-        get() = _listUsers
+    private val _listAccount = MutableLiveData<List<Account>>()
+    val listUsers: LiveData<List<Account>>
+        get() = _listAccount
 
     init {
-        _listUsers.value = arrayOf(
-            "Jonas Verschueren",
-            "Sean Van Den Branden",
-            "Janne Van Schepdael",
-            "Yorben Van Driessche",
-            "Kadir Akkurt",
-            "Miro"
-        )
+        initializeLiveData()
+    }
+
+    private fun initializeLiveData(){
+        viewModelScope.launch {
+            _listAccount.value = AccountMock().users
+        }
     }
 
 }

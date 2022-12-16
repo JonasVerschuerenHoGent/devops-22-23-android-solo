@@ -25,5 +25,21 @@
     <string name="list_of_projects">List of projects</string>
     <string name="projects">Projects</string>
     <string name="title_activity_login">LoginActivity</string>
+    <string name="einddatum">Einddatum:</string>
+    <string name="datum_aanvraag">Datum aanvraag:</string>
+    <string name="startdatum">Startdatum:</string>
+    <string name="modus">Modus:</string>
+    <string name="vm_cluster">VM cluster:</string>
+    <string name="host_server">Host server:</string>
+    <string name="backups">Backups:</string>
+    <string name="availability">Availability:</string>
+    <string name="ports">Ports:</string>
+    <string name="geheugen_gb">Geheugen (GB)</string>
+    <string name="opslag_gb">Opslag (GB)</string>
+    <string name="aantal_vcpus">Aantal vCPUs</string>
+    <string name="status">Status:</string>
+    <string name="fqdn">FQDN:</string>
+    <string name="hostnaam">Hostnaam:</string>
+    <string name="naam_vm">Naam VM:</string>
     <string name="about">About</string>
 </resources>

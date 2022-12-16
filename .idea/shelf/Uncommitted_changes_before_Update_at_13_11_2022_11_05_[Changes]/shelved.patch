@@ -1,0 +1,31 @@
+Index: app/src/main/java/com/example/test/AccountMock.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.test\r\n\r\n\r\nimport java.util.*\r\nimport kotlin.collections.ArrayList\r\n\r\nclass AccountMock() {\r\n    var users: ArrayList<Account>\r\n    init{\r\n        users = createUserMockArray()\r\n    }\r\n    private fun createUserMockArray(): ArrayList<Account>{\r\n        var random: Random = Random();\r\n\r\n        var departments = Department.values()\r\n        var roles = Role.values()\r\n\r\n        var output = ArrayList<Account>();\r\n\r\n        for(i in 0..19){\r\n            output.add(Account(\r\n                i,\r\n                \"Email ${i}\",\r\n                \"Account ${i}\",\r\n                departments[random.nextInt(departments.size-1)],\r\n                \"Education ${i}\",\r\n                \"Extern type ${i}\",\r\n                \"Phone number ${i}\",\r\n                roles[random.nextInt(roles.size-1)]\r\n            ))\r\n\r\n        }\r\n        return output\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/test/AccountMock.kt b/app/src/main/java/com/example/test/AccountMock.kt
+--- a/app/src/main/java/com/example/test/AccountMock.kt	
++++ b/app/src/main/java/com/example/test/AccountMock.kt	
+@@ -1,6 +1,9 @@
+ package com.example.test
+ 
+ 
++import com.example.test.domain.Account
++import com.example.test.domain.Department
++import com.example.test.domain.Role
+ import java.util.*
+ import kotlin.collections.ArrayList
+ 
+@@ -26,7 +29,9 @@
+                 "Education ${i}",
+                 "Extern type ${i}",
+                 "Phone number ${i}",
+-                roles[random.nextInt(roles.size-1)]
++                roles[random.nextInt(roles.size-1)],
++                null
++
+             ))
+ 
+         }

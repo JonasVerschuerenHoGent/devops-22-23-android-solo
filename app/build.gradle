@@ -6,7 +6,7 @@ apply plugin: 'androidx.navigation.safeargs'
 
 android {
     compileSdkVersion 33
-
+    namespace 'com.example.test'
     defaultConfig {
         applicationId "com.example.test"
         minSdkVersion 26

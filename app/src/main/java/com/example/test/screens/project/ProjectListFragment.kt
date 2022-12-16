@@ -1,76 +1,48 @@
 package com.example.test.screens.project
 
-import android.content.Context
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
-import android.widget.BaseAdapter
-import android.widget.ListView
-import android.widget.TextView
-import android.widget.Toast
-import androidx.core.view.MenuProvider
 import androidx.databinding.DataBindingUtil
-import androidx.navigation.findNavController
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.NavigationUI
+import androidx.recyclerview.widget.DividerItemDecoration
 import com.example.test.R
 import com.example.test.databinding.ProjectFragmentItemListBinding
-import com.example.test.domain.Project
-import com.example.test.domain.ProjectMock
 
-
-/**
- * A fragment representing a list of Items.
- */
 class ProjectListFragment : Fragment() {
 
-    private lateinit var binding: ProjectFragmentItemListBinding
-    private lateinit var listView: ListView
-    private var arrayList: ArrayList<Project> = ArrayList()
-    private var adapter : ProjectsAdapter? = null
-
-
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DataBindingUtil.inflate(inflater,
-            R.layout.project_fragment_item_list, container, false)
+        val binding: ProjectFragmentItemListBinding =
+            DataBindingUtil.inflate(inflater, R.layout.project_fragment_item_list, container, false)
 
-        listView = binding.projectNames
-        arrayList = ProjectMock().projects
+        val viewModelFactory = ProjectListViewModelFactory();
+        val viewModel = ViewModelProvider(this, viewModelFactory).get(ProjectListViewModel::class.java)
+
+        binding.listProjectViewModel = viewModel
+        binding.lifecycleOwner = this
+
+        val adapter = ProjectListAdapter( ProjectListener{
+                projectName ->
+            findNavController().navigate(
+                ProjectListFragmentDirections.actionProjectListFragmentToVirtualMachineListFragment())
+
+        })
+        val recyclerView = binding.projectNames
+        recyclerView.adapter = adapter
+        recyclerView.addItemDecoration(
+            DividerItemDecoration(recyclerView.getContext(), DividerItemDecoration.VERTICAL)
+        )
+
+        viewModel.listProjects.observe(viewLifecycleOwner, Observer { adapter.submitList(it) })
 
 
-        adapter = this.context?.let {ProjectsAdapter(it,arrayList) }
-        listView.adapter = adapter
-        listView.setOnItemClickListener { parent, view, position, id ->
-            Toast.makeText(this.context, "Clicked item : $position", Toast.LENGTH_SHORT).show()
-
-            findNavController()
-                .navigate(ProjectListFragmentDirections.actionProjectListFragmentToVirtualMachineListFragment())
-
-        }
         return binding.root
-    }
-
-    class ProjectsAdapter(private val context: Context, private val arrayList: java.util.ArrayList<Project>) : BaseAdapter() {
-        private lateinit var name: TextView
-        override fun getCount(): Int {
-            return arrayList.size
-        }
-        override fun getItem(position: Int): Any {
-            return position
-        }
-        override fun getItemId(position: Int): Long {
-            return position.toLong()
-        }
-        override fun getView(position: Int, convertView: View?, parent: ViewGroup): View? {
-            var convertView = convertView
-            convertView = LayoutInflater.from(context).inflate(R.layout.project_fragment_item, parent, false)
-            name = convertView?.findViewById(R.id.projectName)!!
-            name.text = arrayList[position].name
-            return convertView
-        }
     }
 
 }

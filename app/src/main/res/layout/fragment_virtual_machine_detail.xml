@@ -5,8 +5,8 @@
 
     <data>
         <variable
-            name="myVM"
-            type="com.example.test.domain.VirtualMachine"/>
+            name="virtualMachineViewModel"
+            type="com.example.test.screens.virtual_machines.VirtualMachineViewModel"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -21,6 +21,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
+            android:text="@{virtualMachineViewModel.vm.name}"
             app:layout_constraintBaseline_toBaselineOf="@+id/textview_name_label"
             app:layout_constraintStart_toEndOf="@+id/textview_name_label"
             tools:text="VM name" />
@@ -41,6 +42,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
+            android:text="@{virtualMachineViewModel.vm.availability.printableName}"
             app:layout_constraintBaseline_toBaselineOf="@+id/textview_availability_label"
             app:layout_constraintStart_toEndOf="@+id/textview_availability_label"
             tools:text="availability" />
@@ -52,6 +54,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
+            android:text="@{Integer.toString(virtualMachineViewModel.vm.hostServer)}"
             app:layout_constraintStart_toEndOf="@+id/textview_host_label"
             app:layout_constraintTop_toBottomOf="@+id/textview_backup"
             tools:text="host" />
@@ -63,6 +66,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
+            android:text="@{Integer.toString(virtualMachineViewModel.vm.cluster)}"
             app:layout_constraintStart_toEndOf="@+id/textview_cluster_label"
             app:layout_constraintTop_toBottomOf="@+id/textview_host_label"
             tools:text="cluster" />
@@ -83,6 +87,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
+            android:text="@{virtualMachineViewModel.vm.state.printableName}"
             app:layout_constraintBaseline_toBaselineOf="@+id/textview_state_label"
             app:layout_constraintStart_toEndOf="@+id/textview_state_label"
             tools:text="state" />
@@ -94,7 +99,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
-            android:text="Naam VM: "
+            android:text="@string/naam_vm"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -105,7 +110,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:text="Hostnaam:"
+            android:text="@string/hostnaam"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textview_requestdate_label" />
@@ -116,6 +121,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
+            android:text="@{virtualMachineViewModel.vm.hostname}"
             app:layout_constraintBaseline_toBaselineOf="@+id/textview_hostname_label"
             app:layout_constraintStart_toEndOf="@+id/textview_hostname_label"
             tools:text="VM hostname" />
@@ -127,7 +133,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
-            android:text="FQDN:"
+            android:text="@string/fqdn"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textview_hostname_label" />
@@ -138,6 +144,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
+            android:text="@{virtualMachineViewModel.vm.fqdn}"
             app:layout_constraintBaseline_toBaselineOf="@+id/textview_fqdn_label"
             app:layout_constraintStart_toEndOf="@+id/textview_fqdn_label"
             tools:text="fqdn" />
@@ -149,7 +156,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
-            android:text="Status:"
+            android:text="@string/status"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textview_name_label" />
@@ -175,7 +182,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="32dp"
                     android:layout_marginRight="32dp"
-                    android:text="Aantal vCPUs"
+                    android:text="@string/aantal_vcpus"
                     android:textStyle="bold"
                     tools:layout_editor_absoluteX="189dp"
                     tools:layout_editor_absoluteY="420dp"
@@ -187,7 +194,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="32dp"
                     android:layout_marginRight="32dp"
-                    android:text="Opslag (GB)"
+                    android:text="@string/opslag_gb"
                     android:textStyle="bold"
                     tools:layout_editor_absoluteX="248dp"
                     tools:layout_editor_absoluteY="425dp"
@@ -197,7 +204,7 @@
                     android:id="@+id/textview_memory_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Geheugen (GB)"
+                    android:text="@string/geheugen_gb"
                     android:textStyle="bold"
                     tools:layout_editor_absoluteX="217dp"
                     tools:layout_editor_absoluteY="450dp"
@@ -215,6 +222,7 @@
                     android:layout_marginTop="4dp"
                     android:layout_marginEnd="32dp"
                     android:layout_marginRight="32dp"
+                    android:text="@{Integer.toString(virtualMachineViewModel.vm.VCPUAmount)}"
                     tools:layout_editor_absoluteX="189dp"
                     tools:layout_editor_absoluteY="420dp"
                     tools:text="vcpu" />
@@ -226,6 +234,7 @@
                     android:layout_marginTop="4dp"
                     android:layout_marginEnd="32dp"
                     android:layout_marginRight="32dp"
+                    android:text="@{Integer.toString(virtualMachineViewModel.vm.storageAmount)}"
                     tools:layout_editor_absoluteX="248dp"
                     tools:layout_editor_absoluteY="425dp"
                     tools:text="storage" />
@@ -235,6 +244,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
+                    android:text="@{Integer.toString(virtualMachineViewModel.vm.memoryAmount)}"
                     tools:layout_editor_absoluteX="217dp"
                     tools:layout_editor_absoluteY="450dp"
                     tools:text="memory" />
@@ -247,7 +257,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:text="Ports: "
+            android:text="@string/ports"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textview_mode_template_label" />
@@ -259,7 +269,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
-            android:text="Availability:"
+            android:text="@string/availability"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textview_ports_label" />
@@ -271,7 +281,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
-            android:text="Backups:"
+            android:text="@string/backups"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textview_availability_label" />
@@ -283,7 +293,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
-            android:text="Host server:"
+            android:text="@string/host_server"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textview_backup_label" />
@@ -295,7 +305,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
-            android:text="VM cluster: "
+            android:text="@string/vm_cluster"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textview_host_label" />
@@ -306,7 +316,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:text="Modus:"
+            android:text="@string/modus"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textview_fqdn_label" />
@@ -316,6 +326,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
+            android:text="@{virtualMachineViewModel.vm.mode.printableName}"
             app:layout_constraintBaseline_toBaselineOf="@+id/textview_mode_template_label"
             app:layout_constraintStart_toEndOf="@+id/textview_mode_template_label"
             tools:text="mode" />
@@ -326,19 +337,19 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:text="Startdatum:"
+            android:text="@string/startdatum"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tableLayout"
             tools:text="Startdatum:" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/textView_endDate_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:text="Einddatum:"
+            android:text="@string/einddatum"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textview_begindate_label" />
@@ -349,16 +360,17 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:text="Datum aanvraag:"
+            android:text="@string/datum_aanvraag"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+            app:layout_constraintTop_toBottomOf="@+id/textView_endDate_label" />
 
         <TextView
             android:id="@+id/textview_begindate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
+            android:text="@{virtualMachineViewModel.vm.beginDate.toString()}"
             app:layout_constraintBaseline_toBaselineOf="@+id/textview_begindate_label"
             app:layout_constraintStart_toEndOf="@+id/textview_begindate_label"
             tools:text="start date" />
@@ -368,8 +380,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            app:layout_constraintBaseline_toBaselineOf="@+id/textView2"
-            app:layout_constraintStart_toEndOf="@+id/textView2"
+            android:text="@{virtualMachineViewModel.vm.endDate.toString()}"
+            app:layout_constraintBaseline_toBaselineOf="@+id/textView_endDate_label"
+            app:layout_constraintStart_toEndOf="@+id/textView_endDate_label"
             tools:text="end date" />
 
         <TextView
@@ -377,8 +390,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:text="request date"
+            android:text="@{virtualMachineViewModel.vm.requestDate.toString()}"
             app:layout_constraintBaseline_toBaselineOf="@+id/textview_requestdate_label"
-            app:layout_constraintStart_toEndOf="@+id/textview_requestdate_label" />
+            app:layout_constraintStart_toEndOf="@+id/textview_requestdate_label"
+            tools:text="request date" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
