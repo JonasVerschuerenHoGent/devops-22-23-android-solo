@@ -72,15 +72,9 @@ class MainActivity : AppCompatActivity() {
         NavigationUI.setupWithNavController(binding.navView, navController)
 
         //setup bottom nav bar
-        findViewById<BottomNavigationView>(R.id.bottomNavigationView).setupWithNavController(navController)
+        binding.bottomNavigationView.setupWithNavController(navController)
         binding.bottomNavigationView.setOnItemSelectedListener {
-            lateinit var fragment: Fragment
-            when(it.itemId) {
-                R.id.projects -> fragment = ProjectListFragment()
-                R.id.virtualMachines -> fragment = VirtualMachineListFragment()
-                R.id.users -> fragment = ListUsersFragment()
-            }
-            supportFragmentManager.beginTransaction().replace(R.id.drawerLayout, fragment).commit()
+            NavigationUI.onNavDestinationSelected(it, navController)
             true
         }
 

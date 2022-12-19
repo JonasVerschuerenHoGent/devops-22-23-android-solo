@@ -2,17 +2,17 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/projects"
+        android:id="@+id/projectListFragment"
         android:enabled="true"
         android:title="@string/projects" />
 
     <item
-        android:id="@+id/virtualMachines"
+        android:id="@+id/virtualMachineListFragment"
         android:enabled="true"
         android:title="@string/virtual_machines" />
 
     <item
-        android:id="@+id/users"
+        android:id="@+id/listUsersFragment"
         android:enabled="true"
         android:title="@string/users" />
 
