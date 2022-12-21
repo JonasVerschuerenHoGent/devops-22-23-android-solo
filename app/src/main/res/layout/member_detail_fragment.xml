@@ -2,11 +2,11 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-    
+
     <data>
         <variable
-            name="usersViewModel"
-            type="com.example.test.screens.users.UserViewModel" />
+            name="membersViewModel"
+            type="com.example.test.screens.members.MemberViewModel" />
 
         <variable
             name="virtualMachineListViewModel"
@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:fontFamily="@font/asap"
-            android:text="@{usersViewModel.user.name}"
+            android:text="@{membersViewModel.user.name}"
             android:textSize="34sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -40,11 +40,11 @@
             android:layout_marginStart="48dp"
             android:layout_marginTop="8dp"
             android:fontFamily="@font/asap"
-            android:text="@{usersViewModel.user.backupContact}"
+            android:text="@{membersViewModel.user.role.name()}"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textview_backupcontact_label"
-            tools:text="backup_contact" />
+            tools:text="role" />
 
         <TextView
             android:id="@+id/textview_backupcontact_label"
@@ -53,7 +53,7 @@
             android:layout_marginStart="48dp"
             android:layout_marginTop="36dp"
             android:fontFamily="@font/asap"
-            android:text="@string/BackupContact"
+            android:text="@string/Rol"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -64,7 +64,7 @@
             android:id="@+id/textview_phonenr_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="36dp"
             android:layout_marginEnd="48dp"
             android:fontFamily="@font/asap"
             android:text="@string/Telnr"
@@ -72,7 +72,7 @@
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textview_name" />
+            app:layout_constraintTop_toBottomOf="@+id/textview_actief" />
 
         <TextView
             android:id="@+id/textview_phonenr"
@@ -80,70 +80,18 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:fontFamily="@font/asap"
-            android:text="@{usersViewModel.user.phoneNr}"
+            android:text="@{membersViewModel.user.phoneNr}"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="@+id/textview_phonenr_label"
             app:layout_constraintTop_toBottomOf="@+id/textview_phonenr_label"
             tools:text="phonenr" />
 
         <TextView
-            android:id="@+id/textview_externtype"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:fontFamily="@font/asap"
-            android:text="@{usersViewModel.user.externType}"
-            android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="@+id/textview_externtype_label"
-            app:layout_constraintTop_toBottomOf="@+id/textview_externtype_label"
-            tools:text="externtype" />
-
-        <TextView
-            android:id="@+id/textview_externtype_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="36dp"
-            android:fontFamily="@font/asap"
-            android:text="@string/Externtype"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@+id/textview_department"
-            app:layout_constraintTop_toBottomOf="@+id/textview_department" />
-
-        <TextView
-            android:id="@+id/textview_education_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="48dp"
-            android:layout_marginTop="36dp"
-            android:fontFamily="@font/asap"
-            android:text="@string/Opleiding"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textview_backupcontact" />
-
-        <TextView
-            android:id="@+id/textview_education"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="48dp"
-            android:layout_marginTop="8dp"
-            android:fontFamily="@font/asap"
-            android:text="@{usersViewModel.user.education}"
-            android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textview_education_label"
-            tools:text="education" />
-
-        <TextView
             android:id="@+id/tetview_email_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="48dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="36dp"
             android:fontFamily="@font/asap"
             android:text="@string/email"
             android:textColor="@color/colorPrimaryDark"
@@ -151,7 +99,7 @@
             android:textStyle="bold"
             android:visibility="visible"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textview_name" />
+            app:layout_constraintTop_toBottomOf="@+id/textview_actief" />
 
         <TextView
             android:id="@+id/textview_department_label"
@@ -173,7 +121,7 @@
             android:layout_marginStart="48dp"
             android:layout_marginTop="8dp"
             android:fontFamily="@font/asap"
-            android:text="@{usersViewModel.user.email}"
+            android:text="@{membersViewModel.user.email}"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tetview_email_label"
@@ -185,7 +133,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:fontFamily="@font/asap"
-            android:text="@{usersViewModel.user.department.name()}"
+            android:text="@{membersViewModel.user.department.name()}"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="@+id/textview_department_label"
             app:layout_constraintTop_toBottomOf="@+id/textview_department_label"
@@ -211,36 +159,26 @@
             app:layout_constraintStart_toStartOf="@+id/textview_backupcontact"
             app:layout_constraintTop_toBottomOf="@+id/textview_backupcontact" />
 
-        <View
-            android:id="@+id/divider3"
-            android:layout_width="0dp"
-            android:layout_height="3dp"
-            android:layout_marginTop="8dp"
-            android:background="?android:attr/listDivider"
-            app:layout_constraintEnd_toEndOf="@+id/divider2"
-            app:layout_constraintStart_toStartOf="@+id/textview_education"
-            app:layout_constraintTop_toBottomOf="@+id/textview_education" />
-
 
         <View
             android:id="@+id/divider4"
             android:layout_width="0dp"
             android:layout_height="5dp"
             android:layout_marginStart="15dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="15dp"
             android:background="?android:attr/listDivider"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/divider3" />
+            app:layout_constraintTop_toBottomOf="@+id/divider2" />
 
         <TextView
             android:id="@+id/textview_vmAangemaakt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="@string/VmsGelinkt"
+            android:text="@string/VmsGemaakt"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -262,6 +200,21 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textview_vmAangemaakt" />
 
+        <TextView
+            android:id="@+id/textview_actief"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/asap"
+            android:text="@{membersViewModel.user.actief ? `actief` : `non-actief`}"
+            android:textSize="14sp"
+            app:circularflow_defaultRadius="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textview_name"
+            tools:text="actief" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </layout>

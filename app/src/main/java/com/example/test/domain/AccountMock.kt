@@ -29,7 +29,6 @@ class AccountMock() {
                 "Education ${i}",
                 "Extern type ${i}",
                 "Phone number ${i}",
-                roles[random.nextInt(roles.size-1)],
                 "Backup contact ${i}"
             ))
         }

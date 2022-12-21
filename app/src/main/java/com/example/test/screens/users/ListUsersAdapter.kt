@@ -27,7 +27,6 @@ class ViewHolder(val binding : UserListItemBinding) : RecyclerView.ViewHolder(bi
     fun bind(clickListener: AccountListener, item : Account) {
         binding.textviewName.text = item.name
         //binding.textviewDepartment.text = item.department.toString()
-        binding.textviewRole.text = item.role.toString()
         binding.account = item
         binding.clickListener = clickListener
         binding.executePendingBindings()

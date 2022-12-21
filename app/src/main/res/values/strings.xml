@@ -49,5 +49,6 @@
     <string name="Telnr">Telefoonnummer</string>
     <string name="Rol">Rol</string>
     <string name="BackupContact">Backup contact</string>
-    <string name="VmsGelinkt">Aangemaakte Virtuele Machines</string>
+    <string name="VmsGemaakt">Uw aangemaakte Virtuele Machines</string>
+    <string name="VmsGelinkt">Uw persoonlijke Virtuele Machines</string>
 </resources>
