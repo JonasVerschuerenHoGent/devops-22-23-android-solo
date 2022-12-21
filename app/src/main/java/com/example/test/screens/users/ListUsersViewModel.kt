@@ -4,10 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.test.AccountMock
+import com.example.test.domain.AccountMock
 import com.example.test.domain.Account
-import com.example.test.domain.Department
-import com.example.test.domain.Role
 import kotlinx.coroutines.launch
 
 class ListUsersViewModel : ViewModel() {

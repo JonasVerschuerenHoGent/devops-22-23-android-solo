@@ -1,4 +1,4 @@
-package com.example.test
+package com.example.test.domain
 
 
 import com.example.test.domain.Account
