@@ -42,4 +42,12 @@
     <string name="hostnaam">Hostnaam:</string>
     <string name="naam_vm">Naam VM:</string>
     <string name="about">About</string>
+    <string name="Email">Email:</string>
+    <string name="Departement">Departement</string>
+    <string name="Opleiding">Opleiding</string>
+    <string name="Externtype">Extern type</string>
+    <string name="Telnr">Telefoonnummer</string>
+    <string name="Rol">Rol</string>
+    <string name="BackupContact">Backup contact</string>
+    <string name="VmsGelinkt">Aangemaakte Virtuele Machines</string>
 </resources>
