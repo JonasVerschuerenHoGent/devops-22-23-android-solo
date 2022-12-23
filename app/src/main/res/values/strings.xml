@@ -51,4 +51,9 @@
     <string name="BackupContact">Backup contact</string>
     <string name="VmsGemaakt">Uw aangemaakte Virtuele Machines</string>
     <string name="VmsGelinkt">Uw persoonlijke Virtuele Machines</string>
+    <string name="logOut">Log Out</string>
+
+    <string name="com_auth0_client_id">GWoLdOPzWkZmqJ6ioVSlIyoTTk0QWTeJ</string>
+    <string name="com_auth0_domain">dev-0oj1g2wm3cvd863w.us.auth0.com</string>
+    <string name="com_auth0_scheme">Vic</string>
 </resources>

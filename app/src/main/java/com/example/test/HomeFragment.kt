@@ -1,16 +1,13 @@
 package com.example.test
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.view.*
-import androidx.core.view.MenuHost
-import androidx.fragment.app.Fragment
-import androidx.core.view.MenuProvider
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.Lifecycle
-import androidx.navigation.findNavController
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.NavigationUI
+import com.auth0.android.Auth0
 import com.example.test.databinding.FragmentHomeBinding
 
 /**
@@ -19,6 +16,7 @@ import com.example.test.databinding.FragmentHomeBinding
 class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
+    private lateinit var account: Auth0
 
     @SuppressLint("RestrictedApi")
     override fun onCreateView(
@@ -38,13 +36,15 @@ class HomeFragment : Fragment() {
         binding.buttonSecond.setOnClickListener {
             findNavController().navigate(R.id.action_SecondFragment_to_listUsersFragment)
         }
-        binding.goToListButton.setOnClickListener{
+        binding.goToListButton.setOnClickListener {
             findNavController().navigate(R.id.action_SecondFragment_to_virtualMachineListFragment)
         }
-        binding.goToListProjectsBtn.setOnClickListener{
+        binding.goToListProjectsBtn.setOnClickListener {
+
+
             findNavController().navigate(R.id.action_SecondFragment_to_projectListFragment)
         }
+
+
     }
-
-
 }

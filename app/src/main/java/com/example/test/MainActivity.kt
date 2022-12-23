@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.res.Configuration
+import android.net.Credentials
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
@@ -20,32 +21,55 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
+import com.auth0.android.Auth0
+import com.auth0.android.authentication.AuthenticationAPIClient
+import com.auth0.android.authentication.AuthenticationException
+import com.auth0.android.callback.Callback
+import com.auth0.android.management.ManagementException
+import com.auth0.android.management.UsersAPIClient
+import com.auth0.android.provider.WebAuthProvider
+import com.auth0.android.provider.WebAuthProvider.logout
+import com.auth0.android.result.UserProfile
+import com.example.test.databinding.ActivityLoginBinding
+
 import com.example.test.databinding.ActivityMainBinding
 import com.example.test.screens.login.LoginActivity
+import com.example.test.screens.login.LoginFragment
 import com.example.test.screens.project.ProjectListFragment
 import com.example.test.screens.users.ListUsersFragment
 import com.example.test.screens.users.UserFragment
 import com.example.test.screens.virtual_machines.VirtualMachineListFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_home.view.*
+import kotlinx.android.synthetic.main.fragment_login.view.*
+
 
 class MainActivity : AppCompatActivity() {
+
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var appBarConfiguration: AppBarConfiguration
     private var prefs : SharedPreferences? = null
+    private var cachedCredentials: com.auth0.android.result.Credentials? = null
+    private var cachedUserProfile: UserProfile? = null
+    private lateinit var account: Auth0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // TODO check when login is implement and only do this if an invalid token is provided
-        prefs = this.getSharedPreferences("com.example.test", Context.MODE_PRIVATE)
-        if(prefs?.getBoolean("hasLoggedIn", false) == false) {
-            startActivity(Intent(this, LoginActivity::class.java))
+        account = Auth0(
+            getString(R.string.com_auth0_client_id),
+            getString(R.string.com_auth0_domain)
+        )
 
-        }
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         val navController = this.findNavController(R.id.nav_host_fragment)
+        loginWithBrowser()
+        binding.root.log_out.setOnClickListener { logout() }
+
 
         //code for overflow menu
         addMenuProvider(object: MenuProvider {
@@ -65,8 +89,6 @@ class MainActivity : AppCompatActivity() {
         //setup drawermenu
         setSupportActionBar(toolbar)
 
-
-
         appBarConfiguration = AppBarConfiguration(navController.graph, binding.drawerLayout)
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration)
         NavigationUI.setupWithNavController(binding.navView, navController)
@@ -81,6 +103,38 @@ class MainActivity : AppCompatActivity() {
     }
 
 
+
+
+
+    private fun loginWithBrowser() {
+        // Setup the WebAuthProvider, using the custom scheme and scope.
+        WebAuthProvider.login(account)
+            .withScheme(getString(R.string.com_auth0_scheme))
+            .withScope("openid profile email read:current_user update:current_user_metadata")
+            .withAudience("https://${getString(R.string.com_auth0_domain)}/api/v2/")
+
+            // Launch the authentication passing the callback where the results will be received
+            .start(this, object : Callback<com.auth0.android.result.Credentials, AuthenticationException> {
+                override fun onFailure(exception: AuthenticationException) {
+                    startActivity(Intent(applicationContext, LoginActivity::class.java))
+                    showSnackBar("Failure: ${exception.getCode()}")
+                }
+
+                override fun onSuccess(credentials: com.auth0.android.result.Credentials) {
+                    cachedCredentials = credentials
+                    showSnackBar("Success: ${credentials.accessToken}")
+
+                    showUserProfile();
+//                    val intent = Intent(applicationContext, MainActivity::class.java)
+//
+//                    startActivity(applicationContext, MainActivity::class.java)
+
+                }
+            })
+    }
+
+
+
     override fun onSupportNavigateUp(): Boolean {
         val navController = this.findNavController(R.id.nav_host_fragment)
         return NavigationUI.navigateUp(navController, appBarConfiguration)
@@ -91,4 +145,51 @@ class MainActivity : AppCompatActivity() {
         super.onStop()
         prefs?.edit()?.putBoolean("hasLoggedIn", false)?.apply()
     }
+
+    private fun showUserProfile() {
+        val client = AuthenticationAPIClient(account)
+
+        // Use the access token to call userInfo endpoint.
+        // In this sample, we can assume cachedCredentials has been initialized by this point.
+        client.userInfo(cachedCredentials!!.accessToken!!)
+            .start(object : Callback<UserProfile, AuthenticationException> {
+                override fun onFailure(exception: AuthenticationException) {
+                    showSnackBar("Failure: ${exception.getCode()}")
+                }
+
+                override fun onSuccess(profile: UserProfile) {
+                    cachedUserProfile = profile;
+
+                }
+            })
+    }
+
+    private fun showSnackBar(text: String) {
+        Snackbar.make(
+            binding.root,
+            text,
+            Snackbar.LENGTH_LONG
+        ).show()
+    }
+
+    private fun logout() {
+        logout(account)
+            .withScheme(getString(R.string.com_auth0_scheme))
+            .start(this, object : Callback<Void?, AuthenticationException> {
+                override fun onSuccess(payload: Void?) {
+                    // The user has been logged out!
+                    cachedCredentials = null
+                    cachedUserProfile = null
+                    startActivity(Intent(getApplicationContext(), LoginActivity::class.java))
+
+                }
+
+                override fun onFailure(exception: AuthenticationException) {
+                    showSnackBar("Failure: ${exception.getCode()}")
+                    startActivity(Intent(getApplicationContext(), LoginFragment::class.java))
+                    System.console().printf("FIAL TO LOGOUT")
+                }
+            })
+    }
+
 }

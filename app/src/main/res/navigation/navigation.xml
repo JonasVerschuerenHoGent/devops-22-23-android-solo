@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_SecondFragment_to_projectListFragment"
             app:destination="@id/projectListFragment" />
+        <action
+            android:id="@+id/logOut"
+            app:destination="@id/nav_graph" />
     </fragment>
     <fragment
         android:id="@+id/listUsersFragment"
