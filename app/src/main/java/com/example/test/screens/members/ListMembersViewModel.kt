@@ -8,12 +8,10 @@ import com.example.test.domain.Member
 import com.example.test.domain.MemberMock
 import kotlinx.coroutines.launch
 
-class MemberViewModel(val id: Int) : ViewModel() {
-
-    //live data objects
-    private val _member = MutableLiveData<Member>()
-    val member: LiveData<Member>
-        get() = _member
+class ListMembersViewModel : ViewModel() {
+    private val _listMembers = MutableLiveData<List<Member>>()
+    val listMembers: LiveData<List<Member>>
+        get() = _listMembers
 
     init {
         initializeLiveData()
@@ -21,7 +19,7 @@ class MemberViewModel(val id: Int) : ViewModel() {
 
     private fun initializeLiveData(){
         viewModelScope.launch {
-            _member.value = MemberMock().members[id]
+            _listMembers.value = MemberMock().members
         }
     }
 }

@@ -28,10 +28,15 @@
         android:name="com.example.test.screens.customers.ListCustomersFragment"
         android:label="Beheer gebruikers" >
         <action
-            android:id="@+id/action_listUsersFragment_to_userFragment"
+            android:id="@+id/action_listCustomersFragment_to_customerFragment"
             app:destination="@id/customerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/listMembersFragment"
+        android:name="com.example.test.screens.members.ListMembersFragment"
+        android:label="Beheer members">
         <action
-            android:id="@+id/action_listUsersFragment_to_memberFragment"
+            android:id="@+id/action_listMembersFragment_to_memberFragment"
             app:destination="@id/memberFragment" />
     </fragment>
     <fragment

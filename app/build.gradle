@@ -62,7 +62,8 @@ dependencies {
 
     // auth
     implementation 'com.auth0.android:auth0:2.+'
-
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.5.1'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1'
 
 
     testImplementation 'junit:junit:4.12'

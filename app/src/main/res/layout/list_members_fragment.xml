@@ -2,34 +2,34 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-    
+
     <data>
         <variable
-            name="listCustomersViewModel"
-            type="com.example.test.screens.customers.ListCustomersViewModel" />
+            name="listMembersViewModel"
+            type="com.example.test.screens.members.ListMembersViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="56dp"
-        tools:context=".ListCustomersFragment">
+        tools:context=".ListMembersFragment">
 
         <SearchView
-            android:id="@+id/searchCustomersSv"
+            android:id="@+id/searchMembersSv"
             android:layout_width="0dp"
             android:layout_height="36dp"
             android:layout_marginStart="10dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="10dp"
             android:background="#EAE9E9"
-            android:queryHint="Search customer..."
+            android:queryHint="Search member..."
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/customer_list"
+            android:id="@+id/member_list"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="8dp"
@@ -40,7 +40,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/searchCustomersSv" />
+            app:layout_constraintTop_toBottomOf="@+id/searchMembersSv" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

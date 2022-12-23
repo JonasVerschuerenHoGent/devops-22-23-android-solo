@@ -6,18 +6,18 @@
 
     <data>
         <variable
-        name="customer"
-        type="com.example.test.domain.Customer" />
+            name="member"
+            type="com.example.test.domain.Member" />
         <variable
             name="clickListener"
-            type="com.example.test.screens.customers.CustomerListener"/>
+            type="com.example.test.screens.members.MemberListener"/>
 
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="@{()->clickListener.onClick(customer)}">
+        android:onClick="@{()->clickListener.onClick(member)}">
 
         <TextView
             android:id="@+id/textview_name"

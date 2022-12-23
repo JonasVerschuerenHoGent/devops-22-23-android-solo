@@ -6,9 +6,9 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.test.databinding.CustomerListItemBinding
-import com.example.test.domain.Account
+import com.example.test.domain.Customer
 
-class ListUsersAdapter(val clickListener: AccountListener) : ListAdapter<Account, ViewHolder>(AccountDiffCallback()) {
+class ListCustomersAdapter(val clickListener: CustomerListener) : ListAdapter<Customer, ViewHolder>(CustomerDiffCallback()) {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = getItem(position)
@@ -24,10 +24,10 @@ class ListUsersAdapter(val clickListener: AccountListener) : ListAdapter<Account
 
 class ViewHolder(val binding : CustomerListItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(clickListener: AccountListener, item : Account) {
+    fun bind(clickListener: CustomerListener, item : Customer) {
         binding.textviewName.text = item.name
         //binding.textviewDepartment.text = item.department.toString()
-        binding.account = item
+        binding.customer = item
         binding.clickListener = clickListener
         binding.executePendingBindings()
     }
@@ -41,17 +41,17 @@ class ViewHolder(val binding : CustomerListItemBinding) : RecyclerView.ViewHolde
     }
 }
 
-class AccountDiffCallback: DiffUtil.ItemCallback<Account>() {
-    override fun areItemsTheSame(oldItem: Account, newItem: Account): Boolean {
+class CustomerDiffCallback: DiffUtil.ItemCallback<Customer>() {
+    override fun areItemsTheSame(oldItem: Customer, newItem: Customer): Boolean {
         return oldItem.id == newItem.id
     }
 
-    override fun areContentsTheSame(oldItem: Account, newItem: Account): Boolean {
+    override fun areContentsTheSame(oldItem: Customer, newItem: Customer): Boolean {
         // Works perfectly because it's a dataclass
         return oldItem == newItem
     }
 }
 
-class AccountListener(val clickListener: (accountID: Int) -> Unit ) {
-    fun onClick(account : Account) = clickListener(account.id)
+class CustomerListener(val clickListener: (customerId: Int) -> Unit ) {
+    fun onClick(customer : Customer) = clickListener(customer.id)
 }

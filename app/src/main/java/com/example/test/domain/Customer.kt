@@ -1,6 +1,6 @@
 package com.example.test.domain
 
-data class Account(
+data class Customer(
     var id: Int,
     var email: String,
     var name: String,

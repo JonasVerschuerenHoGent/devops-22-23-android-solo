@@ -9,17 +9,17 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
-import com.example.test.domain.AccountMock
+import com.example.test.domain.CustomerMock
 import com.example.test.R
 import com.example.test.databinding.CustomerDetailFragmentBinding
-import com.example.test.domain.Account
+import com.example.test.domain.Customer
 import com.example.test.screens.virtual_machines.*
 
 class CustomerFragment : Fragment() {
 
     //binding
     private lateinit var binding: CustomerDetailFragmentBinding
-    private var arraylist: ArrayList<Account> = ArrayList()
+    private var arraylist: ArrayList<Customer> = ArrayList()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -44,7 +44,7 @@ class CustomerFragment : Fragment() {
         binding.customersViewModel = viewModel
 
         //Add items to the ListView and make it clickable
-        arraylist = AccountMock().customers
+        arraylist = CustomerMock().customers
         //binding.CustomerNameLbl.text = arraylist[args.CustomerId].name
 
         val vmViewModelFactory = VirtualMachineListViewModelFactory();

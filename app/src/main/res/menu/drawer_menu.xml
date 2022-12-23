@@ -11,5 +11,10 @@
     <item
         android:id="@+id/listCustomersFragment"
         android:icon="@drawable/ic_baseline_supervised_user_circle_24"
-        android:title="@string/users" />
+        android:title="@string/customers" />
+
+    <item
+        android:id="@+id/listMembersFragment"
+        android:icon="@drawable/ic_baseline_supervised_user_circle_24"
+        android:title="@string/members" />
 </menu>

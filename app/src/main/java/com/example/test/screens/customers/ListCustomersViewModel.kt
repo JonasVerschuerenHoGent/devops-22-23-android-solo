@@ -4,16 +4,16 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.test.domain.AccountMock
-import com.example.test.domain.Account
+import com.example.test.domain.CustomerMock
+import com.example.test.domain.Customer
 import kotlinx.coroutines.launch
 
 class ListCustomersViewModel : ViewModel() {
 
     //live data objects
-    private val _listAccount = MutableLiveData<List<Account>>()
-    val listUsers: LiveData<List<Account>>
-        get() = _listAccount
+    private val _listCustomers = MutableLiveData<List<Customer>>()
+    val listCustomers: LiveData<List<Customer>>
+        get() = _listCustomers
 
     init {
         initializeLiveData()
@@ -21,7 +21,7 @@ class ListCustomersViewModel : ViewModel() {
 
     private fun initializeLiveData(){
         viewModelScope.launch {
-            _listAccount.value = AccountMock().customers
+            _listCustomers.value = CustomerMock().customers
         }
     }
 

@@ -14,6 +14,11 @@
     <item
         android:id="@+id/listCustomersFragment"
         android:enabled="true"
-        android:title="@string/users" />
+        android:title="@string/customers" />
+
+    <item
+        android:id="@+id/listMembersFragment"
+        android:enabled="true"
+        android:title="@string/members" />
 
 </menu>

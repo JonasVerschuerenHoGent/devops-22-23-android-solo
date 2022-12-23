@@ -2,7 +2,6 @@ package com.example.test
 
 import android.content.Intent
 import android.content.SharedPreferences
-import android.net.Credentials
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
@@ -28,7 +27,6 @@ import com.example.test.screens.login.LoginFragment
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_home.view.*
-import kotlinx.android.synthetic.main.fragment_login.view.*
 
 
 class MainActivity : AppCompatActivity() {
