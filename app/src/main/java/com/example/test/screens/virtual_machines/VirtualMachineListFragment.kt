@@ -2,10 +2,8 @@ package com.example.test.screens.virtual_machines
 
 import android.os.Bundle
 import android.view.*
-import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -22,13 +20,13 @@ class VirtualMachineListFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         virtualMachineApi = RetrofitBuilder.getInstance().create(VirtualMachineApi::class.java)
         val binding: FragmentVirtualMachineListBinding=
             DataBindingUtil.inflate(inflater, R.layout.fragment_virtual_machine_list, container, false)
 
-        val viewModelFactory = VirtualMachineListViewModelFactory();
-        val viewModel = ViewModelProvider(this, viewModelFactory).get(VirtualMachineListViewModel::class.java)
+        val viewModelFactory = VirtualMachineListViewModelFactory()
+        val viewModel = ViewModelProvider(this, viewModelFactory)[VirtualMachineListViewModel::class.java]
 
         binding.virtualMachineListViewModel = viewModel
         binding.lifecycleOwner = this
@@ -44,12 +42,13 @@ class VirtualMachineListFragment : Fragment() {
         val recyclerView = binding.virtualMachineList
         recyclerView.adapter = adapter
         recyclerView.addItemDecoration(
-            DividerItemDecoration(recyclerView.getContext(), DividerItemDecoration.VERTICAL)
+            DividerItemDecoration(recyclerView.context, DividerItemDecoration.VERTICAL)
         )
 
-        viewModel.listVms.observe(viewLifecycleOwner, Observer {
+        viewModel.listVms.observe(viewLifecycleOwner) {
             println("List got ${it.size}")
-            adapter.submitList(it) })
+            adapter.submitList(it)
+        }
 
         return binding.root
     }
