@@ -8,9 +8,9 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 class AccountMock() {
-    var users: ArrayList<Account>
+    var customers: ArrayList<Account>
     init{
-        users = createUserMockArray()
+        customers = createUserMockArray()
     }
     private fun createUserMockArray(): ArrayList<Account>{
         var random: Random = Random();

@@ -1,22 +1,15 @@
 package com.example.test
 
-import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
-import android.content.res.Configuration
 import android.net.Credentials
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
-import android.view.SurfaceControl.Transaction
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.MenuProvider
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
@@ -25,21 +18,13 @@ import com.auth0.android.Auth0
 import com.auth0.android.authentication.AuthenticationAPIClient
 import com.auth0.android.authentication.AuthenticationException
 import com.auth0.android.callback.Callback
-import com.auth0.android.management.ManagementException
-import com.auth0.android.management.UsersAPIClient
 import com.auth0.android.provider.WebAuthProvider
 import com.auth0.android.provider.WebAuthProvider.logout
 import com.auth0.android.result.UserProfile
-import com.example.test.databinding.ActivityLoginBinding
 
 import com.example.test.databinding.ActivityMainBinding
 import com.example.test.screens.login.LoginActivity
 import com.example.test.screens.login.LoginFragment
-import com.example.test.screens.project.ProjectListFragment
-import com.example.test.screens.users.ListUsersFragment
-import com.example.test.screens.users.UserFragment
-import com.example.test.screens.virtual_machines.VirtualMachineListFragment
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_home.view.*
@@ -86,7 +71,7 @@ class MainActivity : AppCompatActivity() {
 
         })
 
-        //setup drawermenu
+        //setup drawer menu
         setSupportActionBar(toolbar)
 
         appBarConfiguration = AppBarConfiguration(navController.graph, binding.drawerLayout)
@@ -124,7 +109,7 @@ class MainActivity : AppCompatActivity() {
                     cachedCredentials = credentials
                     showSnackBar("Success: ${credentials.accessToken}")
 
-                    showUserProfile();
+                    showUserProfile()
 //                    val intent = Intent(applicationContext, MainActivity::class.java)
 //
 //                    startActivity(applicationContext, MainActivity::class.java)
@@ -158,7 +143,7 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 override fun onSuccess(profile: UserProfile) {
-                    cachedUserProfile = profile;
+                    cachedUserProfile = profile
 
                 }
             })
@@ -180,14 +165,14 @@ class MainActivity : AppCompatActivity() {
                     // The user has been logged out!
                     cachedCredentials = null
                     cachedUserProfile = null
-                    startActivity(Intent(getApplicationContext(), LoginActivity::class.java))
+                    startActivity(Intent(applicationContext, LoginActivity::class.java))
 
                 }
 
                 override fun onFailure(exception: AuthenticationException) {
                     showSnackBar("Failure: ${exception.getCode()}")
-                    startActivity(Intent(getApplicationContext(), LoginFragment::class.java))
-                    System.console().printf("FIAL TO LOGOUT")
+                    startActivity(Intent(applicationContext, LoginFragment::class.java))
+                    System.console().printf("FAILED TO LOGOUT")
                 }
             })
     }

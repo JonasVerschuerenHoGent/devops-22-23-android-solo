@@ -1,7 +1,6 @@
-package com.example.test.screens.users
+package com.example.test.screens.customers
 
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import android.widget.*
@@ -11,33 +10,33 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.example.test.*
-import com.example.test.databinding.ListUsersFragmentBinding
+import com.example.test.databinding.ListCustomersFragmentBinding
 
-class ListUsersFragment : Fragment() {
+class ListCustomersFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
-        val binding: ListUsersFragmentBinding =
-            DataBindingUtil.inflate(inflater, R.layout.list_users_fragment, container, false)
+        val binding: ListCustomersFragmentBinding =
+            DataBindingUtil.inflate(inflater, R.layout.list_customers_fragment, container, false)
 
-        val viewModelFactory = ListUsersViewModelFactory();
-        val viewModel = ViewModelProvider(this, viewModelFactory).get(ListUsersViewModel::class.java)
+        val viewModelFactory = ListCustomersViewModelFactory();
+        val viewModel = ViewModelProvider(this, viewModelFactory).get(ListCustomersViewModel::class.java)
 
         binding.listUsersViewModel = viewModel
         binding.lifecycleOwner = this
 
         val adapter = ListUsersAdapter( AccountListener{
             accountID ->
-            findNavController().navigate(ListUsersFragmentDirections.actionListUsersFragmentToUserFragment(
+            findNavController().navigate(ListCustomersFragmentDirections.actionListUsersFragmentToUserFragment(
                 accountID
             ))
             //Toast.makeText(context, "$accountID", Toast.LENGTH_SHORT).show()
             //Log.d("onclick", "accountclicklistener executed")
         })
-        val recyclerView = binding.userList
+        val recyclerView = binding.customerList
         recyclerView.adapter = adapter
         recyclerView.addItemDecoration(
             DividerItemDecoration(recyclerView.getContext(), DividerItemDecoration.VERTICAL))

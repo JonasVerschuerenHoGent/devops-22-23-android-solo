@@ -46,7 +46,7 @@ class VirtualMachineDetailFragment : Fragment() {
             }
 
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-                if(menuItem.itemId == R.id.listUsersFragment){
+                if(menuItem.itemId == R.id.listCustomersFragment){
                     return NavigationUI.onNavDestinationSelected(
                         menuItem,
                         requireView().findNavController()

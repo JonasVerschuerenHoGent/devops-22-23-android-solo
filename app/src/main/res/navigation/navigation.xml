@@ -12,7 +12,7 @@
 
         <action
             android:id="@+id/action_SecondFragment_to_listUsersFragment"
-            app:destination="@id/listUsersFragment" />
+            app:destination="@id/listCustomersFragment" />
         <action
             android:id="@+id/action_SecondFragment_to_virtualMachineListFragment"
             app:destination="@id/virtualMachineListFragment" />
@@ -24,12 +24,12 @@
             app:destination="@id/nav_graph" />
     </fragment>
     <fragment
-        android:id="@+id/listUsersFragment"
-        android:name="com.example.test.screens.users.ListUsersFragment"
+        android:id="@+id/listCustomersFragment"
+        android:name="com.example.test.screens.customers.ListCustomersFragment"
         android:label="Beheer gebruikers" >
         <action
             android:id="@+id/action_listUsersFragment_to_userFragment"
-            app:destination="@id/userFragment" />
+            app:destination="@id/customerFragment" />
         <action
             android:id="@+id/action_listUsersFragment_to_memberFragment"
             app:destination="@id/memberFragment" />
@@ -52,11 +52,11 @@
                 app:argType="integer" />
     </fragment>
     <fragment
-        android:id="@+id/userFragment"
-        android:name="com.example.test.screens.users.UserFragment"
+        android:id="@+id/customerFragment"
+        android:name="com.example.test.screens.customers.CustomerFragment"
         android:label="Detail klant">
         <argument
-            android:name="userId"
+            android:name="customerId"
             app:argType="integer" />
     </fragment>
     <fragment

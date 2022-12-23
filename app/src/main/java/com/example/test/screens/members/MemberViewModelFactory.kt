@@ -2,7 +2,6 @@ package com.example.test.screens.members
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.test.screens.users.UserViewModel
 
 class MemberViewModelFactory(private val id: Int): ViewModelProvider.Factory  {
 

@@ -10,7 +10,7 @@
         type="com.example.test.domain.Account" />
         <variable
             name="clickListener"
-            type="com.example.test.screens.users.AccountListener"/>
+            type="com.example.test.screens.customers.AccountListener"/>
 
     </data>
 

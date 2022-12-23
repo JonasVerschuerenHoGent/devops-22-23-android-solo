@@ -1,4 +1,4 @@
-package com.example.test.screens.users
+package com.example.test.screens.customers
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -8,7 +8,7 @@ import com.example.test.domain.AccountMock
 import com.example.test.domain.Account
 import kotlinx.coroutines.launch
 
-class ListUsersViewModel : ViewModel() {
+class ListCustomersViewModel : ViewModel() {
 
     //live data objects
     private val _listAccount = MutableLiveData<List<Account>>()
@@ -21,7 +21,7 @@ class ListUsersViewModel : ViewModel() {
 
     private fun initializeLiveData(){
         viewModelScope.launch {
-            _listAccount.value = AccountMock().users
+            _listAccount.value = AccountMock().customers
         }
     }
 

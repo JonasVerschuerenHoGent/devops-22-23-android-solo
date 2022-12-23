@@ -5,8 +5,8 @@
     
     <data>
         <variable
-            name="usersViewModel"
-            type="com.example.test.screens.users.UserViewModel" />
+            name="customersViewModel"
+            type="com.example.test.screens.customers.CustomerViewModel" />
 
         <variable
             name="virtualMachineListViewModel"
@@ -18,7 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="56dp"
-        tools:context=".usersFragment">
+        tools:context=".customersFragment">
 
         <TextView
             android:id="@+id/textview_name"
@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:fontFamily="@font/asap"
-            android:text="@{usersViewModel.user.name}"
+            android:text="@{customersViewModel.customer.name}"
             android:textSize="34sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -40,7 +40,7 @@
             android:layout_marginStart="48dp"
             android:layout_marginTop="8dp"
             android:fontFamily="@font/asap"
-            android:text="@{usersViewModel.user.backupContact}"
+            android:text="@{customersViewModel.customer.backupContact}"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textview_backupcontact_label"
@@ -80,7 +80,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:fontFamily="@font/asap"
-            android:text="@{usersViewModel.user.phoneNr}"
+            android:text="@{customersViewModel.customer.phoneNr}"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="@+id/textview_phonenr_label"
             app:layout_constraintTop_toBottomOf="@+id/textview_phonenr_label"
@@ -92,7 +92,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:fontFamily="@font/asap"
-            android:text="@{usersViewModel.user.externType}"
+            android:text="@{customersViewModel.customer.externType}"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="@+id/textview_externtype_label"
             app:layout_constraintTop_toBottomOf="@+id/textview_externtype_label"
@@ -132,7 +132,7 @@
             android:layout_marginStart="48dp"
             android:layout_marginTop="8dp"
             android:fontFamily="@font/asap"
-            android:text="@{usersViewModel.user.education}"
+            android:text="@{customersViewModel.customer.education}"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textview_education_label"
@@ -173,7 +173,7 @@
             android:layout_marginStart="48dp"
             android:layout_marginTop="8dp"
             android:fontFamily="@font/asap"
-            android:text="@{usersViewModel.user.email}"
+            android:text="@{customersViewModel.customer.email}"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tetview_email_label"
@@ -185,7 +185,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:fontFamily="@font/asap"
-            android:text="@{usersViewModel.user.department.name()}"
+            android:text="@{customersViewModel.customer.department.name()}"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="@+id/textview_department_label"
             app:layout_constraintTop_toBottomOf="@+id/textview_department_label"

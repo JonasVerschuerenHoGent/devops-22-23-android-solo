@@ -1,11 +1,11 @@
-package com.example.test.screens.users
+package com.example.test.screens.customers
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.test.databinding.UserListItemBinding
+import com.example.test.databinding.CustomerListItemBinding
 import com.example.test.domain.Account
 
 class ListUsersAdapter(val clickListener: AccountListener) : ListAdapter<Account, ViewHolder>(AccountDiffCallback()) {
@@ -22,7 +22,7 @@ class ListUsersAdapter(val clickListener: AccountListener) : ListAdapter<Account
 
 }
 
-class ViewHolder(val binding : UserListItemBinding) : RecyclerView.ViewHolder(binding.root) {
+class ViewHolder(val binding : CustomerListItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(clickListener: AccountListener, item : Account) {
         binding.textviewName.text = item.name
@@ -35,7 +35,7 @@ class ViewHolder(val binding : UserListItemBinding) : RecyclerView.ViewHolder(bi
     companion object {
         fun from(parent : ViewGroup) : ViewHolder {
             val layoutInflater = LayoutInflater.from(parent.context)
-            val binding = UserListItemBinding.inflate(layoutInflater, parent, false)
+            val binding = CustomerListItemBinding.inflate(layoutInflater, parent, false)
             return ViewHolder(binding)
         }
     }
