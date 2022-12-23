@@ -25,6 +25,7 @@ class ViewHolder(val binding : MemberListItemBinding) : RecyclerView.ViewHolder(
 
     fun bind(clickListener: MemberListener, item : Member) {
         binding.textviewName.text = item.name
+        binding.textviewRole.text = item.role.toString()
         binding.member = item
         binding.clickListener = clickListener
         binding.executePendingBindings()
