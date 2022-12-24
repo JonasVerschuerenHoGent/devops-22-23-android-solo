@@ -14,35 +14,45 @@ import com.example.test.*
 import com.example.test.databinding.ListUsersFragmentBinding
 
 class ListUsersFragment : Fragment() {
+
+
+    private lateinit var binding: ListUsersFragmentBinding
+    private lateinit var adapter: ListUsersAdapter
+
+    private val viewModel: ListUsersViewModel by lazy {
+        val activity = requireNotNull(this.activity)
+        ViewModelProvider(this, ListUsersViewModelFactory()).get(ListUsersViewModel::class.java)
+    }
+
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
-        val binding: ListUsersFragmentBinding =
-            DataBindingUtil.inflate(inflater, R.layout.list_users_fragment, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.list_users_fragment, container, false)
 
-        val viewModelFactory = ListUsersViewModelFactory();
-        val viewModel = ViewModelProvider(this, viewModelFactory).get(ListUsersViewModel::class.java)
+        // Data binding of ViewModel and LifeCycleOwner
+        binding.listUsersViewModel = viewModel
+        binding.lifecycleOwner = viewLifecycleOwner
 
         binding.listUsersViewModel = viewModel
         binding.lifecycleOwner = this
 
-        val adapter = ListUsersAdapter( AccountListener{
+        adapter = ListUsersAdapter( AccountListener{
             accountID ->
             findNavController().navigate(ListUsersFragmentDirections.actionListUsersFragmentToUserFragment(
                 accountID
             ))
-            //Toast.makeText(context, "$accountID", Toast.LENGTH_SHORT).show()
-            //Log.d("onclick", "accountclicklistener executed")
+
         })
         val recyclerView = binding.userList
         recyclerView.adapter = adapter
         recyclerView.addItemDecoration(
             DividerItemDecoration(recyclerView.getContext(), DividerItemDecoration.VERTICAL))
 
-        viewModel.listUsers.observe(viewLifecycleOwner, Observer { adapter.submitList(it) })
+        viewModel.customers.observe(viewLifecycleOwner, Observer { adapter.submitList(it) })
 
 
         return binding.root

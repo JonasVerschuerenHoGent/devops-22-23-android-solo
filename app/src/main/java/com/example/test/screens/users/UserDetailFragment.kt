@@ -2,28 +2,26 @@ package com.example.test.screens.users
 
 import android.os.Bundle
 import android.view.*
-import androidx.core.view.MenuProvider
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
-import androidx.navigation.findNavController
-import androidx.navigation.ui.NavigationUI
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.example.test.AccountMock
 import com.example.test.R
 import com.example.test.databinding.UserDetailFragmentBinding
-import com.example.test.domain.Account
 
-class UserFragment : Fragment() {
+class UserDetailFragment : Fragment() {
 
     //binding
     private lateinit var binding: UserDetailFragmentBinding
-    private var arraylist: ArrayList<Account> = ArrayList()
+    private lateinit var viewModel: UserViewModel
+    private lateinit var adapter : ListUsersAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?): View? {
-        val args = UserFragmentArgs.fromBundle(requireArguments())
+        val args = UserDetailFragmentArgs.fromBundle(requireArguments())
 
         // Inflate view and obtain an instance of the binding class
         binding = DataBindingUtil.inflate(
@@ -35,7 +33,7 @@ class UserFragment : Fragment() {
 
         //viewModel
         val viewModelFactory = UserViewModelFactory(args.userId)
-        val viewModel: UserViewModel by viewModels{viewModelFactory}
+        viewModel = ViewModelProvider(this, viewModelFactory).get(UserViewModel::class.java)
 
         // Set the viewmodel for databinding - this allows the bound layout access to all of the
         // data in the VieWModel
@@ -47,9 +45,7 @@ class UserFragment : Fragment() {
 
 
         //Add items to the ListView and make it clickable
-        arraylist = AccountMock().users
-        //binding.userNameLbl.text = arraylist[args.userId].name
-
+        viewModel.customer.observe(viewLifecycleOwner, Observer { it }) // TODO fill up detail screen. &  fill up detailcustomer
 
         return binding.root
     }

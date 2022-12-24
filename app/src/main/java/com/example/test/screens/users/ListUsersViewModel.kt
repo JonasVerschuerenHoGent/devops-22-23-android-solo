@@ -1,29 +1,42 @@
 package com.example.test.screens.users
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.example.test.AccountMock
+import android.app.Application
+import androidx.lifecycle.*
+import com.example.test.database.Account.CustomerDatabase
 import com.example.test.domain.Account
-import com.example.test.domain.Department
-import com.example.test.domain.Role
+import com.example.test.network.ApiStatus
+import com.example.test.network.asDomainModels
+import com.example.test.network.interfaces.ApiAccountObj.retrofitService
+import com.example.test.repository.CustomerRepository
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
-class ListUsersViewModel : ViewModel() {
+class ListUsersViewModel(application: Application) : AndroidViewModel(application) {
 
     //live data objects
-    private val _listAccount = MutableLiveData<List<Account>>()
-    val listUsers: LiveData<List<Account>>
-        get() = _listAccount
+    private val _status = MutableLiveData<ApiStatus>()
+    val status: LiveData<ApiStatus>
+        get() = _status
+
+    private val database = CustomerDatabase.getInstance(application.applicationContext)
+    private val customerRepository = CustomerRepository(database)
+
+    val customers = customerRepository.customers
 
     init {
-        initializeLiveData()
-    }
+        Timber.i("Refreshing the customers")
 
-    private fun initializeLiveData(){
         viewModelScope.launch {
-            _listAccount.value = AccountMock().users
+            _status.value = ApiStatus.LOADING
+
+            try {
+                customerRepository.refreshCustomers()
+                _status.value = ApiStatus.DONE
+            } catch (e: Exception) {
+                Timber.e("Exception occurred while refreshing the customers", e)
+                _status.value = ApiStatus.ERROR
+            }
         }
     }
 

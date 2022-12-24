@@ -47,7 +47,7 @@
     </fragment>
     <fragment
         android:id="@+id/userFragment"
-        android:name="com.example.test.screens.users.UserFragment"
+        android:name="com.example.test.screens.users.UserDetailFragment"
         android:label="Detail gebruiker" >
         <argument
             android:name="userId"

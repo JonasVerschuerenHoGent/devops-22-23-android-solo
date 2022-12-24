@@ -13,14 +13,19 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.example.test.R
 import com.example.test.databinding.FragmentVirtualMachineDetailBinding
+import com.example.test.databinding.UserDetailFragmentBinding
+import com.example.test.domain.VirtualMachine
 import com.example.test.domain.VirtualMachineMock
+import com.example.test.screens.users.ListUsersAdapter
+import com.example.test.screens.users.UserViewModel
 import java.time.LocalDate
 
 class VirtualMachineDetailFragment : Fragment() {
 
     //binding
     private lateinit var binding: FragmentVirtualMachineDetailBinding
-
+    private lateinit var viewModel: VirtualMachineViewModel
+    private lateinit var myVM : VirtualMachine
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -35,8 +40,12 @@ class VirtualMachineDetailFragment : Fragment() {
             false
         )
 
-        val myVM = VirtualMachineMock().virtualMachines[args.vmId]
-        //binding.myVm = myVM
+        if(viewModel.vm != null) {
+            myVM = viewModel.vm.value!!
+        }
+
+
+
 
         //code for overflow menu
         val menuHost = requireActivity()

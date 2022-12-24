@@ -9,8 +9,5 @@ data class Account(
     var externType: String?,
     var phoneNr: String,
     var role: Role,
-
-    //We have to change backupContact to type ACCOUNT
-    //We use string now to mock our data more easily
-    var backupContact: String
+    var backupContact: Int
 )
