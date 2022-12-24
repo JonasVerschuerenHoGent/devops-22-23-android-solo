@@ -164,7 +164,6 @@ class MainActivity : AppCompatActivity() {
                     cachedCredentials = null
                     cachedUserProfile = null
                     startActivity(Intent(applicationContext, LoginActivity::class.java))
-
                 }
 
                 override fun onFailure(exception: AuthenticationException) {

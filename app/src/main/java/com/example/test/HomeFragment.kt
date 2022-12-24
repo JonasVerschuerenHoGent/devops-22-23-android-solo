@@ -40,8 +40,6 @@ class HomeFragment : Fragment() {
             findNavController().navigate(R.id.action_SecondFragment_to_virtualMachineListFragment)
         }
         binding.goToListProjectsBtn.setOnClickListener {
-
-
             findNavController().navigate(R.id.action_SecondFragment_to_projectListFragment)
         }
 
