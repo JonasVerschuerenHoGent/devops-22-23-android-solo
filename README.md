@@ -5,9 +5,17 @@
 - ImagesServer: /
 
 ## How to run
-login:kadir.akkurt@student.hogent.be
-pass:Admin123
-roles:admin
+Admin 
+Username: admin@hogent.be 
+Password: Hogent123 
+Manager 
+Username:Manager@hogent.be 
+Password:Hogent123 
+Viewer 
+
+Username:Viewer@hogent.be 
+
+Password:Hogent123 
 
 ## Members
 > Fill in this information
