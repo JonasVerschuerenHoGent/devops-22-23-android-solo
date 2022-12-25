@@ -4,6 +4,7 @@ package com.example.test.network
 import com.example.test.domain.Project
 import com.example.test.domain.VirtualMachine
 import com.squareup.moshi.Json
+import org.json.JSONObject
 
 data class ApiProject(
 
@@ -14,13 +15,14 @@ data class ApiProject(
     val projectName: String,
 
     @Json(name = "virtual_machine_list")
-    val virtualMachines: List<VirtualMachine>)
+    val virtualMachines : JSONObject
+    )
 
-fun ApiProject.asDomainAccount(): Project {
+/*fun ApiProject.asDomainProject(): Project {
     return Project(
         id = projectId,
         name = projectName,
-        virtualMachines = virtualMachines
+        virtualMachines = virtualMachines.asDomainVM()
     )
 }
 
@@ -32,9 +34,13 @@ data class ApiProjectContainer(
 
 // Convert network result into domain Projects
 fun ApiProjectContainer.asDomainModels(): List<Project> {
-    return apiProjects.map { it.asDomainAccount() }
+    return apiProjects.map { it.asDomainProject() }
 }
 
 fun List<ApiProject>.asDomainModels(): List<Project> {
-    return this.map { it.asDomainAccount() }
+    return this.map { it.asDomainProject() }
 }
+
+/*fun JSONObject.asDomainVM(): List<VirtualMachine> {
+
+}*/

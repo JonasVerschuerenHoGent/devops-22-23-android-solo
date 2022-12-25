@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
-            android:text="@{virtualMachineViewModel.vm.name}"
+            android:text="@{virtualMachineViewModel.virtualMachine.name}"
             app:layout_constraintBaseline_toBaselineOf="@+id/textview_name_label"
             app:layout_constraintStart_toEndOf="@+id/textview_name_label"
             tools:text="VM name" />
@@ -42,7 +42,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
-            android:text="@{virtualMachineViewModel.vm.availability.printableName}"
+            android:text="@{virtualMachineViewModel.virtualMachine.availability.printableName}"
             app:layout_constraintBaseline_toBaselineOf="@+id/textview_availability_label"
             app:layout_constraintStart_toEndOf="@+id/textview_availability_label"
             tools:text="availability" />
@@ -54,7 +54,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
-            android:text="@{Integer.toString(virtualMachineViewModel.vm.hostServer)}"
+            android:text="@{Integer.toString(virtualMachineViewModel.virtualMachine.hostServer)}"
             app:layout_constraintStart_toEndOf="@+id/textview_host_label"
             app:layout_constraintTop_toBottomOf="@+id/textview_backup"
             tools:text="host" />
@@ -66,7 +66,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
-            android:text="@{Integer.toString(virtualMachineViewModel.vm.cluster)}"
+            android:text="@{Integer.toString(virtualMachineViewModel.virtualMachine.cluster)}"
             app:layout_constraintStart_toEndOf="@+id/textview_cluster_label"
             app:layout_constraintTop_toBottomOf="@+id/textview_host_label"
             tools:text="cluster" />
@@ -87,7 +87,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
-            android:text="@{virtualMachineViewModel.vm.state.printableName}"
+            android:text="@{virtualMachineViewModel.virtualMachine.state.printableName}"
             app:layout_constraintBaseline_toBaselineOf="@+id/textview_state_label"
             app:layout_constraintStart_toEndOf="@+id/textview_state_label"
             tools:text="state" />
@@ -121,7 +121,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
-            android:text="@{virtualMachineViewModel.vm.hostname}"
+            android:text="@{virtualMachineViewModel.virtualMachine.hostname}"
             app:layout_constraintBaseline_toBaselineOf="@+id/textview_hostname_label"
             app:layout_constraintStart_toEndOf="@+id/textview_hostname_label"
             tools:text="VM hostname" />
@@ -144,7 +144,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
-            android:text="@{virtualMachineViewModel.vm.fqdn}"
+            android:text="@{virtualMachineViewModel.virtualMachine.fqdn}"
             app:layout_constraintBaseline_toBaselineOf="@+id/textview_fqdn_label"
             app:layout_constraintStart_toEndOf="@+id/textview_fqdn_label"
             tools:text="fqdn" />
@@ -222,7 +222,7 @@
                     android:layout_marginTop="4dp"
                     android:layout_marginEnd="32dp"
                     android:layout_marginRight="32dp"
-                    android:text="@{Integer.toString(virtualMachineViewModel.vm.VCPUAmount)}"
+                    android:text="@{Integer.toString(virtualMachineViewModel.virtualMachine.VCPUAmount)}"
                     tools:layout_editor_absoluteX="189dp"
                     tools:layout_editor_absoluteY="420dp"
                     tools:text="vcpu" />
@@ -234,7 +234,7 @@
                     android:layout_marginTop="4dp"
                     android:layout_marginEnd="32dp"
                     android:layout_marginRight="32dp"
-                    android:text="@{Integer.toString(virtualMachineViewModel.vm.storageAmount)}"
+                    android:text="@{Integer.toString(virtualMachineViewModel.virtualMachine.storageAmount)}"
                     tools:layout_editor_absoluteX="248dp"
                     tools:layout_editor_absoluteY="425dp"
                     tools:text="storage" />
@@ -244,7 +244,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:text="@{Integer.toString(virtualMachineViewModel.vm.memoryAmount)}"
+                    android:text="@{Integer.toString(virtualMachineViewModel.virtualMachine.memoryAmount)}"
                     tools:layout_editor_absoluteX="217dp"
                     tools:layout_editor_absoluteY="450dp"
                     tools:text="memory" />
@@ -326,7 +326,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:text="@{virtualMachineViewModel.vm.mode.printableName}"
+            android:text="@{virtualMachineViewModel.virtualMachine.mode.printableName}"
             app:layout_constraintBaseline_toBaselineOf="@+id/textview_mode_template_label"
             app:layout_constraintStart_toEndOf="@+id/textview_mode_template_label"
             tools:text="mode" />
@@ -370,7 +370,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:text="@{virtualMachineViewModel.vm.beginDate.toString()}"
+            android:text="@{virtualMachineViewModel.virtualMachine.beginDate.toString()}"
             app:layout_constraintBaseline_toBaselineOf="@+id/textview_begindate_label"
             app:layout_constraintStart_toEndOf="@+id/textview_begindate_label"
             tools:text="start date" />
@@ -380,7 +380,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:text="@{virtualMachineViewModel.vm.endDate.toString()}"
+            android:text="@{virtualMachineViewModel.virtualMachine.endDate.toString()}"
             app:layout_constraintBaseline_toBaselineOf="@+id/textView_endDate_label"
             app:layout_constraintStart_toEndOf="@+id/textView_endDate_label"
             tools:text="end date" />
@@ -390,7 +390,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:text="@{virtualMachineViewModel.vm.requestDate.toString()}"
+            android:text="@{virtualMachineViewModel.virtualMachine.requestDate.toString()}"
             app:layout_constraintBaseline_toBaselineOf="@+id/textview_requestdate_label"
             app:layout_constraintStart_toEndOf="@+id/textview_requestdate_label"
             tools:text="request date" />

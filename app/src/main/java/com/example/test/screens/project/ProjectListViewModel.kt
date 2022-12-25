@@ -1,5 +1,6 @@
 package com.example.test.screens.project
 
+import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -13,7 +14,7 @@ import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
-class ProjectListViewModel : ViewModel() {
+class ProjectListViewModel() : ViewModel() {
 
 
 
@@ -42,7 +43,7 @@ class ProjectListViewModel : ViewModel() {
             val response = ApiProjectObj.retrofitService.getProjects().await()
 
             _status.value = ApiStatus.DONE
-            _listProject.value = response.asDomainModels()
+            //_listProject.value = response.asDomainModels()
         } catch (e: Exception) {
             Timber.e("Exception occurred while retrieving the Projects from the API", e)
             _status.value = ApiStatus.ERROR

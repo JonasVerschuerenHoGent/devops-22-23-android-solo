@@ -1,63 +1,52 @@
-package com.example.test.database.Account
+package com.example.test.database.member
 
-import android.widget.Switch
-import com.example.test.domain.Account
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.example.test.domain.Member
 import com.example.test.domain.Department
 import com.example.test.domain.Role
 
-@Entity(tableName = "customer_table")
-data class DatabaseCustomer(
+@Entity(tableName = "member_table")
+data class DatabaseMember(
 
 @PrimaryKey(autoGenerate = true)
 var id : Int = 0,
 
-@ColumnInfo(name = "customer_name")
+@ColumnInfo(name = "member_name")
 var name: String,
 
-@ColumnInfo(name = "customer_mail")
+@ColumnInfo(name = "member_mail")
 var email : String,
 
-@ColumnInfo(name = "customer_education")
-var education : String,
-
-@ColumnInfo(name = "customer_education")
+@ColumnInfo(name = "member_role")
 var role: String,
 
-@ColumnInfo(name = "customer_extern_type")
-var externType : String?,
-
-@ColumnInfo(name = "customer_phone_nr")
+@ColumnInfo(name = "member_phone_nr")
 var phoneNr : String,
 
-
-@ColumnInfo(name = "customer_department")
+@ColumnInfo(name = "member_department")
 var department : String,
 
-
-@ColumnInfo(name = "customer_backup_contact_id")
-var backupContactId : Int
+@ColumnInfo(name = "member_active")
+var active : String
 )
 
-// Convert a single DatabaseCustomer into a normal domain Customer
-fun DatabaseCustomer.asDomainModel(): Account {
-    return Account(
+// Convert a single Databasemember into a normal domain member
+fun DatabaseMember.asDomainModel(): Member {
+    return Member(
         id = id,
         name = name,
         email = email,
-        education = education,
-        externType = externType,
         phoneNr = phoneNr,
         role = role.asDomainRole(),
         department = department.asDomainDepartment(),
-        backupContact = backupContactId // Relatie naar zichzelf?
+        active = active.asDomainBoolean()
     )
 }
 
-// Convert a list of DatabaseCustomers in a list of normal domain Customers
-fun List<DatabaseCustomer>.asDomainModel(): List<Account> {
+// Convert a list of DatabaseMembers in a list of normal domain members
+fun List<DatabaseMember>.asDomainModel(): List<Member> {
     return map { it.asDomainModel() }
 }
 
@@ -90,5 +79,10 @@ fun String.asDomainDepartment() : Department {
         return Department.DSA
     }
     return Department.Extern
-
+}
+fun String.asDomainBoolean() : Boolean {
+    if (lowercase().equals("true")) {
+        return true
+    }
+    return false
 }

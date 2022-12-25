@@ -4,6 +4,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 class ProjectMock {
+    /*
     var projects: ArrayList<Project>
     init{
         projects = createProjectMockArray()
@@ -25,5 +26,5 @@ class ProjectMock {
             )
         }
         return output
-    }
+    }*/
 }

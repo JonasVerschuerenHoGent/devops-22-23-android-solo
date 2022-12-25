@@ -6,8 +6,8 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 
 
-@Database(entities = [DatabaseCustomer::class], version = 1, exportSchema = false)
-abstract class ProjectDatabase : RoomDatabase() {
+//@Database(entities = [DatabaseProject::class], version = 1, exportSchema = false)
+abstract class ProjectDatabase : RoomDatabase() {/*
     abstract val customerDatabaseDao : ProjectDatabaseDao
     companion object {
         @Volatile
@@ -28,5 +28,5 @@ abstract class ProjectDatabase : RoomDatabase() {
                 return instance
             }
         }
-    }
+    }*/
 }

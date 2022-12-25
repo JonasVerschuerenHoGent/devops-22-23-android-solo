@@ -7,111 +7,59 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="56dp">
+        android:layout_marginTop="56dp"
+        android:background="@drawable/bg_bggenerator_com">
 
-        <TextView
-            android:id="@+id/loginLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/login_margin_wide"
-            android:layout_marginLeft="@dimen/login_margin_wide"
-            android:layout_marginTop="24dp"
-            android:text="@string/inloggen"
-            android:textSize="34sp"
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="280dp"
+            android:layout_height="173dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginEnd="60dp"
+            android:layout_marginBottom="120dp"
+            app:layout_constraintBottom_toTopOf="@+id/welkomTextLabel"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+            app:srcCompat="@drawable/logo" />
 
         <TextView
             android:id="@+id/welkomTextLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/login_margin_wide"
-            android:layout_marginLeft="@dimen/login_margin_wide"
-            android:layout_marginTop="16dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginEnd="60dp"
+            android:layout_marginBottom="4dp"
             android:fontFamily="@font/asap"
             android:text="@string/welkom_terug"
             android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/loginLabel" />
-
-        <TextView
-            android:id="@+id/emailLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/login_margin_wide"
-            android:layout_marginLeft="@dimen/login_margin_wide"
-            android:layout_marginTop="@dimen/login_margin_wide"
-            android:fontFamily="@font/asap"
-            android:text="@string/email"
-            android:textColor="@color/maincolor"
-            android:textSize="26sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/welkomTextLabel" />
-
-        <EditText
-            android:id="@+id/editTextTextEmailAddress"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/login_margin_wide"
-            android:layout_marginLeft="@dimen/login_margin_wide"
-            android:layout_marginTop="8dp"
-            android:ems="10"
-            android:inputType="textEmailAddress"
-            android:textSize="26sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/emailLabel" />
-
-        <TextView
-            android:id="@+id/passwordLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/login_margin_wide"
-            android:layout_marginLeft="@dimen/login_margin_wide"
-            android:layout_marginTop="24dp"
-            android:fontFamily="@font/asap"
-            android:text="@string/password"
-            android:textColor="@color/maincolor"
-            android:textSize="26sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress" />
-
-        <EditText
-            android:id="@+id/editTextTextPassword"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/login_margin_wide"
-            android:layout_marginLeft="@dimen/login_margin_wide"
-            android:layout_marginTop="8dp"
-            android:ems="10"
-            android:inputType="textPassword"
-            android:textSize="26sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/passwordLabel" />
+            app:layout_constraintBottom_toTopOf="@+id/loginButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <Button
             android:id="@+id/loginButton"
             android:layout_width="306dp"
             android:layout_height="52dp"
-            android:layout_marginStart="@dimen/login_margin_wide"
-            android:layout_marginLeft="@dimen/login_margin_wide"
-            android:layout_marginTop="@dimen/login_margin_wide"
-            android:layout_marginBottom="64dp"
-            android:background="@color/maincolor"
+            android:layout_marginStart="45dp"
+            android:layout_marginEnd="45dp"
+            android:layout_marginBottom="144dp"
+            android:background="@color/design_default_color_primary"
             android:fontFamily="@font/asap"
             android:text="@string/login"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/passwoordVergetenLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/login_margin_wide"
-            android:layout_marginLeft="@dimen/login_margin_wide"
+            android:layout_marginStart="60dp"
             android:layout_marginTop="16dp"
+            android:layout_marginEnd="60dp"
             android:fontFamily="@font/asap"
             android:text="@string/forgot_password"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/loginButton" />
 
@@ -119,10 +67,10 @@
             android:id="@+id/imageView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/hogent" />
+            app:srcCompat="@drawable/hogent"
+            tools:layout_editor_absoluteY="4dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

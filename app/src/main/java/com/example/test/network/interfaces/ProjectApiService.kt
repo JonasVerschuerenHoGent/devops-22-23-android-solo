@@ -1,8 +1,6 @@
 package com.example.test.network.interfaces
 
-import com.example.test.domain.Project
-import com.example.test.domain.VirtualMachine
-import com.example.test.network.ApiAccount
+import com.example.test.network.ApiProject
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -16,7 +14,7 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 
 
-private var API_BASE_URL = "127.0.0.1:3000/customer"
+private var API_BASE_URL = "http://18.209.147.83:443/api/Project"
 
 // Create Moshi object
 private val moshi = Moshi.Builder()
@@ -34,9 +32,9 @@ private val client = OkHttpClient.Builder()
 interface ProjectApiService {
 
     @GET("projects/")
-    fun getProjects() : Deferred<List<Project>>
-    @GET("projects/{id}")
-    fun getAccountById(@Path("id") role:String) : Deferred<List<ApiAccount>>
+    fun getProjects() : Deferred<List<ApiProject>>
+    @GET("project/{id}")
+    fun getProjectById(@Path("id") role:String) : Deferred<List<ApiProject>>
 }
 
 

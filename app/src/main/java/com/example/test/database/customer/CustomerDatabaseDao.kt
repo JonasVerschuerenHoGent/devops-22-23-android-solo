@@ -1,4 +1,4 @@
-package com.example.test.database.Account
+package com.example.test.database.customer
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
@@ -21,9 +21,9 @@ interface CustomerDatabaseDao {
     @Insert
     suspend fun insert(customer : DatabaseCustomer)
 
-    // Adding an insert all with a vararg parameter. Replace strategy is upsert (updating if exists, inserting when not existing, https://betterprogramming.pub/upserting-in-room-8207a100db53)
+    // Adding an insert all with a vararg parameter. Replace strategy is upsert (updating if exists, inserting when not existing)
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAll(vararg actors: DatabaseCustomer)
+    suspend fun insertAll(vararg customers: DatabaseCustomer)
 
     @Query("SELECT * FROM customer_table ORDER BY id ASC")
     suspend fun getAllCustomers(): List<DatabaseCustomer>

@@ -1,6 +1,5 @@
 package com.example.test.network
 
-import com.example.test.database.Account.DatabaseCustomer
 import com.example.test.database.VirutalMachine.DatabaseVirtualMachine
 import com.example.test.domain.*
 import com.squareup.moshi.Json
@@ -57,7 +56,6 @@ fun ApiVirtualMachine.asDomainVirtualMachine(): VirtualMachine {
         availability = availability.asDomainAvailability(),
         hostServer = hostServer,
         cluster = cluster,
-        ports = ports,
         state = state.asDomainState(),
         vCPUAmount = vCPUAmount,
         memoryAmount = memoryAmount,
@@ -80,7 +78,6 @@ fun ApiVirtualMachine.asDatabaseVirtualMachine(): DatabaseVirtualMachine {
         availability = availability,
         hostServer = hostServer,
         cluster = cluster,
-        ports = ports,
         state = state,
         vCPUAmount = vCPUAmount,
         memoryAmount = memoryAmount,

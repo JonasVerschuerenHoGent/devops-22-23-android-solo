@@ -13,7 +13,7 @@ data class DatabaseVirtualMachine(
 
     @ColumnInfo(name = "virtual_machine_name")
     var name: String,
-    @ColumnInfo(name = "id")
+    @PrimaryKey
     var id: Int,
     @ColumnInfo(name = "hostname")
     var hostname: String,
@@ -29,8 +29,6 @@ data class DatabaseVirtualMachine(
     var hostServer: Int,
     @ColumnInfo(name = "cluster")
     var cluster: Int,
-    @ColumnInfo(name = "ports")
-    var ports: IntArray,
     @ColumnInfo(name = "State")
     var state: String,
     @ColumnInfo(name = "vcpu_amount")
@@ -61,7 +59,6 @@ fun DatabaseVirtualMachine.asDomainModel(): VirtualMachine {
         availability = availability.asDomainAvailability(),
         hostServer = hostServer,
         cluster = cluster,
-        ports = ports,
         state = state.asDomainState(),
         vCPUAmount = vCPUAmount,
         memoryAmount = memoryAmount,

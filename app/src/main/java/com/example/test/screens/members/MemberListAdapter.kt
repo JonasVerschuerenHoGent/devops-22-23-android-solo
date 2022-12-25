@@ -1,19 +1,18 @@
-package com.example.test.screens.users
+package com.example.test.screens.members
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.test.databinding.UserListItemBinding
-import com.example.test.domain.Account
+import com.example.test.databinding.MemberListItemBinding
+import com.example.test.domain.Member
 
-class ListUsersAdapter(val clickListener: AccountListener) : ListAdapter<Account, ViewHolder>(AccountDiffCallback()) {
+class MemberListAdapter(val clickListener: MemberListener) : ListAdapter<Member, ViewHolder>(MemberDiffCallback()) {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = getItem(position)
         holder.bind(clickListener, item)
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -22,13 +21,12 @@ class ListUsersAdapter(val clickListener: AccountListener) : ListAdapter<Account
 
 }
 
-class ViewHolder(val binding : UserListItemBinding) : RecyclerView.ViewHolder(binding.root) {
+class ViewHolder(val binding : MemberListItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(clickListener: AccountListener, item : Account) {
+    fun bind(clickListener: MemberListener, item : Member) {
         binding.textviewName.text = item.name
-        binding.textviewDepartment.text = item.department.toString()
         binding.textviewRole.text = item.role.toString()
-        binding.account = item
+        binding.member = item
         binding.clickListener = clickListener
         binding.executePendingBindings()
     }
@@ -36,23 +34,23 @@ class ViewHolder(val binding : UserListItemBinding) : RecyclerView.ViewHolder(bi
     companion object {
         fun from(parent : ViewGroup) : ViewHolder {
             val layoutInflater = LayoutInflater.from(parent.context)
-            val binding = UserListItemBinding.inflate(layoutInflater, parent, false)
+            val binding = MemberListItemBinding.inflate(layoutInflater, parent, false)
             return ViewHolder(binding)
         }
     }
 }
 
-class AccountDiffCallback: DiffUtil.ItemCallback<Account>() {
-    override fun areItemsTheSame(oldItem: Account, newItem: Account): Boolean {
+class MemberDiffCallback: DiffUtil.ItemCallback<Member>() {
+    override fun areItemsTheSame(oldItem: Member, newItem: Member): Boolean {
         return oldItem.id == newItem.id
     }
 
-    override fun areContentsTheSame(oldItem: Account, newItem: Account): Boolean {
+    override fun areContentsTheSame(oldItem: Member, newItem: Member): Boolean {
         // Works perfectly because it's a dataclass
         return oldItem == newItem
     }
 }
 
-class AccountListener(val clickListener: (accountID: Int) -> Unit ) {
-    fun onClick(account : Account) = clickListener(account.id)
+class MemberListener(val clickListener: (memberID: Int) -> Unit ) {
+    fun onClick(member : Member) = clickListener(member.id)
 }

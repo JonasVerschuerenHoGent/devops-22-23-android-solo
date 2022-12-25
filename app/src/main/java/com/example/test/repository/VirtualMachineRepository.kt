@@ -2,18 +2,13 @@ package com.example.test.repository
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
-import com.example.test.database.Account.asDomainModel
 import com.example.test.database.VirutalMachine.VirtualMachineDatabase
 import com.example.test.database.VirutalMachine.asDomainModel
-import com.example.test.domain.Account
 import com.example.test.domain.VirtualMachine
-import com.example.test.network.asDatabaseCustomer
 import com.example.test.network.asDatabaseVirtualMachine
-import com.example.test.network.interfaces.ApiAccountObj
 import com.example.test.network.interfaces.ApiVirtualMachineObj
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import retrofit2.await
 import timber.log.Timber
 
 class VirtualMachineRepository(private val database: VirtualMachineDatabase) {

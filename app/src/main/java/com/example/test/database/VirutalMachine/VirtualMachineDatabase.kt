@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 
 
-@Database(entities = [VirtualMachineDatabase::class], version = 1, exportSchema = false)
+@Database(entities = [DatabaseVirtualMachine::class], version = 1, exportSchema = false)
 abstract class VirtualMachineDatabase : RoomDatabase() {
     abstract val virtualMachineDatabaseDao : VirtualMachineDatabaseDao
     companion object {

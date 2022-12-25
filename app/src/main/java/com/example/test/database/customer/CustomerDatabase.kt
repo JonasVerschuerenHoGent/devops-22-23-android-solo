@@ -1,4 +1,4 @@
-package com.example.test.database.Account
+package com.example.test.database.customer
 
 import android.content.Context
 import androidx.room.Database
@@ -9,9 +9,9 @@ import androidx.room.RoomDatabase
 /**
  * Customer database
  *
- * @constructor Create empty Customer room database
+ * @constructor Create empty Customer database
  */
-@Database(entities = [DatabaseCustomer::class], version = 1, exportSchema = false)
+@Database(entities = [DatabaseCustomer::class], version =2, exportSchema = false)
 abstract class CustomerDatabase : RoomDatabase() {
     abstract val customerDatabaseDao : CustomerDatabaseDao
     companion object {

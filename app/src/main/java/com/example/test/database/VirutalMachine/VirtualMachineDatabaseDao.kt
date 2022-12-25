@@ -8,11 +8,11 @@ import androidx.room.Query
 
 /*
  *
- * Contains functions to insert and get Actors
+ * Contains functions to insert and get DatabaseVirtualMachines
  * Note: 2 insert-methods --> one insert only one Actor and the other takes a vararg Actors to insert all Actors
  * Note: getActorsLive --> return a list of Actors as live data
  *
- * IMPORTANT: the DAO only knows about DatabaseActors
+ * IMPORTANT: the DAO only knows about DatabaseVirtualMachines
  *
  */
 @Dao
@@ -25,13 +25,13 @@ interface VirtualMachineDatabaseDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(vararg actors: DatabaseVirtualMachine)
 
-    @Query("SELECT * FROM customer_table ORDER BY id ASC")
+    @Query("SELECT * FROM virtual_machine_table ORDER BY id ASC")
     suspend fun getAllVirtualMachines(): List<DatabaseVirtualMachine>
 
-    @Query("SELECT * FROM customer_table ORDER BY id ASC")
+    @Query("SELECT * FROM virtual_machine_table ORDER BY id ASC")
     fun getAllVirtualMachinesLive(): LiveData<List<DatabaseVirtualMachine>>
 
-    @Query("SELECT * FROM customer_table WHERE id = :id")
+    @Query("SELECT * FROM virtual_machine_table WHERE id = :id")
     suspend fun getVirtualMachineById(id : Int): DatabaseVirtualMachine?
 
 }

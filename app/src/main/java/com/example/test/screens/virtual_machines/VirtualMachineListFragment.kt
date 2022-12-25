@@ -2,7 +2,6 @@ package com.example.test.screens.virtual_machines
 
 import android.os.Bundle
 import android.view.*
-import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -11,20 +10,19 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.example.test.R
 import com.example.test.databinding.FragmentVirtualMachineListBinding
-import com.example.test.databinding.ListUsersFragmentBinding
-import com.example.test.screens.users.ListUsersAdapter
-import com.example.test.screens.users.ListUsersFragment
-import com.example.test.screens.users.ListUsersViewModel
-
 
 class VirtualMachineListFragment : Fragment() {
     companion object {
-        fun newInstance() = ListUsersFragment()
+        fun newInstance() = VirtualMachineListFragment()
     }
 
     private lateinit var binding: FragmentVirtualMachineListBinding
     private lateinit var adapter: VirtualMachinesAdapter
-    private lateinit var viewModel: VirtualMachineListViewModel
+    private val viewModel: VirtualMachineListViewModel by lazy {
+        val activity = requireNotNull(this.activity)
+        ViewModelProvider(this, VirtualMachineListViewModelFactory(activity.application)).get(
+            VirtualMachineListViewModel::class.java)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,10 +30,6 @@ class VirtualMachineListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_virtual_machine_list, container, false)
-
-        val viewModelFactory = VirtualMachineListViewModelFactory();
-        viewModel = ViewModelProvider(this, viewModelFactory).get(VirtualMachineListViewModel::class.java)
-
         binding.virtualMachineListViewModel = viewModel
         binding.lifecycleOwner = this
 
@@ -50,10 +44,10 @@ class VirtualMachineListFragment : Fragment() {
         val recyclerView = binding.virtualMachineList
         recyclerView.adapter = adapter
         recyclerView.addItemDecoration(
-            DividerItemDecoration(recyclerView.getContext(), DividerItemDecoration.VERTICAL)
+            DividerItemDecoration(recyclerView.context, DividerItemDecoration.VERTICAL)
         )
 
-        viewModel.listVM.observe(viewLifecycleOwner, Observer {
+        viewModel.virtualMachineList.observe(viewLifecycleOwner, Observer {
             adapter.submitList(it) })
 
         return binding.root

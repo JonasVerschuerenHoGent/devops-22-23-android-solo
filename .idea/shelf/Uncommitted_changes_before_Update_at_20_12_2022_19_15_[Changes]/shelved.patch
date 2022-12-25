@@ -1,0 +1,191 @@
+Index: app/src/main/java/com/example/test/interfaces/AccountApi.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/test/interfaces/AccountApi.kt b/app/src/main/java/com/example/test/interfaces/AccountApiService.kt
+rename from app/src/main/java/com/example/test/interfaces/AccountApi.kt
+rename to app/src/main/java/com/example/test/interfaces/AccountApiService.kt
+--- a/app/src/main/java/com/example/test/interfaces/AccountApi.kt	(revision 2dbe405635d3d1f7586bb90e02d5a8618ad06a83)
++++ b/app/src/main/java/com/example/test/interfaces/AccountApiService.kt	(date 1671560096659)
+@@ -2,12 +2,11 @@
+ 
+ import com.example.test.domain.Account
+ import com.example.test.domain.Project
+-import com.example.test.domain.VirtualMachine
+ import retrofit2.Call
+ import retrofit2.http.GET
+ import retrofit2.http.Path
+ 
+-interface AccountApi {
++interface AccountApiService {
+ 
+ 
+     @GET("accounts/projects/")
+Index: app/src/main/java/com/example/test/interfaces/VirtualMachineApi.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/test/interfaces/VirtualMachineApi.kt b/app/src/main/java/com/example/test/interfaces/ServiceVirtualMachineApi.kt
+rename from app/src/main/java/com/example/test/interfaces/VirtualMachineApi.kt
+rename to app/src/main/java/com/example/test/interfaces/ServiceVirtualMachineApi.kt
+--- a/app/src/main/java/com/example/test/interfaces/VirtualMachineApi.kt	(revision 2dbe405635d3d1f7586bb90e02d5a8618ad06a83)
++++ b/app/src/main/java/com/example/test/interfaces/ServiceVirtualMachineApi.kt	(date 1671560045494)
+@@ -5,7 +5,7 @@
+ import retrofit2.http.GET
+ import retrofit2.http.Path
+ 
+-interface VirtualMachineApi {
++interface ServiceVirtualMachineApi {
+ 
+   @GET("virtualmachines/{id}")
+   fun getVirtualMachineByID(@Path("id") id:String) : Call<VirtualMachine>
+Index: app/src/main/java/com/example/test/network/AccountApiImpl.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/test/network/AccountApiImpl.kt b/app/src/main/java/com/example/test/network/AccountApiImpl.kt
+new file mode 100644
+--- /dev/null	(date 1671560045532)
++++ b/app/src/main/java/com/example/test/network/AccountApiImpl.kt	(date 1671560045532)
+@@ -0,0 +1,63 @@
++package com.example.test.network
++
++import com.example.test.domain.Account
++import com.example.test.domain.Department
++import com.example.test.domain.Role
++import com.squareup.moshi.Json
++
++// Represents an Actor coming from the API
++data class ApiAccountImpl(
++    @Json(name = "id")
++    var id: Int,
++
++    @Json(name = "name")
++    val name: String,
++
++    @Json(name = "email")
++    val email: String,
++
++    @Json(name = "phone_nr")
++    val phoneNr: String,
++
++    @Json(name = "education")
++    val education: String,
++
++    @Json(name = "department")
++    val department : Department,
++
++    @Json(name = "extern_type")
++    val externType : String?,
++
++    @Json(name="role")
++    val role : Role,
++
++    @Json(name = "backup_contact")
++    val backupContact : String
++
++)
++
++// Convert a single ApiActor into a normal domain Actor
++fun ApiAccountImpl.asDomainActor(): Account {
++    return Account(
++    id = id,
++    name = name,
++    email = email,
++    education = education,
++    externType = externType,
++    phoneNr = phoneNr,
++    role = role,
++    department = department,
++    backupContact = backupContact
++    )
++}
++
++// Container that helps us parsing the api response into multiple domain Actors
++data class ApiAccountContainer(
++    @Json(name = "body")
++    val apiActors: List<Account>
++)
++
++// Convert network result into domain Actors
++fun ApiAccountContainer.asDomainModels(): List<Account> {
++    return apiActors.map { it.asDomainActor() }
++}
+Index: app/src/main/java/com/example/test/interfaces/ProjectApi.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/test/interfaces/ProjectApi.kt b/app/src/main/java/com/example/test/interfaces/ServiceProjectApi.kt
+rename from app/src/main/java/com/example/test/interfaces/ProjectApi.kt
+rename to app/src/main/java/com/example/test/interfaces/ServiceProjectApi.kt
+--- a/app/src/main/java/com/example/test/interfaces/ProjectApi.kt	(revision 2dbe405635d3d1f7586bb90e02d5a8618ad06a83)
++++ b/app/src/main/java/com/example/test/interfaces/ServiceProjectApi.kt	(date 1671560045508)
+@@ -6,7 +6,7 @@
+ import retrofit2.http.GET
+ import retrofit2.http.Path
+ 
+-interface ProjectApi {
++interface ServiceProjectApi {
+ 
+ 
+     @GET("projects/{id}")
+Index: app/src/main/java/com/example/test/screens/virtual_machines/VirtualMachineDetailFragment.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.test.screens.virtual_machines\r\n\r\nimport android.os.Bundle\r\nimport android.view.*\r\nimport androidx.fragment.app.Fragment\r\nimport androidx.core.view.MenuProvider\r\nimport android.view.LayoutInflater\r\nimport android.view.View\r\nimport android.view.ViewGroup\r\nimport androidx.core.app.Person.fromBundle\r\nimport androidx.databinding.DataBindingUtil\r\nimport androidx.navigation.findNavController\r\nimport androidx.navigation.fragment.navArgs\r\nimport androidx.navigation.ui.NavigationUI\r\nimport com.example.test.R\r\nimport com.example.test.databinding.FragmentVirtualMachineDetailBinding\r\nimport com.example.test.domain.VirtualMachine\r\nimport com.example.test.domain.VirtualMachineMock\r\nimport com.example.test.interfaces.VirtualMachineApi\r\nimport com.example.test.utils.RetrofitBuilder\r\nimport java.time.LocalDate\r\nimport java.util.*\r\n\r\nclass VirtualMachineDetailFragment : Fragment() {\r\n\r\n    private lateinit var binding: FragmentVirtualMachineDetailBinding\r\n    private lateinit var virtualMachineApi : VirtualMachineApi\r\n    override fun onCreateView(\r\n        inflater: LayoutInflater, container: ViewGroup?,\r\n        savedInstanceState: Bundle?\r\n    ): View? {\r\n        virtualMachineApi = RetrofitBuilder.getInstance().create(VirtualMachineApi::class.java)\r\n\r\n        // Inflate the layout for this fragment\r\n        binding = DataBindingUtil.inflate(\r\n            inflater,\r\n            R.layout.fragment_virtual_machine_detail,\r\n            container,\r\n            false\r\n        )\r\n        \r\n        //code for overflow menu\r\n        val menuHost = requireActivity()\r\n        menuHost.addMenuProvider(object: MenuProvider {\r\n            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {\r\n                menuInflater.inflate(R.menu.overflow_menu, menu)\r\n            }\r\n\r\n            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {\r\n                if(menuItem.itemId == R.id.listUsersFragment){\r\n                    return NavigationUI.onNavDestinationSelected(\r\n                        menuItem,\r\n                        requireView().findNavController()\r\n                    )\r\n                }\r\n                if(menuItem.itemId == R.id.virtualMachineListFragment){\r\n                    return NavigationUI.onNavDestinationSelected(\r\n                        menuItem,\r\n                        requireView().findNavController()\r\n                    )\r\n                }\r\n                if(menuItem.itemId == R.id.projectListFragment){\r\n                    return NavigationUI.onNavDestinationSelected(\r\n                        menuItem,\r\n                        requireView().findNavController()\r\n                    )\r\n                }\r\n                return false\r\n            }\r\n        }, viewLifecycleOwner)\r\n\r\n        val args = VirtualMachineDetailFragmentArgs.fromBundle(requireArguments())\r\n        val myVM = VirtualMachineMock().virtualMachines[args.vmId]\r\n        binding.myVM = myVM\r\n\r\n        binding.textviewName.text = \"${myVM.name}\"\r\n        binding.textviewHostname.text = \"${myVM.hostname}\"\r\n        binding.textviewFqdn.text = \"${myVM.fqdn}\"\r\n        binding.textviewMode.text = \"${myVM.mode.printableName}\"\r\n        //binding.textviewTemplate.text = \"${myVM.mode.printableName}\"\r\n\r\n        var backupText = \"\"\r\n        backupText += when(myVM.backupFrequency){\r\n            0 -> \"none\"\r\n            1 -> \"daily\"\r\n            7 -> \"weekly\"\r\n            14 -> \"bi-weekly\"\r\n            30 -> \"monthly\"\r\n            else -> \"every ${myVM.backupFrequency} days\"\r\n        }\r\n        binding.textviewBackup.text = backupText\r\n\r\n        binding.textviewAvailability.text = \"${myVM.availability.printableName}\"\r\n        binding.textviewHost.text = \"${myVM.hostServer}\"\r\n        binding.textviewCluster.text = \"${myVM.cluster}\"\r\n\r\n        var ports = \"\"\r\n        for(p in myVM.ports){\r\n            ports += \"${p}; \"\r\n        }\r\n        binding.textviewPorts.text = ports\r\n\r\n        if(myVM.beginDate <= LocalDate.now() && //startDate is in past\r\n            myVM.endDate > LocalDate.now()&& //endDate is in future\r\n            myVM.beginDate < myVM.endDate//startdate is before enddate\r\n        ){\r\n            binding.textviewState.text =  \"actief\"\r\n        }\r\n        else{\r\n            binding.textviewState.text = \"inactief\"\r\n        }\r\n\r\n        //binding.textviewState.text = \"${myVM.state.printableName}\"\r\n        binding.textviewVcpu.text = \"${myVM.vCPUAmount}\"\r\n        binding.textviewMemory.text = \"${myVM.memoryAmount}\"\r\n        binding.textviewStorage.text = \"${myVM.storageAmount}\"\r\n\r\n        binding.textviewBegindate.text = \"${myVM.beginDate.toString()}\"\r\n        binding.textviewEnddate.text = \"${myVM.endDate}\"\r\n        binding.textviewRequestdate.text = \"${myVM.requestDate}\"\r\n\r\n        return binding.root\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/test/screens/virtual_machines/VirtualMachineDetailFragment.kt b/app/src/main/java/com/example/test/screens/virtual_machines/VirtualMachineDetailFragment.kt
+--- a/app/src/main/java/com/example/test/screens/virtual_machines/VirtualMachineDetailFragment.kt	(revision 2dbe405635d3d1f7586bb90e02d5a8618ad06a83)
++++ b/app/src/main/java/com/example/test/screens/virtual_machines/VirtualMachineDetailFragment.kt	(date 1671560045522)
+@@ -1,25 +1,6 @@
+ package com.example.test.screens.virtual_machines
+ 
+-import android.os.Bundle
+-import android.view.*
+ import androidx.fragment.app.Fragment
+-import androidx.core.view.MenuProvider
+-import android.view.LayoutInflater
+-import android.view.View
+-import android.view.ViewGroup
+-import androidx.core.app.Person.fromBundle
+-import androidx.databinding.DataBindingUtil
+-import androidx.navigation.findNavController
+-import androidx.navigation.fragment.navArgs
+-import androidx.navigation.ui.NavigationUI
+-import com.example.test.R
+-import com.example.test.databinding.FragmentVirtualMachineDetailBinding
+-import com.example.test.domain.VirtualMachine
+-import com.example.test.domain.VirtualMachineMock
+-import com.example.test.interfaces.VirtualMachineApi
+-import com.example.test.utils.RetrofitBuilder
+-import java.time.LocalDate
+-import java.util.*
+ 
+ class VirtualMachineDetailFragment : Fragment() {
+ 
+Index: app/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>apply plugin: 'com.android.application'\r\napply plugin: 'kotlin-android'\r\napply plugin: 'kotlin-android-extensions'\r\napply plugin: 'kotlin-kapt'\r\napply plugin: 'androidx.navigation.safeargs'\r\n\r\nandroid {\r\n    compileSdkVersion 33\r\n\r\n    defaultConfig {\r\n        applicationId \"com.example.test\"\r\n        minSdkVersion 26\r\n        targetSdkVersion 33\r\n        versionCode 1\r\n        versionName \"1.0\"\r\n\r\n        testInstrumentationRunner \"androidx.test.runner.AndroidJUnitRunner\"\r\n    }\r\n\r\n    buildTypes {\r\n        release {\r\n            minifyEnabled false\r\n            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'\r\n        }\r\n    }\r\n\r\n    dataBinding {\r\n        enabled = true\r\n    }\r\n\r\n// To inline the bytecode built with JVM target 1.8 into\r\n// bytecode that is being built with JVM target 1.6. (e.g. navArgs)\r\n\r\n\r\n    compileOptions {\r\n        sourceCompatibility JavaVersion.VERSION_1_8\r\n        targetCompatibility JavaVersion.VERSION_1_8\r\n    }\r\n    kotlinOptions {\r\n        jvmTarget = \"1.8\"\r\n    }\r\n    buildFeatures {\r\n        viewBinding true\r\n    }\r\n\r\n}\r\n\r\ndependencies {\r\n    implementation fileTree(dir: 'libs', include: ['*.jar'])\r\n    implementation \"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version\"\r\n    implementation 'androidx.appcompat:appcompat:1.5.1'\r\n    implementation 'com.google.android.material:material:1.6.1'\r\n    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'\r\n    implementation 'androidx.drawerlayout:drawerlayout:1.1.1'\r\n    implementation 'androidx.legacy:legacy-support-v4:1.0.0'\r\n    implementation 'androidx.recyclerview:recyclerview:1.2.1'\r\n    implementation 'com.squareup.retrofit2:retrofit:2.9.0'\r\n    implementation \"com.squareup.retrofit2:converter-moshi:2.4.0\"\r\n\r\n    testImplementation 'junit:junit:4.12'\r\n    androidTestImplementation 'androidx.test.ext:junit:1.1.3'\r\n    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'\r\n\r\n    // KTX\r\n    implementation 'androidx.core:core-ktx:1.9.0'\r\n\r\n    // Navigation\r\n    implementation 'androidx.navigation:navigation-fragment-ktx:2.5.2'\r\n    implementation 'androidx.navigation:navigation-ui-ktx:2.5.2'\r\n\r\n    // Lifecycles\r\n    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/build.gradle b/app/build.gradle
+--- a/app/build.gradle	(revision 2dbe405635d3d1f7586bb90e02d5a8618ad06a83)
++++ b/app/build.gradle	(date 1671560096647)
+@@ -56,6 +56,9 @@
+     implementation 'androidx.recyclerview:recyclerview:1.2.1'
+     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+     implementation "com.squareup.retrofit2:converter-moshi:2.4.0"
++    implementation "com.squareup.moshi:moshi:1.9.3"
++    implementation "com.squareup.moshi:moshi-kotlin:1.9.3"
++
+ 
+     testImplementation 'junit:junit:4.12'
+     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

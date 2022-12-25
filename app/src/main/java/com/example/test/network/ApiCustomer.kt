@@ -1,15 +1,13 @@
 package com.example.test.network
 
-import com.example.test.database.Account.DatabaseCustomer
-import com.example.test.domain.Account
+import com.example.test.database.customer.DatabaseCustomer
+import com.example.test.domain.Customer
 import com.example.test.domain.Department
 import com.example.test.domain.Role
-import com.example.test.network.interfaces.AccountApiService
-import com.example.test.utils.RetrofitBuilder
 import com.squareup.moshi.Json
 
 // Represents an Account coming from the API
-data class ApiAccount(
+data class ApiCustomer(
     @Json(name = "id")
     var id: Int,
 
@@ -34,14 +32,14 @@ data class ApiAccount(
     @Json(name="role")
     val role : String,
 
-    @Json(name = "backup_contact")
-    val backupContact : Account //?
+    @Json(name = "backup_contact_id")
+    val backupContactId : Int //?
 
 )
 
 // Convert a single ApiAccount into a normal domain Account
-fun ApiAccount.asDomainAccount(): Account {
-    return Account(
+fun ApiCustomer.asDomainAccount(): Customer {
+    return Customer(
     id = id,
     name = name,
     email = email,
@@ -50,13 +48,13 @@ fun ApiAccount.asDomainAccount(): Account {
     phoneNr = phoneNr,
     role = role.asDomainRole(),
     department = department.asDomainDepartment(),
-    backupContact = backupContact
+    backupContact = backupContactId
     )
 }
 
 
 // Convert a single ApiAccount into a normal database Account
-fun ApiAccount.asDatabaseCustomer(): DatabaseCustomer {
+fun ApiCustomer.asDatabaseCustomer(): DatabaseCustomer {
     return DatabaseCustomer(
         id = id,
         name = name,
@@ -66,28 +64,28 @@ fun ApiAccount.asDatabaseCustomer(): DatabaseCustomer {
         phoneNr = phoneNr,
         role = role,
         department = department,
-        backupContact = backupContact.toString()
+        backupContactId = backupContactId
     )
 }
 
 // Container that helps us parsing the api response into multiple domain Accounts
 data class ApiAccountContainer(
     @Json(name = "body")
-    val apiAccounts: List<ApiAccount>
+    val apiAccounts: List<ApiCustomer>
 )
 
 
 // Convert network result into domain Account
-fun ApiAccountContainer.asDomainModels(): List<Account> {
+fun ApiAccountContainer.asDomainModels(): List<Customer> {
     return apiAccounts.map { it.asDomainAccount() }
 }
 
-fun List<ApiAccount>.asDomainModels(): List<Account> {
+fun List<ApiCustomer>.asDomainModels(): List<Customer> {
     return this.map { it.asDomainAccount() }
 }
 
 // Convert a list of ApiAccounts into a list of DatabaseAccounts (this can then be used in the insert call as vararg)
-fun List<ApiAccount>.asDatabaseCustomer(): Array<DatabaseCustomer> {
+fun List<ApiCustomer>.asDatabaseCustomer(): Array<DatabaseCustomer> {
     return map { it.asDatabaseCustomer() }.toTypedArray()
 }
 

@@ -9,28 +9,32 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.example.test.R
 import com.example.test.databinding.FragmentVirtualMachineDetailBinding
-import com.example.test.databinding.UserDetailFragmentBinding
 import com.example.test.domain.VirtualMachine
-import com.example.test.domain.VirtualMachineMock
-import com.example.test.screens.users.ListUsersAdapter
-import com.example.test.screens.users.UserViewModel
 import java.time.LocalDate
 
 class VirtualMachineDetailFragment : Fragment() {
 
+
     //binding
     private lateinit var binding: FragmentVirtualMachineDetailBinding
-    private lateinit var viewModel: VirtualMachineViewModel
     private lateinit var myVM : VirtualMachine
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?): View? {
         val args = VirtualMachineDetailFragmentArgs.fromBundle(requireArguments())
+
+        val viewModel: VirtualMachineViewModel by lazy {
+            val activity = requireNotNull(this.activity)
+            ViewModelProvider(this, VirtualMachineViewModelFactory(activity.application, args.vmId)).get(
+                VirtualMachineViewModel::class.java)
+        }
 
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(
@@ -40,46 +44,11 @@ class VirtualMachineDetailFragment : Fragment() {
             false
         )
 
-        if(viewModel.vm != null) {
-            myVM = viewModel.vm.value!!
+        if(viewModel.virtualMachine != null) {
+            myVM = viewModel.virtualMachine.value!!
         }
 
-
-
-
-        //code for overflow menu
-        val menuHost = requireActivity()
-        menuHost.addMenuProvider(object: MenuProvider {
-            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
-                menuInflater.inflate(R.menu.overflow_menu, menu)
-            }
-
-            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-                if(menuItem.itemId == R.id.listUsersFragment){
-                    return NavigationUI.onNavDestinationSelected(
-                        menuItem,
-                        requireView().findNavController()
-                    )
-                }
-                if(menuItem.itemId == R.id.virtualMachineListFragment){
-                    return NavigationUI.onNavDestinationSelected(
-                        menuItem,
-                        requireView().findNavController()
-                    )
-                }
-                if(menuItem.itemId == R.id.projectListFragment){
-                    return NavigationUI.onNavDestinationSelected(
-                        menuItem,
-                        requireView().findNavController()
-                    )
-                }
-                return false
-            }
-        }, viewLifecycleOwner)
-
         //viewModel
-        val viewModelFactory = VirtualMachineViewModelFactory(args.vmId)
-        val viewModel: VirtualMachineViewModel by viewModels{viewModelFactory}
 
         // Set the viewmodel for databinding - this allows the bound layout access to all of the
         // data in the VieWModel
@@ -103,12 +72,6 @@ class VirtualMachineDetailFragment : Fragment() {
             else -> "every ${myVM.backupFrequency} days"
         }
         binding.textviewBackup.text = backupText
-
-        var ports = ""
-        for(p in myVM.ports){
-            ports += "${p}; "
-        }
-        binding.textviewPorts.text = ports
 
         if(myVM.beginDate <= LocalDate.now() && //startDate is in past
             myVM.endDate > LocalDate.now()&& //endDate is in future

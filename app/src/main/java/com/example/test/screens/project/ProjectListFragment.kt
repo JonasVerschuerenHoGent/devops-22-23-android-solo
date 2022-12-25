@@ -9,10 +9,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.example.test.R
-import com.example.test.databinding.ListUsersFragmentBinding
 import com.example.test.databinding.ProjectFragmentItemListBinding
-import com.example.test.screens.users.ListUsersAdapter
-import com.example.test.screens.users.ListUsersViewModel
+import com.example.test.screens.customers.ListCustomersViewModel
+import com.example.test.screens.customers.ListCustomersViewModelFactory
 
 class ProjectListFragment : Fragment() {
 
@@ -22,24 +21,22 @@ class ProjectListFragment : Fragment() {
 
     private lateinit var binding: ProjectFragmentItemListBinding
     private lateinit var adapter: ProjectListAdapter
-    private lateinit var viewModel: ProjectListViewModel
-
+    private val viewModel: ProjectListViewModel by lazy {
+        ViewModelProvider(this, ProjectListViewModelFactory()).get(
+            ProjectListViewModel::class.java)
+    }
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-         binding = DataBindingUtil.inflate(inflater, R.layout.project_fragment_item_list, container, false)
-
-        val viewModelFactory = ProjectListViewModelFactory();
-        viewModel = ViewModelProvider(this, viewModelFactory).get(ProjectListViewModel::class.java)
-
+        binding = DataBindingUtil.inflate(inflater, R.layout.project_fragment_item_list, container, false)
         binding.listProjectViewModel = viewModel
         binding.lifecycleOwner = this
 
         adapter = ProjectListAdapter( ProjectListener{
-                projectName ->
-            findNavController().navigate(
+
+        findNavController().navigate(
                 ProjectListFragmentDirections.actionProjectListFragmentToVirtualMachineListFragment())
 
         })

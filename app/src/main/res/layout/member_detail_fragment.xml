@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="membersViewModel"
+            type="com.example.test.screens.members.MemberViewModel" />
+
+        <variable
+            name="virtualMachineListViewModel"
+            type="com.example.test.screens.virtual_machines.VirtualMachineListViewModel" />
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="56dp"
+        tools:context=".membersFragment">
+
+        <TextView
+            android:id="@+id/textview_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/asap"
+            android:text="@{membersViewModel.member.name}"
+            android:textSize="34sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="naam" />
+
+        <TextView
+            android:id="@+id/textview_backupcontact"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/asap"
+            android:text="@{membersViewModel.member.role.name()}"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textview_backupcontact_label"
+            tools:text="role" />
+
+        <TextView
+            android:id="@+id/textview_backupcontact_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="36dp"
+            android:fontFamily="@font/asap"
+            android:text="@string/Rol"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textview_email" />
+
+        <TextView
+            android:id="@+id/textview_phonenr_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
+            android:layout_marginEnd="48dp"
+            android:fontFamily="@font/asap"
+            android:text="@string/Telnr"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textview_actief" />
+
+        <TextView
+            android:id="@+id/textview_phonenr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/asap"
+            android:text="@{membersViewModel.member.phoneNr}"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="@+id/textview_phonenr_label"
+            app:layout_constraintTop_toBottomOf="@+id/textview_phonenr_label"
+            tools:text="phonenr" />
+
+        <TextView
+            android:id="@+id/tetview_email_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="36dp"
+            android:fontFamily="@font/asap"
+            android:text="@string/email"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:visibility="visible"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textview_actief" />
+
+        <TextView
+            android:id="@+id/textview_department_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
+            android:fontFamily="@font/asap"
+            android:text="@string/Departement"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/textview_phonenr"
+            app:layout_constraintTop_toBottomOf="@+id/textview_phonenr" />
+
+        <TextView
+            android:id="@+id/textview_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/asap"
+            android:text="@{membersViewModel.member.email}"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tetview_email_label"
+            tools:text="email" />
+
+        <TextView
+            android:id="@+id/textview_department"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/asap"
+            android:text="@{membersViewModel.member.department.name()}"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="@+id/textview_department_label"
+            app:layout_constraintTop_toBottomOf="@+id/textview_department_label"
+            tools:text="department" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="0dp"
+            android:layout_height="3dp"
+            android:layout_marginTop="8dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintEnd_toEndOf="@+id/textview_phonenr_label"
+            app:layout_constraintStart_toStartOf="@+id/textview_email"
+            app:layout_constraintTop_toBottomOf="@+id/textview_email" />
+
+        <View
+            android:id="@+id/divider2"
+            android:layout_width="0dp"
+            android:layout_height="3dp"
+            android:layout_marginTop="8dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintEnd_toEndOf="@+id/divider"
+            app:layout_constraintStart_toStartOf="@+id/textview_backupcontact"
+            app:layout_constraintTop_toBottomOf="@+id/textview_backupcontact" />
+
+
+        <View
+            android:id="@+id/divider4"
+            android:layout_width="0dp"
+            android:layout_height="5dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="15dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider2" />
+
+        <TextView
+            android:id="@+id/textview_vmAangemaakt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/VmsGemaakt"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.493"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider4" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/virtual_machine_list"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textview_vmAangemaakt" />
+
+        <TextView
+            android:id="@+id/textview_actief"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/asap"
+            android:text="@{membersViewModel.member.active ? `active` : `non-active`}"
+            android:textSize="14sp"
+            app:circularflow_defaultRadius="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textview_name"
+            tools:text="actief" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>

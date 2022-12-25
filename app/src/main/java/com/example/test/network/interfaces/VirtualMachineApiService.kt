@@ -16,7 +16,7 @@ import retrofit2.http.Path
 
 
 
-private var API_BASE_URL = "127.0.0.1:3000/customer"
+private var API_BASE_URL = "http://18.209.147.83:443/api/"
 
 // Create Moshi object
 private val moshi = Moshi.Builder()
@@ -33,11 +33,9 @@ private val client = OkHttpClient.Builder()
 
 interface VirtualMachineApiService {
 
-  @GET("virtualmachines/{id}")
+  @GET("Virtualmachine/{id}")
   fun getVirtualMachineByID(@Path("id") id:String) : Deferred<ApiVirtualMachine>
-  @GET("virtualmachines/project/{projectId}")
-  fun getVirtualMachineByProject(@Path("projectId") projectId:String) : Deferred<List<ApiVirtualMachine>>
-  @GET("virtualmachines")
+  @GET("Virtualmachines")
   fun getVirtualMachines() : Deferred<List<ApiVirtualMachine>>
 
 }

@@ -5,7 +5,7 @@ import java.time.ZoneId
 import java.util.*
 
 
-class VirtualMachineMock() {
+class VirtualMachineMock() {/*
     var virtualMachines: ArrayList<VirtualMachine>
     init{
         virtualMachines = createVirtualMachineMockArray()
@@ -49,5 +49,5 @@ class VirtualMachineMock() {
     private fun giveDateWithDayOffset(offset: Long): LocalDate{
         return LocalDate.now().plusDays(offset)
     }
-
+*/
 }

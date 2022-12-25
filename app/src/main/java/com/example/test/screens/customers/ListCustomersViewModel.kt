@@ -1,18 +1,19 @@
-package com.example.test.screens.users
+package com.example.test.screens.customers
 
 import android.app.Application
-import androidx.lifecycle.*
-import com.example.test.database.Account.CustomerDatabase
-import com.example.test.domain.Account
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.test.database.customer.CustomerDatabase
+import com.example.test.domain.Customer
+import com.example.test.network.ApiCustomer
 import com.example.test.network.ApiStatus
-import com.example.test.network.asDomainModels
-import com.example.test.network.interfaces.ApiAccountObj.retrofitService
 import com.example.test.repository.CustomerRepository
-import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
-class ListUsersViewModel(application: Application) : AndroidViewModel(application) {
+class ListCustomersViewModel(application: Application) : ViewModel() {
 
     //live data objects
     private val _status = MutableLiveData<ApiStatus>()
@@ -21,7 +22,6 @@ class ListUsersViewModel(application: Application) : AndroidViewModel(applicatio
 
     private val database = CustomerDatabase.getInstance(application.applicationContext)
     private val customerRepository = CustomerRepository(database)
-
     val customers = customerRepository.customers
 
     init {

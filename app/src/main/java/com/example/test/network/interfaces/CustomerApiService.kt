@@ -1,8 +1,7 @@
 package com.example.test.network.interfaces
 
-import com.example.test.domain.Account
 import com.example.test.domain.Project
-import com.example.test.network.ApiAccount
+import com.example.test.network.ApiCustomer
 import com.example.test.network.ApiProject
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.squareup.moshi.Moshi
@@ -18,7 +17,7 @@ import retrofit2.http.Path
 
 
 
-private var API_BASE_URL = "127.0.0.1:3000/customer"
+private var API_BASE_URL = "http://18.209.147.83:443/api/"
 
 // Create Moshi object
 private val moshi = Moshi.Builder()
@@ -33,13 +32,13 @@ private val client = OkHttpClient.Builder()
     .addInterceptor(logger)
     .build()
 
-interface AccountApiService {
+interface CustomerApiService {
 
 
     @GET("customers/")
-    fun getAllAccounts() : Deferred<List<ApiAccount>>
+    fun getAllCustomers() : Deferred<List<ApiCustomer>>
     @GET("customers/{id}")
-    fun getAccountById(@Path("id") role:String) : Deferred<List<ApiAccount>>
+    fun getCustomerById(@Path("id") role:String) : Deferred<List<ApiCustomer>>
 }
 
 private val retrofit = Retrofit.Builder()
@@ -49,9 +48,9 @@ private val retrofit = Retrofit.Builder()
     .client(client)
     .build()
 
-object ApiAccountObj {
+object ApiCustomerObj {
     // Lazy properties with delegate: thread safe, can only be initialized once at a time. Adds extra safety to our 1 instance we need
-    val retrofitService: AccountApiService by lazy {
-        retrofit.create(AccountApiService::class.java)
+    val retrofitService: CustomerApiService by lazy {
+        retrofit.create(CustomerApiService::class.java)
     }
 }

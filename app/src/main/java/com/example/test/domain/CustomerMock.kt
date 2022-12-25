@@ -1,27 +1,25 @@
-package com.example.test
+package com.example.test.domain
 
 
-import com.example.test.domain.Account
-import com.example.test.domain.Department
-import com.example.test.domain.Role
 import java.util.*
 import kotlin.collections.ArrayList
 
-class AccountMock() {
-    var users: ArrayList<Account>
+class CustomerMock() {
+    /*
+    var customers: ArrayList<Customer>
     init{
-        users = createUserMockArray()
+        customers = createUserMockArray()
     }
-    private fun createUserMockArray(): ArrayList<Account>{
+   private fun createUserMockArray(): ArrayList<Customer>{
         var random: Random = Random();
 
         var departments = Department.values()
         var roles = Role.values()
 
-        var output = ArrayList<Account>();
+        var output = ArrayList<Customer>();
 
         for(i in 0..19){
-            output.add(Account(
+            output.add(Customer(
                 i,
                 "Email ${i}",
                 "Account ${i}",
@@ -29,10 +27,9 @@ class AccountMock() {
                 "Education ${i}",
                 "Extern type ${i}",
                 "Phone number ${i}",
-                roles[random.nextInt(roles.size-1)],
                 "Backup contact ${i}"
             ))
         }
         return output
-    }
+    }*/
 }

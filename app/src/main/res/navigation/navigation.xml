@@ -9,24 +9,36 @@
         android:name="com.example.test.HomeFragment"
         android:label="@string/second_fragment_label"
         tools:layout="@layout/fragment_home">
-
+<!-- TODO: users to members -->
         <action
             android:id="@+id/action_SecondFragment_to_listUsersFragment"
-            app:destination="@id/listUsersFragment" />
+            app:destination="@id/listMembersFragment" />
         <action
             android:id="@+id/action_SecondFragment_to_virtualMachineListFragment"
             app:destination="@id/virtualMachineListFragment" />
         <action
             android:id="@+id/action_SecondFragment_to_projectListFragment"
             app:destination="@id/projectListFragment" />
+        <action
+            android:id="@+id/logOut"
+            app:destination="@id/nav_graph" />
     </fragment>
     <fragment
-        android:id="@+id/listUsersFragment"
-        android:name="com.example.test.screens.users.ListUsersFragment"
+        android:id="@+id/listCustomersFragment"
+        android:name="com.example.test.screens.customers.ListCustomersFragment"
         android:label="Beheer gebruikers" >
         <action
-            android:id="@+id/action_listUsersFragment_to_userFragment"
-            app:destination="@id/userFragment" />
+            android:id="@+id/action_listCustomerFragment_to_customerFragment"
+            app:destination="@id/listCustomersFragment" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/listMembersFragment"
+        android:name="com.example.test.screens.members.MemberListFragment"
+        android:label="Beheer members">
+        <action
+            android:id="@+id/action_listMembersFragment_to_memberFragment"
+            app:destination="@id/memberFragment" />
     </fragment>
     <fragment
         android:id="@+id/virtualMachineListFragment"
@@ -46,11 +58,11 @@
                 app:argType="integer" />
     </fragment>
     <fragment
-        android:id="@+id/userFragment"
-        android:name="com.example.test.screens.users.UserDetailFragment"
-        android:label="Detail gebruiker" >
+        android:id="@+id/customerFragment"
+        android:name="com.example.test.screens.customers.CustomerFragment"
+        android:label="Detail klant" >
         <argument
-            android:name="userId"
+            android:name="customerId"
             app:argType="integer" />
     </fragment>
     <fragment
@@ -65,4 +77,12 @@
         android:id="@+id/aboutFragment"
         android:name="com.example.test.screens.about.AboutFragment"
         android:label="AboutFragment" />
+    <fragment
+        android:id="@+id/memberFragment"
+        android:name="com.example.test.screens.members.MemberFragment"
+        android:label="Detail member">
+        <argument
+            android:name="memberId"
+            app:argType="integer" />
+    </fragment>
 </navigation>

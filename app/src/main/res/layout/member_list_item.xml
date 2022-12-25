@@ -6,51 +6,46 @@
 
     <data>
         <variable
-        name="account"
-        type="com.example.test.domain.Account" />
+            name="member"
+            type="com.example.test.domain.Member" />
         <variable
             name="clickListener"
-            type="com.example.test.screens.users.AccountListener"/>
+            type="com.example.test.screens.members.MemberListener"/>
 
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="@{()->clickListener.onClick(account)}">
+        android:onClick="@{()->clickListener.onClick(member)}">
 
         <TextView
             android:id="@+id/textview_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:fontFamily="sans-serif-medium"
+            android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="name" />
-
-        <TextView
-            android:id="@+id/textview_department"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="8dp"
-            android:textStyle="italic"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textview_name"
-            tools:text="department" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Name" />
 
         <TextView
             android:id="@+id/textview_role"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:textSize="16sp"
             android:textStyle="italic"
-            app:layout_constraintBaseline_toBaselineOf="@+id/textview_department"
-            app:layout_constraintStart_toEndOf="@+id/textview_department"
-            tools:text="role" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Role" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

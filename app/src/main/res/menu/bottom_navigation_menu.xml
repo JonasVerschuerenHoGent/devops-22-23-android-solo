@@ -4,16 +4,25 @@
     <item
         android:id="@+id/projectListFragment"
         android:enabled="true"
+        android:icon="@drawable/projects"
         android:title="@string/projects" />
 
     <item
         android:id="@+id/virtualMachineListFragment"
         android:enabled="true"
+        android:icon="@drawable/virtualmachines"
         android:title="@string/virtual_machines" />
 
     <item
-        android:id="@+id/listUsersFragment"
+        android:id="@+id/listCustomersFragment"
         android:enabled="true"
-        android:title="@string/users" />
+        android:icon="@drawable/customers"
+        android:title="@string/customers" />
+
+    <item
+        android:id="@+id/listMembersFragment"
+        android:enabled="true"
+        android:icon="@drawable/members"
+        android:title="@string/members" />
 
 </menu>
