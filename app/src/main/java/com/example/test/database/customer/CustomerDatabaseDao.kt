@@ -19,19 +19,21 @@ import androidx.room.Query
 interface CustomerDatabaseDao {
 
     @Insert
-    suspend fun insert(customer : DatabaseCustomer)
+    fun insert(customer : DatabaseCustomer)
 
     // Adding an insert all with a vararg parameter. Replace strategy is upsert (updating if exists, inserting when not existing)
+//    @Insert(onConflict = OnConflictStrategy.REPLACE)
+//     fun insertAll(vararg customers: DatabaseCustomer)
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAll(vararg customers: DatabaseCustomer)
+    fun insertAll(vararg customers: DatabaseCustomer)
 
     @Query("SELECT * FROM customer_table ORDER BY id ASC")
-    suspend fun getAllCustomers(): List<DatabaseCustomer>
+     fun getAllCustomers(): List<DatabaseCustomer>
 
     @Query("SELECT * FROM customer_table ORDER BY id ASC")
     fun getAllCustomersLive(): LiveData<List<DatabaseCustomer>>
 
     @Query("SELECT * FROM customer_table WHERE id = :id")
-    suspend fun getCustomerById(id : Int): DatabaseCustomer?
+     fun getCustomerById(id : Int): DatabaseCustomer?
 
 }

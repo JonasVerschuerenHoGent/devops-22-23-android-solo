@@ -14,7 +14,7 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 
 
-private var API_BASE_URL = "http://18.209.147.83:443/api/Project"
+private var API_BASE_URL = "http://18.209.147.83:443/api/Project/"
 
 // Create Moshi object
 private val moshi = Moshi.Builder()
@@ -31,7 +31,7 @@ private val client = OkHttpClient.Builder()
 
 interface ProjectApiService {
 
-    @GET("projects/")
+    @GET("project/")
     fun getProjects() : Deferred<List<ApiProject>>
     @GET("project/{id}")
     fun getProjectById(@Path("id") role:String) : Deferred<List<ApiProject>>

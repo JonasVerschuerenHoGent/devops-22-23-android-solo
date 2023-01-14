@@ -3,6 +3,7 @@
     package="com.example.test">
     <uses-permission android:name="android.permission.INTERNET" />
     <application
+        android:name=".VicApplication"
         android:usesCleartextTraffic="true"
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"

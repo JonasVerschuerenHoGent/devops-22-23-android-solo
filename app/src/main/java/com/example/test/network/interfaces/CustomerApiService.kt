@@ -2,6 +2,7 @@ package com.example.test.network.interfaces
 
 import com.example.test.domain.Project
 import com.example.test.network.ApiCustomer
+import com.example.test.network.ApiCustomerContainer
 import com.example.test.network.ApiProject
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.squareup.moshi.Moshi
@@ -11,6 +12,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
 import retrofit2.Retrofit
+import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory.*
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -35,14 +37,14 @@ private val client = OkHttpClient.Builder()
 interface CustomerApiService {
 
 
-    @GET("customers/")
-    fun getAllCustomers() : Deferred<List<ApiCustomer>>
-    @GET("customers/{id}")
+    @GET("customer")
+    fun getAllCustomers() : Deferred<ApiCustomerContainer>
+    @GET("customer/{id}")
     fun getCustomerById(@Path("id") role:String) : Deferred<List<ApiCustomer>>
 }
 
 private val retrofit = Retrofit.Builder()
-    .addConverterFactory(create(moshi))
+    .addConverterFactory(MoshiConverterFactory.create(moshi))
     .addCallAdapterFactory(CoroutineCallAdapterFactory())
     .baseUrl(API_BASE_URL)
     .client(client)

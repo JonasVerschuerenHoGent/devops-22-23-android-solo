@@ -11,7 +11,7 @@ import androidx.room.RoomDatabase
  *
  * @constructor Create empty Customer database
  */
-@Database(entities = [DatabaseCustomer::class], version =2, exportSchema = false)
+@Database(entities = [DatabaseCustomer::class], version =3, exportSchema = false)
 abstract class CustomerDatabase : RoomDatabase() {
     abstract val customerDatabaseDao : CustomerDatabaseDao
     companion object {

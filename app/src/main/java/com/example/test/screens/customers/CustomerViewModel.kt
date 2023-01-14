@@ -44,12 +44,12 @@ class CustomerViewModel(application: Application, id: Int) : ViewModel() {
                 val tempCustomer = database.customerDatabaseDao.getCustomerById(id)
                     ?: throw Resources.NotFoundException("Member $id was not found.")
                 _customer.value = tempCustomer.asDomainModel()
-                val tempBackupCustomer = database.customerDatabaseDao.getCustomerById(tempCustomer.backupContactId)
+
                     ?: throw Resources.NotFoundException("Member $id was not found.")
-                _backupCustomer.value = tempBackupCustomer.asDomainModel()
+
                 _status.value = ApiStatus.DONE
             } catch (e: Exception) {
-                Timber.e("Exception occurred while refreshing the customers", e)
+                Timber.e("Exception occurred while refreshing the customers", e.message)
                 _status.value = ApiStatus.ERROR
             }
         }

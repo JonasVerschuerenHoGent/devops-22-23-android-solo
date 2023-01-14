@@ -17,23 +17,8 @@ data class ApiCustomer(
     @Json(name = "email")
     val email: String,
 
-    @Json(name = "phone_nr")
-    val phoneNr: String,
-
-    @Json(name = "education")
-    val education: String,
-
-    @Json(name = "department")
-    val department : String,
-
-    @Json(name = "extern_type")
-    val externType : String?,
-
-    @Json(name="role")
-    val role : String,
-
-    @Json(name = "backup_contact_id")
-    val backupContactId : Int //?
+    @Json(name = "phoneNumber")
+    val phoneNr: String
 
 )
 
@@ -43,12 +28,12 @@ fun ApiCustomer.asDomainAccount(): Customer {
     id = id,
     name = name,
     email = email,
-    education = education,
-    externType = externType,
-    phoneNr = phoneNr,
-    role = role.asDomainRole(),
-    department = department.asDomainDepartment(),
-    backupContact = backupContactId
+//    education = education,
+//    externType = externType,
+    phoneNr = phoneNr
+//    role = role.asDomainRole(),
+//    department = department.asDomainDepartment(),
+//    backupContact = backupContactId
     )
 }
 
@@ -59,12 +44,12 @@ fun ApiCustomer.asDatabaseCustomer(): DatabaseCustomer {
         id = id,
         name = name,
         email = email,
-        education = education,
-        externType = externType,
-        phoneNr = phoneNr,
-        role = role,
-        department = department,
-        backupContactId = backupContactId
+//        education = education,
+//        externType = externType,
+        phoneNr = phoneNr
+//        role = role,
+//        department = department,
+//        backupContactId = backupContactId
     )
 }
 
@@ -72,6 +57,10 @@ fun ApiCustomer.asDatabaseCustomer(): DatabaseCustomer {
 data class ApiAccountContainer(
     @Json(name = "body")
     val apiAccounts: List<ApiCustomer>
+)
+
+data class ApiCustomerContainer(
+    val customers: List<ApiCustomer>
 )
 
 

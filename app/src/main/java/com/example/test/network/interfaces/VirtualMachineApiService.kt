@@ -35,7 +35,7 @@ interface VirtualMachineApiService {
 
   @GET("Virtualmachine/{id}")
   fun getVirtualMachineByID(@Path("id") id:String) : Deferred<ApiVirtualMachine>
-  @GET("Virtualmachines")
+  @GET("Virtualmachine")
   fun getVirtualMachines() : Deferred<List<ApiVirtualMachine>>
 
 }

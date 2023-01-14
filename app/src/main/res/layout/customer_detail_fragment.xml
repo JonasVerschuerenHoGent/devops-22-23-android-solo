@@ -34,19 +34,6 @@
             tools:text="naam" />
 
         <TextView
-            android:id="@+id/textview_backupcontact"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="48dp"
-            android:layout_marginTop="8dp"
-            android:fontFamily="@font/asap"
-            android:text="@{customersViewModel.customer.backupContact}"
-            android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textview_backupcontact_label"
-            tools:text="backup_contact" />
-
-        <TextView
             android:id="@+id/textview_backupcontact_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -85,58 +72,6 @@
             app:layout_constraintStart_toStartOf="@+id/textview_phonenr_label"
             app:layout_constraintTop_toBottomOf="@+id/textview_phonenr_label"
             tools:text="phonenr" />
-
-        <TextView
-            android:id="@+id/textview_externtype"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:fontFamily="@font/asap"
-            android:text="@{customersViewModel.customer.externType}"
-            android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="@+id/textview_externtype_label"
-            app:layout_constraintTop_toBottomOf="@+id/textview_externtype_label"
-            tools:text="externtype" />
-
-        <TextView
-            android:id="@+id/textview_externtype_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="36dp"
-            android:fontFamily="@font/asap"
-            android:text="@string/Externtype"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@+id/textview_department"
-            app:layout_constraintTop_toBottomOf="@+id/textview_department" />
-
-        <TextView
-            android:id="@+id/textview_education_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="48dp"
-            android:layout_marginTop="36dp"
-            android:fontFamily="@font/asap"
-            android:text="@string/Opleiding"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textview_backupcontact" />
-
-        <TextView
-            android:id="@+id/textview_education"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="48dp"
-            android:layout_marginTop="8dp"
-            android:fontFamily="@font/asap"
-            android:text="@{customersViewModel.customer.education}"
-            android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textview_education_label"
-            tools:text="education" />
 
         <TextView
             android:id="@+id/tetview_email_label"
@@ -179,18 +114,6 @@
             app:layout_constraintTop_toBottomOf="@+id/tetview_email_label"
             tools:text="email" />
 
-        <TextView
-            android:id="@+id/textview_department"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:fontFamily="@font/asap"
-            android:text="@{customersViewModel.customer.department.name()}"
-            android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="@+id/textview_department_label"
-            app:layout_constraintTop_toBottomOf="@+id/textview_department_label"
-            tools:text="department" />
-
         <View
             android:id="@+id/divider"
             android:layout_width="0dp"
@@ -201,66 +124,18 @@
             app:layout_constraintStart_toStartOf="@+id/textview_email"
             app:layout_constraintTop_toBottomOf="@+id/textview_email" />
 
-        <View
-            android:id="@+id/divider2"
-            android:layout_width="0dp"
-            android:layout_height="3dp"
-            android:layout_marginTop="8dp"
-            android:background="?android:attr/listDivider"
-            app:layout_constraintEnd_toEndOf="@+id/divider"
-            app:layout_constraintStart_toStartOf="@+id/textview_backupcontact"
-            app:layout_constraintTop_toBottomOf="@+id/textview_backupcontact" />
-
-        <View
-            android:id="@+id/divider3"
-            android:layout_width="0dp"
-            android:layout_height="3dp"
-            android:layout_marginTop="8dp"
-            android:background="?android:attr/listDivider"
-            app:layout_constraintEnd_toEndOf="@+id/divider2"
-            app:layout_constraintStart_toStartOf="@+id/textview_education"
-            app:layout_constraintTop_toBottomOf="@+id/textview_education" />
-
-
-        <View
-            android:id="@+id/divider4"
-            android:layout_width="0dp"
-            android:layout_height="5dp"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="15dp"
-            android:background="?android:attr/listDivider"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/divider3" />
-
-        <TextView
-            android:id="@+id/textview_vmAangemaakt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/VmsGelinkt"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="24sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.493"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/divider4" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/virtual_machine_list"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textview_vmAangemaakt" />
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

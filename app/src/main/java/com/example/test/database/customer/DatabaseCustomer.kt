@@ -19,25 +19,25 @@ var name: String,
 @ColumnInfo(name = "customer_mail")
 var email : String,
 
-@ColumnInfo(name = "customer_education")
-var education : String,
+//@ColumnInfo(name = "customer_education")
+//var education : String,
 
-@ColumnInfo(name = "customer_role")
-var role: String,
-
-@ColumnInfo(name = "customer_extern_type")
-var externType : String?,
+//@ColumnInfo(name = "customer_role")
+//var role: String,
+//
+//@ColumnInfo(name = "customer_extern_type")
+//var externType : String?,
 
 @ColumnInfo(name = "customer_phone_nr")
 var phoneNr : String,
 
 
-@ColumnInfo(name = "customer_department")
-var department : String,
-
-
-@ColumnInfo(name = "customer_backup_contact_id")
-var backupContactId : Int
+//@ColumnInfo(name = "customer_department")
+//var department : String,
+//
+//
+//@ColumnInfo(name = "customer_backup_contact_id")
+//var backupContactId : Int
 )
 
 // Convert a single DatabaseCustomer into a normal domain Customer
@@ -46,12 +46,12 @@ fun DatabaseCustomer.asDomainModel(): Customer {
         id = id,
         name = name,
         email = email,
-        education = education,
-        externType = externType,
+//        education = education,
+//        externType = externType,
         phoneNr = phoneNr,
-        role = role.asDomainRole(),
-        department = department.asDomainDepartment(),
-        backupContact = backupContactId // Relatie naar zichzelf?
+//        role = role.asDomainRole(),
+//        department = department.asDomainDepartment(),
+//        backupContact = backupContactId // Relatie naar zichzelf?
     )
 }
 

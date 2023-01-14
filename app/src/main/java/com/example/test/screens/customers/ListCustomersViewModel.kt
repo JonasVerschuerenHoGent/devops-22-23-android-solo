@@ -29,14 +29,17 @@ class ListCustomersViewModel(application: Application) : ViewModel() {
 
         viewModelScope.launch {
             _status.value = ApiStatus.LOADING
+            customerRepository.refreshCustomers()
 
-            try {
-                customerRepository.refreshCustomers()
-                _status.value = ApiStatus.DONE
-            } catch (e: Exception) {
-                Timber.e("Exception occurred while refreshing the customers", e)
-                _status.value = ApiStatus.ERROR
-            }
+
+//            try {
+//                customerRepository.refreshCustomers()
+//                Timber.tag("data").i("log customers$customers")
+//                _status.value = ApiStatus.DONE
+//            } catch (e: Exception) {
+//                Timber.e("Exception occurred while refreshing the customers", e.message)
+//                _status.value = ApiStatus.ERROR
+//            }
         }
     }
 
