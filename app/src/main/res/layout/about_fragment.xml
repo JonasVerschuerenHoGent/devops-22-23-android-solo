@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -9,18 +10,19 @@
 
         <TextView
             android:id="@+id/about_info"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
             android:fontFamily="@font/asap"
-            android:text="This application is mainly designed for maintaining the Virtual machines of the Virtual IT Company."
+            android:text="@string/about_info_text"
             android:textAlignment="center"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/about"
-            app:layout_constraintVertical_bias="0.287" />
+            app:layout_constraintVertical_bias="0.304" />
 
         <TextView
             android:id="@+id/about"
@@ -28,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="144dp"
             android:fontFamily="@font/asap"
-            android:text="About section"
+            android:text="@string/about_section"
             android:textSize="34sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
