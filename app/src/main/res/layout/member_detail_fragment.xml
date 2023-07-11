@@ -20,7 +20,7 @@
         tools:context=".membersFragment">
 
         <TextView
-            android:id="@+id/textview_name"
+            android:id="@+id/projectName"
             style="@style/TextAppearance.Title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -193,7 +193,7 @@
             app:circularflow_defaultRadius="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textview_name"
+            app:layout_constraintTop_toBottomOf="@+id/projectName"
             tools:text="actief" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

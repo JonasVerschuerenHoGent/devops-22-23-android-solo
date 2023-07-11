@@ -28,6 +28,7 @@ class ProjectViewHolder(val binding : ProjectFragmentItemBinding) : RecyclerView
     fun bind(clickListener: ProjectListener, item : Project) {
 
         binding.projectName.text = item.name
+        binding.virtualMachines.text = item.virtualMachines.size.toString()
         binding.projectItem = item
         binding.clickListener = clickListener
         binding.executePendingBindings()

@@ -16,7 +16,7 @@
         tools:context=".HomeFragment">
 
         <TextView
-            android:id="@+id/textview_name"
+            android:id="@+id/projectName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
