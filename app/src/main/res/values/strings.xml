@@ -59,4 +59,5 @@
     <string name="com_auth0_scheme">Vic</string>
     <string name="about_info_text">This application is mainly designed for maintaining the Virtual machines of the Virtual IT Company.</string>
     <string name="about_section">About section</string>
+    <string name="home">Home</string>
 </resources>
