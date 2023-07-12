@@ -75,7 +75,7 @@
     <fragment
         android:id="@+id/aboutFragment"
         android:name="com.example.test.screens.about.AboutFragment"
-        android:label="AboutFragment" />
+        android:label="@string/about" />
     <fragment
         android:id="@+id/memberFragment"
         android:name="com.example.test.screens.members.MemberFragment"

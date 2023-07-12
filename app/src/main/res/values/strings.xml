@@ -60,4 +60,8 @@
     <string name="about_info_text">This application is mainly designed for maintaining the Virtual machines of the Virtual IT Company.</string>
     <string name="about_section">About section</string>
     <string name="home">Home</string>
+    <string name="questions">Questions</string>
+    <string name="question_mark">Question mark</string>
+    <string name="about_popup_text">If you have any questions, please feel free to contact us by mail by pressing the button underneath.</string>
+    <string name="send_email">Send email</string>
 </resources>
