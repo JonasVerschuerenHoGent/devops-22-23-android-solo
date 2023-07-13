@@ -23,8 +23,8 @@
                 android:id="@+id/about_info"
                 android:layout_width="0dp"
                 android:layout_height="80dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
+                android:layout_marginStart="@dimen/spacing_small"
+                android:layout_marginEnd="@dimen/spacing_small"
                 android:text="@string/about_info_text"
                 android:textAlignment="center"
                 android:textSize="20sp"
@@ -36,6 +36,7 @@
 
             <TextView
                 android:id="@+id/about"
+                style="@style/TextAppearance.Title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="100dp"
@@ -51,10 +52,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end|bottom"
-            android:layout_margin="16dp"
-            app:srcCompat="@drawable/question_mark"
+            android:layout_margin="@dimen/spacing_normal"
             android:clickable="true"
-            android:onClick="@{() -> viewModel.onFabClicked()}" />
+            android:onClick="@{() -> viewModel.onFabClicked()}"
+            app:backgroundTint="@color/colorTertiary"
+            app:srcCompat="@drawable/question_mark" />
 
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

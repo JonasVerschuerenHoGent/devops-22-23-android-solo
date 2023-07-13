@@ -12,7 +12,7 @@
             android:id="@+id/log_out"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="@dimen/spacing_normal"
             android:textColor="@color/colorPrimaryDark"
             android:text="@string/logOut"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -22,8 +22,8 @@
         <Button
             android:id="@+id/go_to_list_projectsBtn"
             style="@style/primaryButton"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginStart="@dimen/spacing_normal"
+            android:layout_marginTop="@dimen/spacing_normal"
             android:text="@string/list_of_projects"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/go_to_list_button"
@@ -35,8 +35,8 @@
         <Button
             android:id="@+id/go_to_list_button"
             style="@style/primaryButton"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginStart="@dimen/spacing_normal"
+            android:layout_marginEnd="@dimen/spacing_normal"
             android:text="@string/list_of_vms"
             app:layout_constraintBaseline_toBaselineOf="@+id/go_to_list_projectsBtn"
             app:layout_constraintEnd_toStartOf="@+id/button_second"
@@ -46,12 +46,26 @@
         <Button
             android:id="@+id/button_second"
             style="@style/primaryButton"
-            android:layout_marginEnd="16dp"
+            android:layout_marginEnd="@dimen/spacing_normal"
             android:text="@string/list_of_users"
             app:layout_constraintBaseline_toBaselineOf="@+id/go_to_list_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/go_to_list_button" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/start_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintGuide_begin="@dimen/spacing_normal"
+            android:orientation="vertical" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/end_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintGuide_end="@dimen/spacing_normal"
+            android:orientation="vertical" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

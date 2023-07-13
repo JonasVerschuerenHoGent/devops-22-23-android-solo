@@ -19,10 +19,11 @@
 
         <TextView
             android:id="@+id/vm_name_textview"
+            style="@style/TextAppearance.Title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginStart="@dimen/spacing_small"
+            android:layout_marginTop="@dimen/spacing_small"
             android:text="Name"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -33,8 +34,7 @@
             android:id="@+id/vm_active_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
+            android:layout_marginStart="@dimen/spacing_normal"
             android:text="inactief"
             android:textStyle="italic"
             app:layout_constraintBaseline_toBaselineOf="@+id/vm_name_textview"
@@ -43,9 +43,9 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginStart="@dimen/spacing_small"
+            android:layout_marginTop="@dimen/spacing_small"
+            android:layout_marginBottom="@dimen/spacing_small"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/vm_name_textview">
@@ -79,6 +79,7 @@
 
             <TextView
                 android:id="@+id/textview_vcpu_label"
+                style="@style/TextAppearance.Subtitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="#vCPU:"
@@ -88,9 +89,10 @@
 
             <TextView
                 android:id="@+id/textview_memory_label"
+                style="@style/TextAppearance.Subtitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="@dimen/spacing_normal"
                 android:text="Geheugen:"
                 android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@+id/vm_vcpu_textview"
@@ -98,9 +100,10 @@
 
             <TextView
                 android:id="@+id/textview_memory_label2"
+                style="@style/TextAppearance.Subtitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="@dimen/spacing_normal"
                 android:text="Opslag:"
                 android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@+id/vm_memory_textview"
