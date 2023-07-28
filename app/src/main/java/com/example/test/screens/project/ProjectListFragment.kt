@@ -35,9 +35,6 @@ class ProjectListFragment : Fragment() {
         })
         val recyclerView = binding.projectNames
         recyclerView.adapter = adapter
-        recyclerView.addItemDecoration(
-            DividerItemDecoration(recyclerView.getContext(), DividerItemDecoration.VERTICAL)
-        )
 
         viewModel.listProjects.observe(viewLifecycleOwner, Observer { adapter.submitList(it) })
 

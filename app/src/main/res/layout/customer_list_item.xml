@@ -17,6 +17,9 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_padding_small"
+        android:layout_marginBottom="@dimen/margin_padding_small"
+        android:background="@drawable/shape_for_vm_listitem"
         android:onClick="@{()->clickListener.onClick(customer)}">
 
         <TextView

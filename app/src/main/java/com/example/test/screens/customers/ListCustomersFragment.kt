@@ -38,8 +38,6 @@ class ListCustomersFragment : Fragment() {
         })
         val recyclerView = binding.customerList
         recyclerView.adapter = adapter
-        recyclerView.addItemDecoration(
-            DividerItemDecoration(recyclerView.context, DividerItemDecoration.VERTICAL))
 
         viewModel.listCustomers.observe(viewLifecycleOwner) { adapter.submitList(it) }
 

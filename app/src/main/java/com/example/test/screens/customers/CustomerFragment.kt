@@ -65,9 +65,6 @@ class CustomerFragment : Fragment() {
 
         val recyclerView = binding.virtualMachineList
         recyclerView.adapter = adapter
-        recyclerView.addItemDecoration(
-            DividerItemDecoration(recyclerView.getContext(), DividerItemDecoration.VERTICAL)
-        )
 
         vmViewModel.listVms.observe(viewLifecycleOwner, Observer {
             println("List got ${it.size}")

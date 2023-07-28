@@ -41,9 +41,6 @@ class VirtualMachineListFragment : Fragment() {
 
         val recyclerView = binding.virtualMachineList
         recyclerView.adapter = adapter
-        recyclerView.addItemDecoration(
-            DividerItemDecoration(recyclerView.context, DividerItemDecoration.VERTICAL)
-        )
 
         viewModel.listVms.observe(viewLifecycleOwner) {
             println("List got ${it.size}")
