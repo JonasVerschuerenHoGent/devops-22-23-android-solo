@@ -64,4 +64,8 @@
     <string name="question_mark">Question mark</string>
     <string name="about_popup_text">If you have any questions, please feel free to contact us by mail by pressing the button underneath.</string>
     <string name="send_email">Send email</string>
+    <string name="horizontal_scrollview">horizontal scrollview</string>
+    <string name="admin">Admin</string>
+    <string name="manager">Manager</string>
+    <string name="viewer">Viewer</string>
 </resources>

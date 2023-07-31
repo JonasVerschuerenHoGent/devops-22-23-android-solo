@@ -14,39 +14,66 @@
         android:layout_height="match_parent"
         tools:context=".ListMembersFragment">
 
-<!--        <HorizontalScrollView-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:contentDescription="horizontal scrollview"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="parent"-->
-<!--            app:layout_constraintHorizontal_bias="0">-->
-
-<!--            <com.google.android.material.chip.ChipGroup-->
-<!--                android:id="@+id/roles_list"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                app:singleSelection="false"-->
-<!--                android:padding="@dimen/spacing_normal" >-->
-
-
-
-<!--            </com.google.android.material.chip.ChipGroup>-->
-<!--        </HorizontalScrollView>-->
-
-        <androidx.appcompat.widget.SearchView
-            android:id="@+id/searchMembersSv"
-            android:layout_width="0dp"
-            android:layout_height="36dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="@dimen/spacing_small"
-            android:layout_marginEnd="10dp"
-            android:background="#FFFFFF"
-            android:queryHint="Search member..."
+        <HorizontalScrollView
+            android:id="@+id/chips"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_normal"
+            android:contentDescription="@string/horizontal_scrollview"
+            android:foregroundGravity="center_vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/roles_list"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/spacing_normal"
+                app:singleSelection="true">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_admin"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="false"
+                    android:tag="Admin"
+                    android:text="@string/admin"
+                    android:textColor="@color/white"
+                    android:textSize="20dp"
+                    app:checkedIconVisible="true"
+                    app:chipBackgroundColor="@color/selected_highlight"
+                    tools:checked="true" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_manager"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="false"
+                    android:tag="Manager"
+                    android:text="@string/manager"
+                    android:textColor="@color/white"
+                    android:textSize="20dp"
+                    app:checkedIconVisible="true"
+                    app:chipBackgroundColor="@color/selected_highlight" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_viewer"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="false"
+                    android:tag="Viewer"
+                    android:text="@string/viewer"
+                    android:textColor="@color/white"
+                    android:textSize="20dp"
+                    app:checkedIconVisible="true"
+                    app:chipBackgroundColor="@color/selected_highlight" />
+
+            </com.google.android.material.chip.ChipGroup>
+        </HorizontalScrollView>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/member_list"
@@ -60,7 +87,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/searchMembersSv" />
+            app:layout_constraintTop_toBottomOf="@+id/chips" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

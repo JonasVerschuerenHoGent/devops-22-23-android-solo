@@ -8,5 +8,4 @@ data class Member(
     var phoneNr: String,
     var department: Department,
     var role: Role,
-//    val filters: List<String>,
 )

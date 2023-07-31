@@ -1,5 +1,6 @@
 package com.example.test.screens.members
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -11,7 +12,7 @@ import kotlinx.coroutines.launch
 
 class ListMembersViewModel : ViewModel() {
 
-//    private var _filter = FilterHolder()
+    private var _filter = FilterHolder()
 
     private val _listMembers = MutableLiveData<List<Member>>()
     val listMembers: LiveData<List<Member>>
@@ -27,36 +28,32 @@ class ListMembersViewModel : ViewModel() {
         }
     }
 
-//    fun onFilterChanged(filter: Role, isChecked: Boolean) {
-//        if (this._filter.update(filter, isChecked)) {
-//
-//            val members: List<Member> = MemberMock().members
-//            _listMembers.value = members.map { m ->
-//                if(m.role == _filter.currentValue)
-//                    return m
-//            }
-//
-//        } else {
-//            _listMembers.value = MemberMock().members
-//        }
-//    }
+    fun onFilterChanged(filter: String, isChecked: Boolean) {
+        if (this._filter.update(filter, isChecked)) {
+            //Fetch the members from the database
+            val members = MemberMock().members
+            _listMembers.value = members.filter { m ->
+                m.role.toString() == _filter.currentValue
+            }
+        } else {
+            //Fetch the members from the database
+            _listMembers.value = MemberMock().members
+        }
+    }
 
+    private class FilterHolder {
+        var currentValue: String? = null
+            private set
 
-//    private class FilterHolder {
-//        var currentValue: Role? = null
-//            private set
-//
-//        fun update(changedFilter: Role, isChecked: Boolean): Boolean {
-//            if (isChecked) {
-//                currentValue = changedFilter
-//                return true
-//            } else if (currentValue == changedFilter) {
-//                currentValue = null
-//                return true
-//            }
-//            return false
-//        }
-//    }
-
-
+        fun update(changedFilter: String, isChecked: Boolean): Boolean {
+            if (isChecked) {
+                currentValue = changedFilter
+                return true
+            } else if (currentValue == changedFilter) {
+                currentValue = null
+                return false
+            }
+            return false
+        }
+    }
 }
