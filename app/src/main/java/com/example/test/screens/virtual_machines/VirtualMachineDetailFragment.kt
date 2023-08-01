@@ -69,7 +69,8 @@ class VirtualMachineDetailFragment : Fragment() {
         }, viewLifecycleOwner)
 
         //viewModel
-        val viewModelFactory = VirtualMachineViewModelFactory(args.vmId)
+        val application = requireNotNull(this.activity).application
+        val viewModelFactory = VirtualMachineViewModelFactory(application, args.vmId)
         val viewModel: VirtualMachineViewModel by viewModels{viewModelFactory}
 
         // Set the viewmodel for databinding - this allows the bound layout access to all of the
@@ -95,11 +96,6 @@ class VirtualMachineDetailFragment : Fragment() {
         }
         binding.textviewBackup.text = backupText
 
-        var ports = ""
-        for(p in myVM.ports){
-            ports += "${p}; "
-        }
-        binding.textviewPorts.text = ports
 
         if(myVM.beginDate <= LocalDate.now() && //startDate is in past
             myVM.endDate > LocalDate.now()&& //endDate is in future

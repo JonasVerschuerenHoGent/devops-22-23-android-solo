@@ -21,7 +21,8 @@ class ProjectListFragment : Fragment() {
         val binding: ProjectFragmentItemListBinding =
             DataBindingUtil.inflate(inflater, R.layout.project_fragment_item_list, container, false)
 
-        val viewModelFactory = ProjectListViewModelFactory();
+        val application = requireNotNull(this.activity).application
+        val viewModelFactory = ProjectListViewModelFactory(application);
         val viewModel = ViewModelProvider(this, viewModelFactory).get(ProjectListViewModel::class.java)
 
         binding.listProjectViewModel = viewModel

@@ -36,7 +36,8 @@ class CustomerFragment : Fragment() {
         )
 
         //viewModel
-        val viewModelFactory = CustomerViewModelFactory(args.customerId)
+        val application = requireNotNull(this.activity).application
+        val viewModelFactory = CustomerViewModelFactory(application, args.customerId)
         val viewModel: CustomerViewModel by viewModels{viewModelFactory}
 
         // Set the viewmodel for databinding - this allows the bound layout access to all of the
@@ -47,7 +48,7 @@ class CustomerFragment : Fragment() {
         arraylist = CustomerMock().customers
         //binding.CustomerNameLbl.text = arraylist[args.CustomerId].name
 
-        val vmViewModelFactory = VirtualMachineListViewModelFactory();
+        val vmViewModelFactory = VirtualMachineListViewModelFactory(application)
         val vmViewModel = ViewModelProvider(this, vmViewModelFactory).get(VirtualMachineListViewModel::class.java)
         binding.virtualMachineListViewModel = vmViewModel
 

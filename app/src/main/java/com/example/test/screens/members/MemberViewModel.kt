@@ -1,5 +1,6 @@
 package com.example.test.screens.members
 
+import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -8,7 +9,11 @@ import com.example.test.domain.Member
 import com.example.test.domain.MemberMock
 import kotlinx.coroutines.launch
 
-class MemberViewModel(val id: Int) : ViewModel() {
+class MemberViewModel(application: Application, val id: Int) : ViewModel() {
+
+    //Code for Database and Repository
+
+
 
     //live data objects
     private val _member = MutableLiveData<Member>()

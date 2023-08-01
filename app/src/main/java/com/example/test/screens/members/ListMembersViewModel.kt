@@ -1,5 +1,6 @@
 package com.example.test.screens.members
 
+import android.app.Application
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -10,7 +11,11 @@ import com.example.test.domain.MemberMock
 import com.example.test.domain.Role
 import kotlinx.coroutines.launch
 
-class ListMembersViewModel : ViewModel() {
+class ListMembersViewModel(application: Application) : ViewModel() {
+
+    //Code for Database and Repository
+
+
 
     private var _filter = FilterHolder()
 

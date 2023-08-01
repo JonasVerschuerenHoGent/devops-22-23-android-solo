@@ -1,25 +1,29 @@
 package com.example.test.domain
 
 import java.time.LocalDate
-import java.util.Date
+
 
 data class VirtualMachine(
-    var name: String,
     var id: Int,
+    var name: String,
+    var projectId: Int,
+    var project: Project? = null,
+    var creatorId: Int,
+    var creator: Member? = null,
+    var state: State,
+    var mode: Mode,
+    var customerId: Int,
+    var customer: Customer? = null,
     var hostname: String,
     var fqdn: String,
-    var mode: Mode,
-    var backupFrequency: Int,
-    var availability: Availability,
-    var hostServer: Int,
-    var cluster: Int,
-    var ports: IntArray,
-    var state: State,
     var vCPUAmount: Int,
     var memoryAmount: Int,
     var storageAmount: Int,
-    var highAvailability: Boolean,
     var requestDate: LocalDate,
     var beginDate: LocalDate,
-    var endDate: LocalDate
+    var endDate: LocalDate,
+    var backupFrequency: Int,
+    var availability: Availability,
+    var highAvailability: Boolean,
+    var hostServer: Int,
 )

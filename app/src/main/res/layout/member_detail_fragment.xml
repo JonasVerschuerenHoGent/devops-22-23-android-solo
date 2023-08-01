@@ -188,7 +188,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
-            android:text="@{membersViewModel.member.actief ? `actief` : `non-actief`}"
+            android:text="@{membersViewModel.member.active ? `actief` : `non-actief`}"
             android:textStyle="italic"
             app:circularflow_defaultRadius="10dp"
             app:layout_constraintEnd_toEndOf="parent"

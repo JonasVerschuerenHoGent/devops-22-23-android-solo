@@ -1,5 +1,6 @@
 package com.example.test.screens.customers
 
+import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -8,7 +9,10 @@ import com.example.test.domain.CustomerMock
 import com.example.test.domain.Customer
 import kotlinx.coroutines.launch
 
-class CustomerViewModel(val id: Int) : ViewModel() {
+class CustomerViewModel(application: Application, val id: Int) : ViewModel() {
+
+    //Code for Database and Repository
+
 
     //live data objects
     private val _customer = MutableLiveData<Customer>()

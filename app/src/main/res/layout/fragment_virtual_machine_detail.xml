@@ -60,28 +60,6 @@
             tools:text="host" />
 
         <TextView
-            android:id="@+id/textview_cluster"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/spacing_normal"
-            android:layout_marginLeft="@dimen/spacing_normal"
-            android:layout_marginTop="@dimen/spacing_normal"
-            android:text="@{Integer.toString(virtualMachineViewModel.vm.cluster)}"
-            app:layout_constraintStart_toEndOf="@+id/textview_cluster_label"
-            app:layout_constraintTop_toBottomOf="@+id/textview_host_label"
-            tools:text="cluster" />
-
-        <TextView
-            android:id="@+id/textview_ports"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/spacing_normal"
-            android:layout_marginLeft="@dimen/spacing_normal"
-            app:layout_constraintBaseline_toBaselineOf="@+id/textview_ports_label"
-            app:layout_constraintStart_toEndOf="@+id/textview_ports_label"
-            tools:text="ports" />
-
-        <TextView
             android:id="@+id/textview_state"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -252,27 +230,14 @@
         </TableLayout>
 
         <TextView
-            android:id="@+id/textview_ports_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/spacing_normal"
-            android:layout_marginTop="@dimen/spacing_normal"
-            android:text="@string/ports"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textview_mode_template_label" />
-
-        <TextView
             android:id="@+id/textview_availability_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/spacing_normal"
-            android:layout_marginLeft="@dimen/spacing_normal"
-            android:layout_marginTop="@dimen/spacing_normal"
             android:text="@string/availability"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textview_ports_label" />
+            tools:layout_editor_absoluteY="390dp" />
 
         <TextView
             android:id="@+id/textview_backup_label"
@@ -297,18 +262,6 @@
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textview_backup_label" />
-
-        <TextView
-            android:id="@+id/textview_cluster_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/spacing_normal"
-            android:layout_marginLeft="@dimen/spacing_normal"
-            android:layout_marginTop="@dimen/spacing_normal"
-            android:text="@string/vm_cluster"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textview_host_label" />
 
         <TextView
             android:id="@+id/textview_mode_template_label"

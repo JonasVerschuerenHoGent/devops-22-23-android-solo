@@ -39,7 +39,8 @@ class MemberFragment: Fragment() {
         )
 
         //viewModel
-        val viewModelFactory = MemberViewModelFactory(args.memberId)
+        val application = requireNotNull(this.activity).application
+        val viewModelFactory = MemberViewModelFactory(application, args.memberId)
         val viewModel: MemberViewModel by viewModels{viewModelFactory}
 
         // Set the viewmodel for databinding - this allows the bound layout access to all of the
@@ -50,7 +51,7 @@ class MemberFragment: Fragment() {
         arraylist = MemberMock().members
         //binding.userNameLbl.text = arraylist[args.userId].name
 
-        val vmViewModelFactory = VirtualMachineListViewModelFactory();
+        val vmViewModelFactory = VirtualMachineListViewModelFactory(application);
         val vmViewModel = ViewModelProvider(this, vmViewModelFactory).get(
             VirtualMachineListViewModel::class.java)
         binding.virtualMachineListViewModel = vmViewModel

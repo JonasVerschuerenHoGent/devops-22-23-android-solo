@@ -1,5 +1,6 @@
 package com.example.test.screens.project
 
+import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -8,7 +9,11 @@ import com.example.test.domain.Project
 import com.example.test.domain.ProjectMock
 import kotlinx.coroutines.launch
 
-class ProjectListViewModel : ViewModel() {
+class ProjectListViewModel(application: Application) : ViewModel() {
+
+    //Code for Database and Repository
+
+
 
     //live data objects
     private val _listProject = MutableLiveData<List<Project>>()

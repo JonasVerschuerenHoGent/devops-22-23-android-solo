@@ -12,16 +12,20 @@ class ProjectMock {
         var random: Random = Random();
 
         var virtualMachineMock = VirtualMachineMock().virtualMachines
+        var customerMock = CustomerMock().customers
         var stringArray = arrayListOf<String>("BachlorTDG", "Voka", "Unicef", "BachlorYVD")
+        var statesArray = arrayListOf<String>("Proposal", "Approved", "Ongoing", "Terminated")
         var output = ArrayList<Project>()
         for(i in 0..3){
             output.add(
                 Project(
+                    id = 1,
                     name = stringArray[i],
-                    listOf(virtualMachineMock[random.nextInt(virtualMachineMock.size - 1)])
-
-
-                    )
+                    virtualMachines = listOf(virtualMachineMock[random.nextInt(virtualMachineMock.size - 1)]),
+                    customerId = 0,
+                    customer = customerMock.get(i),
+                    state = statesArray[i]
+                )
             )
         }
         return output

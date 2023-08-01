@@ -25,7 +25,8 @@ class VirtualMachineListFragment : Fragment() {
         val binding: FragmentVirtualMachineListBinding=
             DataBindingUtil.inflate(inflater, R.layout.fragment_virtual_machine_list, container, false)
 
-        val viewModelFactory = VirtualMachineListViewModelFactory()
+        val application = requireNotNull(this.activity).application
+        val viewModelFactory = VirtualMachineListViewModelFactory(application)
         val viewModel = ViewModelProvider(this, viewModelFactory)[VirtualMachineListViewModel::class.java]
 
         binding.virtualMachineListViewModel = viewModel

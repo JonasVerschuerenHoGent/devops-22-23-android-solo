@@ -22,7 +22,8 @@ class ListCustomersFragment : Fragment() {
         val binding: ListCustomersFragmentBinding =
             DataBindingUtil.inflate(inflater, R.layout.list_customers_fragment, container, false)
 
-        val viewModelFactory = ListCustomersViewModelFactory()
+        val application = requireNotNull(this.activity).application
+        val viewModelFactory = ListCustomersViewModelFactory(application)
         val viewModel = ViewModelProvider(this, viewModelFactory)[ListCustomersViewModel::class.java]
 
         binding.listCustomersViewModel = viewModel
@@ -33,9 +34,8 @@ class ListCustomersFragment : Fragment() {
             findNavController().navigate(ListCustomersFragmentDirections.actionListCustomersFragmentToCustomerFragment(
                 customerId
             ))
-            //Toast.makeText(context, "$customerId", Toast.LENGTH_SHORT).show()
-            //Log.d("onclick", "customerClickListener executed")
         })
+
         val recyclerView = binding.customerList
         recyclerView.adapter = adapter
 

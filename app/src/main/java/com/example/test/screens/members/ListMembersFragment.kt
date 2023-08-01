@@ -21,7 +21,8 @@ class ListMembersFragment : Fragment() {
         val binding: ListMembersFragmentBinding =
             DataBindingUtil.inflate(inflater, R.layout.list_members_fragment, container, false)
 
-        val viewModelFactory = ListMembersViewModelFactory()
+        val application = requireNotNull(this.activity).application
+        val viewModelFactory = ListMembersViewModelFactory(application)
         val viewModel = ViewModelProvider(this, viewModelFactory)[ListMembersViewModel::class.java]
 
         binding.listMembersViewModel = viewModel

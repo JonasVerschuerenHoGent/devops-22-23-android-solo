@@ -12,34 +12,45 @@ class VirtualMachineMock() {
     }
     private fun createVirtualMachineMockArray(): ArrayList<VirtualMachine>{
         var random: Random = Random();
+        var members = MemberMock().members
+        var customers = CustomerMock().customers
         var modes = Mode.values()
         var availabilities = Availability.values()
         var states = State.values()
-
+        var project = Project(
+            id = 1,
+            name = "The VIC project",
+            customerId = 1,
+            state = "Ongoing"
+        )
         var output = ArrayList<VirtualMachine>();
+
 
         for(i in 0..19){
             output.add(
                 VirtualMachine(
-                "VM-name-${i}",
-                i,
-                "HOSTNAME-${i}",
-                "abcdef",
-                modes[random.nextInt(modes.size-1)],
-                random.nextInt(8),
-                availabilities[random.nextInt(availabilities.size-1)],
-                random.nextInt(6),
-                random.nextInt(5),
-                intArrayOf(80, 22, 5000),
-                states[random.nextInt(states.size-1)],
-                random.nextInt(8)+1,
-                random.nextInt(13)+4,
-                128,
-                true,
-                 requestDate = giveDateWithDayOffset(-10),//Calendar.getInstance().time,
-                 beginDate = giveDateWithDayOffset(-5),//Calendar.getInstance().time,
-                 endDate = giveDateWithDayOffset(1)//Calendar.getInstance().time,
-                //change these^ offsets to play around with active/inactive vms
+                    id = i,
+                    name = "VM-name-${i}",
+                    projectId = 0,
+                    project = project,
+                    creatorId = 0,
+                    creator = listOf(members[random.nextInt(members.size - 1)]).get(0),
+                    state = states[random.nextInt(states.size-1)],
+                    mode = modes[random.nextInt(modes.size-1)],
+                    customerId = 0,
+                    customer = listOf(customers[random.nextInt(customers.size - 1)]).get(0),
+                    hostname = "HOSTNAME-${i}",
+                    fqdn = "www.vic.com.",
+                    vCPUAmount = 4,
+                    memoryAmount = listOf<Int>(2, 4, 8, 16, 32).get(random.nextInt(5)),
+                    storageAmount = listOf<Int>(128, 256, 512).get(random.nextInt(3)),
+                    requestDate = giveDateWithDayOffset(-10),
+                    beginDate = giveDateWithDayOffset(-5),
+                    endDate = giveDateWithDayOffset(1),
+                    backupFrequency = 7,
+                    availability = availabilities[random.nextInt(availabilities.size-1)],
+                    highAvailability = true,
+                    hostServer = random.nextInt(13)+4,
                 )
             )
         }
