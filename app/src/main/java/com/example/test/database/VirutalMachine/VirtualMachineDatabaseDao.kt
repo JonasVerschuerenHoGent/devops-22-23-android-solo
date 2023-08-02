@@ -20,11 +20,9 @@ interface VirtualMachineDatabaseDao {
     fun getAllVirtualMachines(): LiveData<List<DatabaseVirtualMachine>>
 
     @Query("SELECT * FROM virtualmachine_table WHERE id = :id")
-    fun getVirtualMachineById(id : Int): DatabaseVirtualMachine?
-
+    fun getVirtualMachineById(id : Int): LiveData<DatabaseVirtualMachine>?
 
 
     @Query("SELECT * FROM virtualmachine_table WHERE vm_project_id = :id")
-    fun getVmsFromProjectId(id: Int): List<DatabaseVirtualMachine>?
-
+    fun getVmsFromProjectId(id: Int): LiveData<List<DatabaseVirtualMachine>>?
 }

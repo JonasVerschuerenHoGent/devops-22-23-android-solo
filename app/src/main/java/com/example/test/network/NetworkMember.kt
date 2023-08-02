@@ -1,5 +1,6 @@
 package com.example.test.network
 
+import com.example.test.database.member.DatabaseMember
 import com.example.test.domain.Member
 import com.example.test.domain.Role
 import com.squareup.moshi.Json
@@ -18,9 +19,23 @@ data class NetworkMember(
 
 
 
-//Convert network to domain
+//Convert network to database and domain
 @JsonClass(generateAdapter = true)
 data class NetworkMemberContainer(val members: List<NetworkMember>)
+
+fun NetworkMemberContainer.asDatabaseModel(): Array<DatabaseMember> {
+    return members.map {
+        DatabaseMember(
+            id = it.id,
+            name = it.name,
+            active = it.active,
+            email = it.email,
+            phoneNr = it.phoneNr,
+            department = asDomainDepartment(it.department).first,
+            role = asDomainRole(it.role).first
+        )
+    }.toTypedArray()
+}
 
 fun NetworkMemberContainer.asDomainModel(): List<Member> {
     return members.map {
@@ -30,17 +45,17 @@ fun NetworkMemberContainer.asDomainModel(): List<Member> {
             active = it.active,
             email = it.email,
             phoneNr = it.phoneNr,
-            department = asDomainDepartment(it.department),
-            role = asDomainRole(it.role)
+            department = asDomainDepartment(it.department).second,
+            role = asDomainRole(it.role).second
         )
     }
 }
 
-fun asDomainRole(roleString: String) : Role {
+fun asDomainRole(roleString: String) : Pair<Int, Role> {
     when(roleString.lowercase()) {
-        "admin" -> return Role.Admin
-        "manager" -> return Role.Manager
-        "viewer" -> return Role.Viewer
-        else -> return Role.Customer
+        "admin" -> return Pair(1, Role.Admin)
+        "manager" -> return Pair(2, Role.Manager)
+        "viewer" -> return Pair(3, Role.Viewer)
+        else -> return Pair(4, Role.Customer)
     }
 }

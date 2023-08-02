@@ -21,6 +21,6 @@ interface MemberDatabaseDao {
     fun getAllMembers(): LiveData<List<DatabaseMember>>
 
     @Query("SELECT * FROM member_table WHERE id = :id")
-    fun getMemberById(id : Int): DatabaseMember?
+    fun getMemberById(id : Int): LiveData<DatabaseMember>?
 
 }

@@ -14,18 +14,6 @@ import retrofit2.http.Path
 enum class VicApiStatus { LOADING, ERROR, DONE }
 
 private const val BASE_URL = "https://localhost:5001/api/"
-
-private val moshi = Moshi.Builder()
-    .add(KotlinJsonAdapterFactory())
-    .build()
-
-private val retrofit = Retrofit.Builder()
-    .addConverterFactory(MoshiConverterFactory.create(moshi))
-    .addCallAdapterFactory(CoroutineCallAdapterFactory())
-    .baseUrl(BASE_URL)
-    .build()
-
-
 interface VicApiService {
 
     //Customers
@@ -38,7 +26,7 @@ interface VicApiService {
 
     //Members
     @GET("Member")
-    fun getMembers():
+    fun getAllMembers():
             Deferred<List<NetworkMember>>
     @GET("Member/{id}")
     fun getMemberByid(@Path("id") id:Int):
@@ -46,7 +34,7 @@ interface VicApiService {
 
     //Projects
     @GET("Project")
-    fun getProjects():
+    fun getAllProjects():
             Deferred<List<NetworkProject>>
     @GET("Project/{id}")
     fun getProjectByid(@Path("id") id:Int):
@@ -54,7 +42,7 @@ interface VicApiService {
 
     //Virtual Machines
     @GET("VirtualMachine")
-    fun getVirtualMachines():
+    fun getAllVirtualMachines():
             Deferred<List<NetworkVirtualMachine>>
     @GET("VirtualMachine/{id}")
     fun getVirtualMachineByid(@Path("id") id:Int):
@@ -63,7 +51,18 @@ interface VicApiService {
 }
 
 
+private val moshi = Moshi.Builder()
+    .add(KotlinJsonAdapterFactory())
+    .build()
+
+
 object VicApi {
+    private val retrofit = Retrofit.Builder()
+        .addConverterFactory(MoshiConverterFactory.create(moshi))
+        .addCallAdapterFactory(CoroutineCallAdapterFactory())
+        .baseUrl(BASE_URL)
+        .build()
+
     val retrofitService: VicApiService by lazy {
         retrofit.create(VicApiService::class.java)
     }

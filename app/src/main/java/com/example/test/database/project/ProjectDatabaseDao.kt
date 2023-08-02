@@ -21,9 +21,10 @@ interface ProjectDatabaseDao {
     fun getAllProjects(): LiveData<List<DatabaseProject>>
 
     @Query("SELECT * FROM project_table WHERE id = :id")
-    fun getProjectById(id : Int): DatabaseProject?
+    fun getProjectById(id : Int): LiveData<DatabaseProject>?
+
 
     @Query("SELECT * FROM project_table WHERE project_customer_id = :id")
-    fun getProjectsFromCustomerId(id: Int): List<DatabaseProject>?
+    fun getProjectsFromCustomerId(id: Int): LiveData<List<DatabaseProject>>?
 
 }

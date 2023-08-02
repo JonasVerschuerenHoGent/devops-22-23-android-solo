@@ -20,6 +20,6 @@ interface CustomerDatabaseDao {
     fun getAllCustomers(): LiveData<List<DatabaseCustomer>>
 
     @Query("SELECT * FROM customer_table WHERE id = :id")
-    fun getCustomerById(id : Int): DatabaseCustomer?
+    fun getCustomerById(id : Int): LiveData<DatabaseCustomer>?
 
 }

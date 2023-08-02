@@ -1,5 +1,6 @@
 package com.example.test.network
 
+import com.example.test.database.VirutalMachine.DatabaseVirtualMachine
 import com.example.test.domain.*
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -29,9 +30,35 @@ data class NetworkVirtualMachine(
 )
 
 
-//Convert network to domain
+//Convert network to database and domain
 @JsonClass(generateAdapter = true)
 data class NetworkVmContainer(val vms: List<NetworkVirtualMachine>)
+
+fun NetworkVmContainer.asDatabaseModel(): Array<DatabaseVirtualMachine> {
+    return vms.map {
+        DatabaseVirtualMachine(
+            id = it.id,
+            name = it.name,
+            projectId = it.projectId,
+            creatorId = it.creatorId,
+            state = it.state,
+            mode = it.mode,
+            customerId = it.customerId,
+            hostname = it.hostname,
+            fqdn = it.fqdn,
+            vCPUAmount = it.vCPUAmount,
+            memoryAmount = it.memoryAmount,
+            storageAmount = it.storageAmount,
+            requestDate = it.requestDate,
+            beginDate = it.beginDate,
+            endDate = it.endDate,
+            backupFrequency = it.backupFrequency,
+            availability = it.availability,
+            highAvailability = it.highAvailability,
+            hostServer = Integer.parseInt(it.hostServer),
+        )
+    }.toTypedArray()
+}
 
 fun NetworkVmContainer.asDomainModel(): List<VirtualMachine> {
     return vms.map {

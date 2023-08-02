@@ -1,5 +1,6 @@
 package com.example.test.network
 
+import com.example.test.database.customer.DatabaseCustomer
 import com.example.test.domain.Customer
 import com.example.test.domain.Department
 import com.squareup.moshi.Json
@@ -20,9 +21,24 @@ data class NetworkCustomer (
 
 
 
-//Convert network to domain
+//Convert network to database & domain
 @JsonClass(generateAdapter = true)
 data class NetworkCustomerContainer(val customers: List<NetworkCustomer>)
+
+fun NetworkCustomerContainer.asDatabaseModel(): Array<DatabaseCustomer> {
+    return customers.map {
+        DatabaseCustomer(
+            id = it.id,
+            name = it.name,
+            email = it.email,
+            phoneNr = it.phoneNr,
+            department = asDomainDepartment(it.department).first,
+            externType = it.externType,
+            education = it.education,
+            backupContactId = it.backupContactId,
+        )
+    }.toTypedArray()
+}
 
 fun NetworkCustomerContainer.asDomainModel(): List<Customer> {
     return customers.map {
@@ -31,7 +47,7 @@ fun NetworkCustomerContainer.asDomainModel(): List<Customer> {
             name = it.name,
             email = it.email,
             phoneNr = it.phoneNr,
-            department = asDomainDepartment(it.department),
+            department = asDomainDepartment(it.department).second,
             externType = it.externType,
             education = it.education,
             backupContactId = it.backupContactId,
@@ -39,15 +55,16 @@ fun NetworkCustomerContainer.asDomainModel(): List<Customer> {
     }
 }
 
-fun asDomainDepartment(departmentString: String) : Department {
+fun asDomainDepartment(departmentString: String) : Pair<Int, Department> {
     when(departmentString.lowercase()) {
-        "dbo" -> return Department.DBO
-        "dbt" -> return Department.DBT
-        "dgz" -> return Department.DGZ
-        "dit" -> return Department.DIT
-        "dlo" -> return Department.DLO
-        "dog" -> return Department.DOG
-        "dsa" -> return Department.DSA
-        else -> return Department.Extern
+        "dbo" -> return Pair(1, Department.DBO)
+        "dbt" -> return Pair(2, Department.DBT)
+        "dgz" -> return Pair(3, Department.DGZ)
+        "dit" -> return Pair(4, Department.DIT)
+        "dlo" -> return Pair(5, Department.DLO)
+        "dog" -> return Pair(6, Department.DOG)
+        "dsa" -> return Pair(7, Department.DSA)
+        else -> return Pair(8, Department.Extern)
     }
 }
+
