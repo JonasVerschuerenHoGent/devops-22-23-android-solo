@@ -26,6 +26,18 @@ data class DatabaseProject(
 
     @ColumnInfo(name = "project_state")
     var state: String,
+
+    @ColumnInfo(name = "project_vm_amount")
+    var vmAmount: Int,
+
+    @ColumnInfo(name = "project_total_cpus")
+    var totalCpus: Int,
+
+    @ColumnInfo(name = "project_total_memory")
+    var totalMemory: Int,
+
+    @ColumnInfo(name = "project_total_storage")
+    var totalStorage: Int,
 )
 
 
@@ -35,7 +47,11 @@ fun DatabaseProject.asDomainModel(): Project {
         id = id,
         name = name,
         customerId = customerId,
-        state = state
+        state = state,
+        vmAmount = vmAmount,
+        totalCpus = totalCpus,
+        totalMemory = totalMemory,
+        totalStorage = totalStorage,
     )
 }
 

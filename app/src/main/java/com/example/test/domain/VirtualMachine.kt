@@ -22,7 +22,7 @@ data class VirtualMachine(
     var requestDate: LocalDate,
     var beginDate: LocalDate,
     var endDate: LocalDate,
-    var backupFrequency: Int,
+    var backupFrequency: String,
     var availability: Availability,
     var highAvailability: Boolean,
     var hostServer: Int,

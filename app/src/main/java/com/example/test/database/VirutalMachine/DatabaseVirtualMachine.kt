@@ -1,26 +1,13 @@
 package com.example.test.database.VirutalMachine
 
-import android.content.Context
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.example.test.MainActivity
-import com.example.test.database.VicDatabase
-import com.example.test.database.customer.CustomerDatabaseDao
-import com.example.test.database.customer.DatabaseCustomer
-import com.example.test.database.customer.asDomainModel
-import com.example.test.database.member.DatabaseMember
-import com.example.test.database.member.MemberDatabaseDao
-import com.example.test.database.member.asDomainModel
-import com.example.test.database.project.DatabaseProject
-import com.example.test.database.project.ProjectDatabaseDao
-import com.example.test.database.project.asDomainModel
-import com.example.test.domain.*
-import com.squareup.moshi.Json
-import java.text.SimpleDateFormat
+import com.example.test.domain.Availability
+import com.example.test.domain.Mode
+import com.example.test.domain.State
+import com.example.test.domain.VirtualMachine
 import java.time.LocalDate
-import java.time.format.DateTimeFormatter
-import java.util.Date
 
 @Entity(tableName = "virtualmachine_table")
 data class DatabaseVirtualMachine(
@@ -71,7 +58,7 @@ data class DatabaseVirtualMachine(
     var endDate: String,
 
     @ColumnInfo(name = "vm_backup_frequency")
-    var backupFrequency: Int,
+    var backupFrequency: String,
 
     @ColumnInfo(name = "vm_availability")
     var availability: String,
@@ -90,19 +77,19 @@ fun DatabaseVirtualMachine.asDomainModel(): VirtualMachine {
         name = name,
         projectId = projectId,
         creatorId = creatorId,
-        state = state.asDomainState(),
-        mode = mode.asDomainMode(),
+        state = asDomainState(state),
+        mode = asDomainMode(mode),
         customerId = customerId,
         hostname = hostname,
         fqdn = fqdn,
         vCPUAmount = vCPUAmount,
         memoryAmount = memoryAmount,
         storageAmount = storageAmount,
-        requestDate = asDomainDate(requestDate),
-        beginDate = asDomainDate(beginDate),
-        endDate = asDomainDate(endDate),
+        requestDate = LocalDate.parse(requestDate),
+        beginDate = LocalDate.parse(beginDate),
+        endDate = LocalDate.parse(endDate),
         backupFrequency = backupFrequency,
-        availability = availability.asDomainAvailability(),
+        availability = asDomainAvailability(availability),
         highAvailability = highAvailability,
         hostServer = hostServer,
     )
@@ -115,42 +102,34 @@ fun List<DatabaseVirtualMachine>.asDomainModel(): List<VirtualMachine> {
 
 
 // Mappings
-fun String.asDomainState() : State {
-    if (lowercase().equals("requested")) {
-        return State.Requested
-    } else if (lowercase().equals("inprogress")) {
-        return State.InProgress
-    } else if (lowercase().equals("denied")) {
-        return State.Denied
+fun asDomainState(stateString: String) : State {
+    when(stateString.lowercase()) {
+        "requested" -> return State.Requested
+        "processing" -> return State.InProgress
+        "denied" -> return State.Denied
+        else -> return State.Accepted
     }
-    return State.Accepted
 }
 
-fun String.asDomainMode() : Mode {
-    if (lowercase().equals("iaas")) {
-        return Mode.IAAS
-    } else if (lowercase().equals("ai")) {
-        return Mode.AI
-    } else if (lowercase().equals("ms_sql")) {
-        return Mode.MS_SQL
-    } else if (lowercase().equals("mysql")) {
-        return Mode.MySQL
-    } else if (lowercase().equals("postgresql")) {
-        return Mode.PostgreSQL
+fun asDomainMode(modeString: String) : Mode {
+    when(modeString.lowercase()) {
+        "paas" -> return Mode.PAAS
+        "iaas" -> return Mode.IAAS
+        "saas" -> return Mode.SAAS
+        "sjabloon1" -> return Mode.Sjabloon1
+        "sjabloon2" -> return Mode.Sjabloon2
+        "ai" -> return Mode.AI
+        "ms_sql" -> return Mode.MS_SQL
+        "postgresql" -> return Mode.PostgreSQL
+        "mongodb" -> return Mode.MongoDB
+        else -> return Mode.MySQL
     }
-    return Mode.MongoDB
-
 }
 
-fun String.asDomainAvailability() : Availability {
-    if (lowercase().equals("business_hours")) {
-        return Availability.BUSINESS_HOURS
+fun asDomainAvailability(availabilityString: String) : Availability {
+    when(availabilityString.lowercase()) {
+        "business hours" -> return Availability.BUSINESS_HOURS
+        else -> return Availability.ALWAYS
     }
-    return Availability.ALWAYS
-
-}
-
-fun asDomainDate(date: String) : LocalDate {
-    return LocalDate.parse(date)
 }
 

@@ -7,12 +7,15 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.test.domain.VirtualMachine
 import com.example.test.domain.VirtualMachineMock
+import com.example.test.network.VicApiStatus
 import kotlinx.coroutines.launch
 
 class VirtualMachineListViewModel(application: Application) : ViewModel() {
 
     //Code for Database and Repository
-
+    private val _status = MutableLiveData<VicApiStatus>()
+    val status: LiveData<VicApiStatus>
+        get() = _status
 
 
     //live data objects

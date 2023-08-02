@@ -7,4 +7,8 @@ data class Project(
     var customerId: Int,
     var customer: Customer? = null,
     var state: String,
+    var vmAmount: Int,
+    var totalCpus: Int,
+    var totalMemory: Int,
+    var totalStorage: Int,
 )

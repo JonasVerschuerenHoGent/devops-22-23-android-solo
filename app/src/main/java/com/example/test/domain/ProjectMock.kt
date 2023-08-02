@@ -24,7 +24,11 @@ class ProjectMock {
                     virtualMachines = listOf(virtualMachineMock[random.nextInt(virtualMachineMock.size - 1)]),
                     customerId = 0,
                     customer = customerMock.get(i),
-                    state = statesArray[i]
+                    state = statesArray[i],
+                    vmAmount = listOf<Int>(1, 2, 3, 4).get(random.nextInt(4)),
+                    totalCpus = listOf<Int>(4, 8, 12, 16).get(random.nextInt(4)),
+                    totalMemory = listOf<Int>(2, 4, 8, 32, 40).get(random.nextInt(5)),
+                    totalStorage = listOf<Int>(128, 256, 384, 512).get(random.nextInt(4))
                 )
             )
         }

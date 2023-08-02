@@ -87,11 +87,11 @@ class VirtualMachineDetailFragment : Fragment() {
         //============================================
         var backupText = ""
         backupText += when(myVM.backupFrequency){
-            0 -> "none"
-            1 -> "daily"
-            7 -> "weekly"
-            14 -> "bi-weekly"
-            30 -> "monthly"
+            "0" -> "none"
+            "1" -> "daily"
+            "7" -> "weekly"
+            "14" -> "bi-weekly"
+            "30" -> "monthly"
             else -> "every ${myVM.backupFrequency} days"
         }
         binding.textviewBackup.text = backupText

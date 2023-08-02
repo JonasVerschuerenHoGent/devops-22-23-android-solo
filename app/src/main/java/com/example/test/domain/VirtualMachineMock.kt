@@ -21,7 +21,11 @@ class VirtualMachineMock() {
             id = 1,
             name = "The VIC project",
             customerId = 1,
-            state = "Ongoing"
+            state = "Ongoing",
+            vmAmount = 4,
+            totalCpus = 16,
+            totalMemory = 32,
+            totalStorage = 512,
         )
         var output = ArrayList<VirtualMachine>();
 
@@ -47,7 +51,7 @@ class VirtualMachineMock() {
                     requestDate = giveDateWithDayOffset(-10),
                     beginDate = giveDateWithDayOffset(-5),
                     endDate = giveDateWithDayOffset(1),
-                    backupFrequency = 7,
+                    backupFrequency = "7",
                     availability = availabilities[random.nextInt(availabilities.size-1)],
                     highAvailability = true,
                     hostServer = random.nextInt(13)+4,

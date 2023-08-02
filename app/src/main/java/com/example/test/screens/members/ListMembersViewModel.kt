@@ -1,20 +1,21 @@
 package com.example.test.screens.members
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.test.domain.Member
 import com.example.test.domain.MemberMock
-import com.example.test.domain.Role
+import com.example.test.network.VicApiStatus
 import kotlinx.coroutines.launch
 
 class ListMembersViewModel(application: Application) : ViewModel() {
 
     //Code for Database and Repository
-
+    private val _status = MutableLiveData<VicApiStatus>()
+    val status: LiveData<VicApiStatus>
+        get() = _status
 
 
     private var _filter = FilterHolder()

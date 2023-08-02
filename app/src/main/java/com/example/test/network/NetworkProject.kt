@@ -1,0 +1,36 @@
+package com.example.test.network
+
+import com.example.test.domain.Project
+import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
+
+data class NetworkProject(
+    val id: Int,
+    val name: String,
+    val customerId: Int,
+    val state: String,
+    var vmAmount: Int,
+    @Json(name = "totalCPUs") var totalCpus: Int,
+    var totalMemory: Int,
+    var totalStorage: Int,
+)
+
+
+//Convert network to domain
+@JsonClass(generateAdapter = true)
+data class NetworkProjectContainer(val projects: List<NetworkProject>)
+
+fun NetworkProjectContainer.asDomainModel(): List<Project> {
+    return projects.map {
+        Project(
+            id = it.id,
+            name = it.name,
+            customerId = it.customerId,
+            state = it.state,
+            vmAmount = it.vmAmount,
+            totalCpus = it.totalCpus,
+            totalMemory = it.totalMemory,
+            totalStorage = it.totalStorage,
+        )
+    }
+}
