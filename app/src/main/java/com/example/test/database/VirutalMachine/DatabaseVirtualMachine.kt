@@ -67,7 +67,7 @@ data class DatabaseVirtualMachine(
     var highAvailability: Boolean,
 
     @ColumnInfo(name = "vm_host_server")
-    var hostServer: Int,
+    var hostServer: String,
 )
 
 // Convert a single DatabaseCustomer into a normal domain Customer

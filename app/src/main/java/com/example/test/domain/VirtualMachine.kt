@@ -25,5 +25,5 @@ data class VirtualMachine(
     var backupFrequency: String,
     var availability: Availability,
     var highAvailability: Boolean,
-    var hostServer: Int,
+    var hostServer: String,
 )

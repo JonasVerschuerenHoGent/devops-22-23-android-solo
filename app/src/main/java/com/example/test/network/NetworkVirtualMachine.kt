@@ -7,6 +7,30 @@ import com.squareup.moshi.JsonClass
 import java.time.LocalDate
 
 
+//ALL NETWORK CLASSES NEEDED FOR MOSHI
+//For fetching all vms
+@JsonClass(generateAdapter = true)
+data class NetworkVirtualMachineListWrapper(
+    val virtualMachines: List<NetworkVirtualMachines>
+)
+@JsonClass(generateAdapter = true)
+data class NetworkVirtualMachines(
+    val id: Int,
+    val name : String,
+    val state: String,
+    @Json(name = "vcpUamount") val vCPUAmount: Int,
+    val memoryAmount: Int,
+    val storageAmount: Int,
+    @Json(name = "startDate") val beginDate: String,
+    val endDate: String,
+)
+
+//For fetching one vm
+@JsonClass(generateAdapter = true)
+data class NetworkVirtualMachineSingleWrapper(
+    val virtualMachine: NetworkVirtualMachine
+)
+@JsonClass(generateAdapter = true)
 data class NetworkVirtualMachine(
     val id: Int,
     val name : String,
@@ -28,6 +52,7 @@ data class NetworkVirtualMachine(
     val creatorId: Int,
     val customerId: Int,
 )
+
 
 
 //Convert network to database and domain
@@ -55,7 +80,7 @@ fun NetworkVmContainer.asDatabaseModel(): Array<DatabaseVirtualMachine> {
             backupFrequency = it.backupFrequency,
             availability = it.availability,
             highAvailability = it.highAvailability,
-            hostServer = Integer.parseInt(it.hostServer),
+            hostServer = it.hostServer,
         )
     }.toTypedArray()
 }
@@ -81,7 +106,7 @@ fun NetworkVmContainer.asDomainModel(): List<VirtualMachine> {
             backupFrequency = it.backupFrequency,
             availability = asDomainAvailability(it.availability),
             highAvailability = it.highAvailability,
-            hostServer = Integer.parseInt(it.hostServer),
+            hostServer = it.hostServer,
         )
     }
 }

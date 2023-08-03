@@ -1,6 +1,7 @@
 package com.example.test.screens.customers
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -9,28 +10,33 @@ import com.example.test.database.VicDatabase
 import com.example.test.domain.CustomerMock
 import com.example.test.domain.Customer
 import com.example.test.network.VicApiStatus
+import com.example.test.repository.CustomerRepository
 import kotlinx.coroutines.launch
 
 class ListCustomersViewModel(application: Application) : ViewModel() {
 
     //Code for Database and Repository
-    private val _status = MutableLiveData<VicApiStatus>()
-    val status: LiveData<VicApiStatus>
-        get() = _status
+    private val database = VicDatabase.getInstance(application)
+    private val repository = CustomerRepository(database)
 
-    //live data objects
-    private val _listCustomers = MutableLiveData<List<Customer>>()
-    val listCustomers: LiveData<List<Customer>>
-        get() = _listCustomers
 
+    //Initialize data
     init {
-        initializeLiveData()
-    }
-
-    private fun initializeLiveData(){
         viewModelScope.launch {
-            _listCustomers.value = CustomerMock().customers
+            repository.refreshCustomers()
         }
     }
+    val listCustomers = repository.customers
+
+    fun check(): Boolean {
+        Log.i("ListCustomers","PRINTING CUSTOMERS")
+        listCustomers.value?.forEach {
+            Log.i("ListCustomers", "name: ${it.name} || mail: ${it.email}")
+        }
+        return true
+    }
+
+    val amai = check()
+
 
 }

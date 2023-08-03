@@ -5,30 +5,26 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.test.database.VicDatabase
 import com.example.test.domain.Project
 import com.example.test.domain.ProjectMock
 import com.example.test.network.VicApiStatus
+import com.example.test.repository.MemberRepository
+import com.example.test.repository.ProjectRepository
 import kotlinx.coroutines.launch
 
 class ProjectListViewModel(application: Application) : ViewModel() {
 
     //Code for Database and Repository
-    private val _status = MutableLiveData<VicApiStatus>()
-    val status: LiveData<VicApiStatus>
-        get() = _status
+    private val database = VicDatabase.getInstance(application)
+    private val repository = ProjectRepository(database)
 
 
-    //live data objects
-    private val _listProject = MutableLiveData<List<Project>>()
-    val listProjects: LiveData<List<Project>>
-    get() = _listProject
     init {
-        initializeLiveData()
-    }
-
-    private fun initializeLiveData(){
         viewModelScope.launch {
-            _listProject.value = ProjectMock().projects
+            repository.refreshProjects()
         }
     }
+    val listProjects = repository.projects
+
 }

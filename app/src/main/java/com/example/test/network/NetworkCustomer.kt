@@ -7,6 +7,25 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 
+//ALL NETWORK CLASSES NEEDED FOR MOSHI
+//For fetching all customers
+@JsonClass(generateAdapter = true)
+data class NetworkCustomerListWrapper (
+    val customers: List<NetworkCustomers>
+)
+@JsonClass(generateAdapter = true)
+data class NetworkCustomers (
+    val id: Int,
+    val name: String,
+    val email: String,
+    @Json(name = "phoneNumber") val phoneNr: String,
+)
+
+//For fetching one customer
+@JsonClass(generateAdapter = true)
+data class NetworkCustomerSingleWrapper (
+    val customer: NetworkCustomer
+)
 @JsonClass(generateAdapter = true)
 data class NetworkCustomer (
     val id: Int,
@@ -20,11 +39,12 @@ data class NetworkCustomer (
 )
 
 
-
 //Convert network to database & domain
 @JsonClass(generateAdapter = true)
+@Json(name = "customers")
 data class NetworkCustomerContainer(val customers: List<NetworkCustomer>)
 
+//To database
 fun NetworkCustomerContainer.asDatabaseModel(): Array<DatabaseCustomer> {
     return customers.map {
         DatabaseCustomer(
@@ -40,6 +60,7 @@ fun NetworkCustomerContainer.asDatabaseModel(): Array<DatabaseCustomer> {
     }.toTypedArray()
 }
 
+//To domain
 fun NetworkCustomerContainer.asDomainModel(): List<Customer> {
     return customers.map {
         Customer(
@@ -55,6 +76,8 @@ fun NetworkCustomerContainer.asDomainModel(): List<Customer> {
     }
 }
 
+
+//helper functions
 fun asDomainDepartment(departmentString: String) : Pair<Int, Department> {
     when(departmentString.lowercase()) {
         "dbo" -> return Pair(1, Department.DBO)
@@ -67,4 +90,3 @@ fun asDomainDepartment(departmentString: String) : Pair<Int, Department> {
         else -> return Pair(8, Department.Extern)
     }
 }
-

@@ -4,6 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import com.example.test.database.VicDatabase
 import com.example.test.database.VirutalMachine.asDomainModel
+import com.example.test.database.member.asDomainModel
+import com.example.test.domain.Member
 import com.example.test.domain.VirtualMachine
 import com.example.test.network.NetworkVirtualMachine
 import com.example.test.network.NetworkVmContainer
@@ -13,9 +15,14 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 class VirtualMachineRepository(private val database: VicDatabase) {
+    var virtualMachineId: Int? = -1
 
     //VirtualMachines attribute that can be shown on screen.
     val virtualMachines: LiveData<List<VirtualMachine>> = Transformations.map(database.virtualMachineDatabaseDao.getAllVirtualMachines()) {
+        it.asDomainModel()
+    }
+
+    val virtualMachine: LiveData<VirtualMachine> = Transformations.map(database.virtualMachineDatabaseDao.getVirtualMachineById(virtualMachineId!!)) {
         it.asDomainModel()
     }
 
@@ -24,10 +31,10 @@ class VirtualMachineRepository(private val database: VicDatabase) {
     suspend fun refreshVirtualMachines() {
         withContext(Dispatchers.IO) {
             val detailedVirtualMachines = ArrayList<NetworkVirtualMachine>()
-            val virtualmachines = VicApi.retrofitService.getAllVirtualMachines().await()
-            virtualmachines.forEach {
+            val virtualmachinesWrapper = VicApi.retrofitService.getAllVirtualMachines().await()
+            virtualmachinesWrapper.virtualMachines.forEach {
                 val vm = VicApi.retrofitService.getVirtualMachineByid(it.id).await()
-                detailedVirtualMachines.add(vm)
+                detailedVirtualMachines.add(vm.virtualMachine)
             }
             database.virtualMachineDatabaseDao.insertAll(*NetworkVmContainer(detailedVirtualMachines).asDatabaseModel())
         }

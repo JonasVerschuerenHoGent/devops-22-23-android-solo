@@ -19,7 +19,7 @@ interface CustomerDatabaseDao {
     @Query("SELECT * FROM customer_table ORDER BY id DESC")
     fun getAllCustomers(): LiveData<List<DatabaseCustomer>>
 
-    @Query("SELECT * FROM customer_table WHERE id = :id")
-    fun getCustomerById(id : Int): LiveData<DatabaseCustomer>?
+    @Query("SELECT * FROM customer_table WHERE id = :id ORDER BY id ASC")
+    fun getCustomerById(id: Int): LiveData<DatabaseCustomer>
 
 }

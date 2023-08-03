@@ -5,33 +5,28 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.test.database.VicDatabase
 import com.example.test.domain.VirtualMachine
 import com.example.test.domain.VirtualMachineMock
 import com.example.test.network.VicApiStatus
+import com.example.test.repository.CustomerRepository
+import com.example.test.repository.VirtualMachineRepository
 import kotlinx.coroutines.launch
 
 class VirtualMachineListViewModel(application: Application) : ViewModel() {
 
     //Code for Database and Repository
-    private val _status = MutableLiveData<VicApiStatus>()
-    val status: LiveData<VicApiStatus>
-        get() = _status
+    private val database = VicDatabase.getInstance(application)
+    private val repository = VirtualMachineRepository(database)
 
 
-    //live data objects
-    private val _listVM = MutableLiveData<List<VirtualMachine>>()
-    private val  mock = VirtualMachineMock()
-    val listVms: LiveData<List<VirtualMachine>>
-        get() = _listVM
-
+    //Initialize data
     init {
-        initializeLiveData()
-    }
-
-    private fun initializeLiveData(){
         viewModelScope.launch {
-            _listVM.value = mock.virtualMachines
+            repository.refreshVirtualMachines()
         }
     }
+    val listVms = repository.virtualMachines
+
 
 }

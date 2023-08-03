@@ -6,6 +6,28 @@ import com.example.test.domain.Role
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
+
+//ALL NETWORK CLASSES NEEDED FOR MOSHI
+//For fetching all members
+@JsonClass(generateAdapter = true)
+data class NetworkMemberListWrapper(
+    val members: List<NetworkMembers>
+)
+@JsonClass(generateAdapter = true)
+data class NetworkMembers(
+    val id: Int,
+    val name: String,
+    val email: String,
+    val department: String,
+    val role: String,
+)
+
+//For fetching one members
+@JsonClass(generateAdapter = true)
+data class NetworkMemberSingleWrapper(
+    val member: NetworkMember
+)
+@JsonClass(generateAdapter = true)
 data class NetworkMember(
     val id: Int,
     val name: String,
@@ -15,8 +37,6 @@ data class NetworkMember(
     val department: String,
     val role: String,
 )
-
-
 
 
 //Convert network to database and domain

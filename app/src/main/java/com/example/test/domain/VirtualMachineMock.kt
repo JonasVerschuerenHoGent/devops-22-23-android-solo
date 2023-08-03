@@ -54,7 +54,7 @@ class VirtualMachineMock() {
                     backupFrequency = "7",
                     availability = availabilities[random.nextInt(availabilities.size-1)],
                     highAvailability = true,
-                    hostServer = random.nextInt(13)+4,
+                    hostServer = "test",
                 )
             )
         }

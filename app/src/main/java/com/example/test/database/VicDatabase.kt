@@ -14,7 +14,7 @@ import com.example.test.database.project.DatabaseProject
 import com.example.test.database.project.ProjectDatabaseDao
 
 
-@Database(entities = [DatabaseCustomer::class, DatabaseMember::class, DatabaseProject::class, DatabaseVirtualMachine::class], version = 1, exportSchema = true)
+@Database(entities = [DatabaseCustomer::class, DatabaseMember::class, DatabaseProject::class, DatabaseVirtualMachine::class], version = 2, exportSchema = true)
 abstract class VicDatabase: RoomDatabase() {
 
     abstract val customerDatabaseDao : CustomerDatabaseDao

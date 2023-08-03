@@ -17,11 +17,11 @@ interface ProjectDatabaseDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(vararg projects: DatabaseProject)
 
-    @Query("SELECT * FROM project_table ORDER BY id DESC")
+    @Query("SELECT * FROM project_table ORDER BY id ASC")
     fun getAllProjects(): LiveData<List<DatabaseProject>>
 
-    @Query("SELECT * FROM project_table WHERE id = :id")
-    fun getProjectById(id : Int): LiveData<DatabaseProject>?
+    @Query("SELECT * FROM project_table WHERE id = :id ORDER BY id ASC")
+    fun getProjectById(id: Int): LiveData<DatabaseProject>
 
 
     @Query("SELECT * FROM project_table WHERE project_customer_id = :id")

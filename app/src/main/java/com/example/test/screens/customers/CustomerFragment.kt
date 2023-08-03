@@ -19,7 +19,6 @@ class CustomerFragment : Fragment() {
 
     //binding
     private lateinit var binding: CustomerDetailFragmentBinding
-    private var arraylist: ArrayList<Customer> = ArrayList()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,26 +34,23 @@ class CustomerFragment : Fragment() {
             false
         )
 
-        //viewModel
+        //viewModels
         val application = requireNotNull(this.activity).application
+
         val viewModelFactory = CustomerViewModelFactory(application, args.customerId)
         val viewModel: CustomerViewModel by viewModels{viewModelFactory}
-
-        // Set the viewmodel for databinding - this allows the bound layout access to all of the
-        // data in the VieWModel
         binding.customersViewModel = viewModel
 
-        //Add items to the ListView and make it clickable
-        arraylist = CustomerMock().customers
-        //binding.CustomerNameLbl.text = arraylist[args.CustomerId].name
+        //TODO: URGENT Change so that the vms of the customer are displayed
+//        val vmViewModelFactory = VirtualMachineListViewModelFactory(application)
+//        val vmViewModel = ViewModelProvider(this, vmViewModelFactory).get(VirtualMachineListViewModel::class.java)
+//        binding.virtualMachineListViewModel = vmViewModel
 
-        val vmViewModelFactory = VirtualMachineListViewModelFactory(application)
-        val vmViewModel = ViewModelProvider(this, vmViewModelFactory).get(VirtualMachineListViewModel::class.java)
-        binding.virtualMachineListViewModel = vmViewModel
 
         // Specify the current activity as the lifecycle owner of the binding. This is used so that
         // the binding can observe LiveData updates
         binding.lifecycleOwner = this
+
 
         val adapter = VirtualMachinesAdapter( VirtualMachineListener {
                 virtualMachineID ->
@@ -67,10 +63,11 @@ class CustomerFragment : Fragment() {
         val recyclerView = binding.virtualMachineList
         recyclerView.adapter = adapter
 
-        vmViewModel.listVms.observe(viewLifecycleOwner, Observer {
+        //TODO: URGENT Change so that the vms of the customer are displayed
+        viewModel.listVms.observe(viewLifecycleOwner, Observer {
             println("List got ${it.size}")
-            adapter.submitList(it) })
-
+            adapter.submitList(it)
+        })
 
         return binding.root
     }

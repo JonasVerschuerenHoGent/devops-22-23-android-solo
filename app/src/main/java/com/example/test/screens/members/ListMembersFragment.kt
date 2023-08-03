@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.test.R
@@ -28,6 +29,10 @@ class ListMembersFragment : Fragment() {
         binding.listMembersViewModel = viewModel
         binding.lifecycleOwner = this
 
+        viewModel.listMembers.observe(viewLifecycleOwner, Observer {
+            viewModel.doFilter()
+        })
+
         val adapter = ListMembersAdapter( MemberListener{
                 memberID ->
             findNavController().navigate(
@@ -38,7 +43,7 @@ class ListMembersFragment : Fragment() {
         val recyclerView = binding.memberList
         recyclerView.adapter = adapter
 
-        viewModel.listMembers.observe(viewLifecycleOwner) { adapter.submitList(it) }
+        viewModel.filteredMembers.observe(viewLifecycleOwner) { adapter.submitList(it) }
 
         // Setting the listeners for the chips
         binding.chipAdmin.setOnClickListener {

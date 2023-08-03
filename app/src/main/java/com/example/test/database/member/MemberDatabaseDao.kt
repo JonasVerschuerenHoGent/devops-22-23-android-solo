@@ -17,10 +17,10 @@ interface MemberDatabaseDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(vararg members: DatabaseMember)
 
-    @Query("SELECT * FROM member_table ORDER BY id DESC")
+    @Query("SELECT * FROM member_table ORDER BY id ASC")
     fun getAllMembers(): LiveData<List<DatabaseMember>>
 
-    @Query("SELECT * FROM member_table WHERE id = :id")
-    fun getMemberById(id : Int): LiveData<DatabaseMember>?
+    @Query("SELECT * FROM member_table WHERE id = :id ORDER BY id ASC")
+    fun getMemberById(id: Int): LiveData<DatabaseMember>
 
 }

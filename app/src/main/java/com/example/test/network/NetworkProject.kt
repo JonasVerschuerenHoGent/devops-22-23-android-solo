@@ -5,6 +5,18 @@ import com.example.test.domain.Project
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
+
+//ALL NETWORK CLASSES NEEDED FOR MOSHI
+//For fetching project(s)
+@JsonClass(generateAdapter = true)
+data class NetworkProjectListWrapper(
+    val projects: List<NetworkProject>
+)
+@JsonClass(generateAdapter = true)
+data class NetworkProjectSingleWrapper(
+    val project: NetworkProject
+)
+@JsonClass(generateAdapter = true)
 data class NetworkProject(
     val id: Int,
     val name: String,

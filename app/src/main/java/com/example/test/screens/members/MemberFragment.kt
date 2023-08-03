@@ -18,10 +18,8 @@ import com.example.test.domain.MemberMock
 import com.example.test.screens.virtual_machines.*
 
 class MemberFragment: Fragment() {
-    //binding
-    private lateinit var binding: MemberDetailFragmentBinding
-    private var arraylist: ArrayList<Member> = ArrayList()
 
+    private lateinit var binding: MemberDetailFragmentBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,7 +28,6 @@ class MemberFragment: Fragment() {
 
         val args = MemberFragmentArgs.fromBundle(requireArguments())
 
-        // Inflate view and obtain an instance of the binding class
         binding = DataBindingUtil.inflate(
             inflater,
             R.layout.member_detail_fragment,
@@ -42,22 +39,9 @@ class MemberFragment: Fragment() {
         val application = requireNotNull(this.activity).application
         val viewModelFactory = MemberViewModelFactory(application, args.memberId)
         val viewModel: MemberViewModel by viewModels{viewModelFactory}
-
-        // Set the viewmodel for databinding - this allows the bound layout access to all of the
-        // data in the VieWModel
         binding.membersViewModel = viewModel
 
-        //Add items to the ListView and make it clickable
-        arraylist = MemberMock().members
-        //binding.userNameLbl.text = arraylist[args.userId].name
 
-        val vmViewModelFactory = VirtualMachineListViewModelFactory(application);
-        val vmViewModel = ViewModelProvider(this, vmViewModelFactory).get(
-            VirtualMachineListViewModel::class.java)
-        binding.virtualMachineListViewModel = vmViewModel
-
-        // Specify the current activity as the lifecycle owner of the binding. This is used so that
-        // the binding can observe LiveData updates
         binding.lifecycleOwner = this
 
         val adapter = VirtualMachinesAdapter( VirtualMachineListener {
@@ -67,11 +51,11 @@ class MemberFragment: Fragment() {
                 virtualMachineID
             ))
         })
-
         val recyclerView = binding.virtualMachineList
         recyclerView.adapter = adapter
 
-        vmViewModel.listVms.observe(viewLifecycleOwner, Observer {
+
+        viewModel.listVms.observe(viewLifecycleOwner, Observer {
             println("List got ${it.size}")
             adapter.submitList(it) })
 

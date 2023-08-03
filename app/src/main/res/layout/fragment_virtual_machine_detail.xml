@@ -54,7 +54,7 @@
             android:layout_marginStart="@dimen/spacing_normal"
             android:layout_marginLeft="@dimen/spacing_normal"
             android:layout_marginTop="@dimen/spacing_normal"
-            android:text="@{Integer.toString(virtualMachineViewModel.vm.hostServer)}"
+            android:text="@{virtualMachineViewModel.vm.hostServer}"
             app:layout_constraintStart_toEndOf="@+id/textview_host_label"
             app:layout_constraintTop_toBottomOf="@+id/textview_backup"
             tools:text="host" />
