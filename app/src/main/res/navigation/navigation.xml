@@ -60,6 +60,10 @@
         android:id="@+id/customerFragment"
         android:name="com.example.test.screens.customers.CustomerFragment"
         android:label="Detail klant">
+        <action
+            android:id="@+id/action_virtualMachineListFragment_to_virtualMachineDetailFragment"
+            app:destination="@id/virtualMachineDetailFragment"
+            app:popUpToInclusive="true" />
         <argument
             android:name="customerId"
             app:argType="integer" />
@@ -69,8 +73,8 @@
         android:name="com.example.test.screens.project.ProjectListFragment"
         android:label="Beheer projecten" >
         <action
-            android:id="@+id/action_projectListFragment_to_virtualMachineListFragment"
-            app:destination="@id/virtualMachineListFragment" />
+            android:id="@+id/action_projectListFragment_to_projectFragment"
+            app:destination="@id/projectFragment" />
     </fragment>
     <fragment
         android:id="@+id/aboutFragment"
@@ -80,8 +84,24 @@
         android:id="@+id/memberFragment"
         android:name="com.example.test.screens.members.MemberFragment"
         android:label="Detail member">
+        <action
+            android:id="@+id/action_virtualMachineListFragment_to_virtualMachineDetailFragment"
+            app:destination="@id/virtualMachineDetailFragment"
+            app:popUpToInclusive="true" />
         <argument
             android:name="memberId"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/projectFragment"
+        android:name="com.example.test.screens.project.ProjectFragment"
+        android:label="Detail project">
+        <action
+            android:id="@+id/action_virtualMachineListFragment_to_virtualMachineDetailFragment"
+            app:destination="@id/virtualMachineDetailFragment"
+            app:popUpToInclusive="true" />
+        <argument
+            android:name="projectId"
             app:argType="integer" />
     </fragment>
 </navigation>

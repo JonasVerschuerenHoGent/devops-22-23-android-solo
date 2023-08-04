@@ -5,6 +5,7 @@ import com.example.test.domain.*
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import java.time.LocalDate
+import java.time.LocalDateTime
 
 
 //ALL NETWORK CLASSES NEEDED FOR MOSHI
@@ -100,9 +101,9 @@ fun NetworkVmContainer.asDomainModel(): List<VirtualMachine> {
             vCPUAmount = it.vCPUAmount,
             memoryAmount = it.memoryAmount,
             storageAmount = it.storageAmount,
-            requestDate = LocalDate.parse(it.requestDate),
-            beginDate = LocalDate.parse(it.beginDate),
-            endDate = LocalDate.parse(it.endDate),
+            requestDate = LocalDateTime.parse(it.requestDate),
+            beginDate = LocalDateTime.parse(it.beginDate),
+            endDate = LocalDateTime.parse(it.endDate),
             backupFrequency = it.backupFrequency,
             availability = asDomainAvailability(it.availability),
             highAvailability = it.highAvailability,

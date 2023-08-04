@@ -1,5 +1,6 @@
 package com.example.test.repository
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.map
@@ -18,15 +19,14 @@ import kotlinx.coroutines.withContext
 import java.util.stream.Collectors.toList
 
 class CustomerRepository(private val database: VicDatabase) {
-    var customerId: Int? = -1
 
     //Customers attribute that can be shown on screen.
     val customers: LiveData<List<Customer>> = Transformations.map(database.customerDatabaseDao.getAllCustomers()) {
         it.asDomainModel()
     }
 
-    val customer: LiveData<Customer> = Transformations.map(database.customerDatabaseDao.getCustomerById(customerId!!)) {
-        it.asDomainModel()
+    fun getCustomerById(id: Int): LiveData<Customer> {
+        return Transformations.map(database.customerDatabaseDao.getCustomerById(id)) {it.asDomainModel()}
     }
 
     fun getVirtualMachinesOfCustomer(id: Int): LiveData<List<VirtualMachine>> {

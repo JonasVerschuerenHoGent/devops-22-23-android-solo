@@ -20,13 +20,8 @@ class MemberViewModel(application: Application, val id: Int) : ViewModel() {
     private val repository = MemberRepository(database)
 
     //live data objects
-    val member = repository.member
+    val member = repository.getMemberById(id)
     val listVms = repository.getVirtualMachinesOfMember(id)
-
-    init {
-        repository.memberId = id
-    }
-
 
 
 }

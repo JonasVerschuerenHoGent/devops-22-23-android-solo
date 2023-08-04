@@ -4,7 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import com.example.test.database.VicDatabase
 import com.example.test.database.VirutalMachine.asDomainModel
+import com.example.test.database.customer.asDomainModel
 import com.example.test.database.member.asDomainModel
+import com.example.test.domain.Customer
 import com.example.test.domain.Member
 import com.example.test.domain.VirtualMachine
 import com.example.test.network.NetworkVirtualMachine
@@ -15,15 +17,14 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 class VirtualMachineRepository(private val database: VicDatabase) {
-    var virtualMachineId: Int? = -1
 
     //VirtualMachines attribute that can be shown on screen.
     val virtualMachines: LiveData<List<VirtualMachine>> = Transformations.map(database.virtualMachineDatabaseDao.getAllVirtualMachines()) {
         it.asDomainModel()
     }
 
-    val virtualMachine: LiveData<VirtualMachine> = Transformations.map(database.virtualMachineDatabaseDao.getVirtualMachineById(virtualMachineId!!)) {
-        it.asDomainModel()
+    fun getVirtualMachineById(id: Int): LiveData<VirtualMachine> {
+        return Transformations.map(database.virtualMachineDatabaseDao.getVirtualMachineById(id)) {it.asDomainModel()}
     }
 
 

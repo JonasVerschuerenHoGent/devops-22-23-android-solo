@@ -3,14 +3,7 @@ package com.example.test.database.project
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import androidx.room.Relation
-import com.example.test.database.customer.CustomerDatabaseDao
-import com.example.test.database.customer.DatabaseCustomer
-import com.example.test.database.customer.asDomainModel
-import com.example.test.domain.Customer
-import com.example.test.domain.Department
 import com.example.test.domain.Project
-import com.example.test.domain.VirtualMachine
 
 @Entity(tableName = "project_table")
 data class DatabaseProject(

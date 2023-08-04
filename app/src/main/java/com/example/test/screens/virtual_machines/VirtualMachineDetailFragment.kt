@@ -15,6 +15,7 @@ import com.example.test.R
 import com.example.test.databinding.FragmentVirtualMachineDetailBinding
 import com.example.test.domain.VirtualMachineMock
 import java.time.LocalDate
+import java.time.LocalDateTime
 
 class VirtualMachineDetailFragment : Fragment() {
 
@@ -97,8 +98,8 @@ class VirtualMachineDetailFragment : Fragment() {
         binding.textviewBackup.text = backupText
 
 
-        if(myVM.beginDate <= LocalDate.now() && //startDate is in past
-            myVM.endDate > LocalDate.now()&& //endDate is in future
+        if(myVM.beginDate <= LocalDateTime.now() && //startDate is in past
+            myVM.endDate > LocalDateTime.now()&& //endDate is in future
             myVM.beginDate < myVM.endDate//startdate is before enddate
         ){
             binding.textviewState.text =  "actief"

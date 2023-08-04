@@ -29,9 +29,9 @@ class ProjectListFragment : Fragment() {
         binding.lifecycleOwner = this
 
         val adapter = ProjectListAdapter( ProjectListener{
-                projectName ->
+                projectId ->
             findNavController().navigate(
-                ProjectListFragmentDirections.actionProjectListFragmentToVirtualMachineListFragment())
+                ProjectListFragmentDirections.actionProjectListFragmentToProjectFragment(projectId))
 
         })
         val recyclerView = binding.projectNames

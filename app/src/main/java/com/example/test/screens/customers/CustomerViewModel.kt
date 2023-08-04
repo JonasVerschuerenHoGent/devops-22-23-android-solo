@@ -20,18 +20,7 @@ class CustomerViewModel(application: Application, val id: Int) : ViewModel() {
     private val repository = CustomerRepository(database)
 
     //live data object
-    val customer = repository.customer
+    val customer = repository.getCustomerById(id)
     val listVms = repository.getVirtualMachinesOfCustomer(id)
-
-
-    init {
-        repository.customerId = id
-    }
-
-
-
-
-
-
 
 }

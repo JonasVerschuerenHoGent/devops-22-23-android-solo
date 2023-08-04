@@ -54,6 +54,6 @@ class ProjectDiffCallback: DiffUtil.ItemCallback<Project>() {
     }
 }
 
-class ProjectListener(val clickListener: (projectName: String) -> Unit ) {
-    fun onClick(project : Project) = clickListener(project.name)
+class ProjectListener(val clickListener: (projectId: Int) -> Unit ) {
+    fun onClick(project : Project) = clickListener(project.id)
 }

@@ -17,18 +17,16 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 class ProjectRepository(private val database: VicDatabase) {
-    var projectId: Int? = -1
-
     //Projects attribute that can be shown on screen.
     val projects: LiveData<List<Project>> = Transformations.map(database.projectDatabaseDao.getAllProjects()) {
         it.asDomainModel()
     }
 
-//    val project: LiveData<Project> = Transformations.map(database.projectDatabaseDao.getProjectById(projectId!!)) {
-//        it.asDomainModel()
-//    }
+    fun getProjectById(id: Int): LiveData<Project> {
+        return database.projectDatabaseDao.getProjectById(id).map { it.asDomainModel() }
+    }
 
-    fun getVirtualMachinesOfProjects(id: Int): LiveData<List<VirtualMachine>> {
+    fun getVirtualMachinesOfProjects(id: Int): LiveData<List<VirtualMachine>>? {
         return database.virtualMachineDatabaseDao.getVmsFromProjectId(id)!!.map { it.asDomainModel() }
     }
 

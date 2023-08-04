@@ -7,7 +7,13 @@ import com.example.test.domain.Availability
 import com.example.test.domain.Mode
 import com.example.test.domain.State
 import com.example.test.domain.VirtualMachine
+import java.time.Instant
 import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
+import java.time.temporal.Temporal
+import java.time.temporal.TemporalAccessor
 
 @Entity(tableName = "virtualmachine_table")
 data class DatabaseVirtualMachine(
@@ -85,9 +91,9 @@ fun DatabaseVirtualMachine.asDomainModel(): VirtualMachine {
         vCPUAmount = vCPUAmount,
         memoryAmount = memoryAmount,
         storageAmount = storageAmount,
-        requestDate = LocalDate.parse(requestDate),
-        beginDate = LocalDate.parse(beginDate),
-        endDate = LocalDate.parse(endDate),
+        beginDate = LocalDateTime.parse(beginDate),
+        endDate = LocalDateTime.parse(endDate),
+        requestDate = LocalDateTime.parse(requestDate),
         backupFrequency = backupFrequency,
         availability = asDomainAvailability(availability),
         highAvailability = highAvailability,

@@ -16,7 +16,7 @@ interface CustomerDatabaseDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(vararg customers: DatabaseCustomer)
 
-    @Query("SELECT * FROM customer_table ORDER BY id DESC")
+    @Query("SELECT * FROM customer_table ORDER BY id ASC")
     fun getAllCustomers(): LiveData<List<DatabaseCustomer>>
 
     @Query("SELECT * FROM customer_table WHERE id = :id ORDER BY id ASC")

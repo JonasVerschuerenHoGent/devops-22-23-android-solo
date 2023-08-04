@@ -1,5 +1,6 @@
 package com.example.test.screens.virtual_machines
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -8,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.test.databinding.VmItemBinding
 import com.example.test.domain.VirtualMachine
 import java.time.LocalDate
+import java.time.LocalDateTime
 
 class VirtualMachinesAdapter(val clickListener: VirtualMachineListener) : ListAdapter<VirtualMachine, VirtualMachineViewHolder>(VirtualMachineListDiffCallback()) {
 
@@ -27,10 +29,9 @@ class VirtualMachineViewHolder(val binding: VmItemBinding) : RecyclerView.ViewHo
 
     fun bind(clickListener: VirtualMachineListener, item : VirtualMachine) {
 
-
-        if(item.beginDate <= LocalDate.now() && //startDate is in past
-            item.endDate > LocalDate.now() && //endDate is in future
-            item.beginDate < item.endDate//startdate is before enddate
+        if(item.beginDate.isBefore(LocalDateTime.now().plusDays(1)) && //startDate is in past
+            item.endDate.isAfter(LocalDateTime.now()) && //endDate is in future
+            item.beginDate.isBefore(item.endDate)//startdate is before enddate
         ){
             binding.vmActiveTextview.text = "actief"
         }

@@ -18,15 +18,14 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 class MemberRepository(private val database: VicDatabase) {
-    var memberId: Int? = -1
 
     //Members attribute that can be shown on screen.
     val members: LiveData<List<Member>> = Transformations.map(database.memberDatabaseDao.getAllMembers()) {
         it.asDomainModel()
     }
 
-    val member: LiveData<Member> = Transformations.map(database.memberDatabaseDao.getMemberById(memberId!!)) {
-        it.asDomainModel()
+    fun getMemberById(id: Int): LiveData<Member> {
+        return Transformations.map(database.memberDatabaseDao.getMemberById(id)) {it.asDomainModel()}
     }
 
     fun getVirtualMachinesOfMember(id: Int): LiveData<List<VirtualMachine>> {

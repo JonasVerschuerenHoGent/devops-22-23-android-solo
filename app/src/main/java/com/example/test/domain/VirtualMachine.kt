@@ -1,6 +1,6 @@
 package com.example.test.domain
 
-import java.time.LocalDate
+import java.time.LocalDateTime
 
 
 data class VirtualMachine(
@@ -19,9 +19,9 @@ data class VirtualMachine(
     var vCPUAmount: Int,
     var memoryAmount: Int,
     var storageAmount: Int,
-    var requestDate: LocalDate,
-    var beginDate: LocalDate,
-    var endDate: LocalDate,
+    var requestDate: LocalDateTime,
+    var beginDate: LocalDateTime,
+    var endDate: LocalDateTime,
     var backupFrequency: String,
     var availability: Availability,
     var highAvailability: Boolean,

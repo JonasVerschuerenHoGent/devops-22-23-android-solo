@@ -1,6 +1,7 @@
 package com.example.test.domain
 
 import java.time.LocalDate
+import java.time.LocalDateTime
 import java.time.ZoneId
 import java.util.*
 
@@ -61,8 +62,8 @@ class VirtualMachineMock() {
         return output
     }
 
-    private fun giveDateWithDayOffset(offset: Long): LocalDate{
-        return LocalDate.now().plusDays(offset)
+    private fun giveDateWithDayOffset(offset: Long): LocalDateTime{
+        return LocalDateTime.now().plusDays(offset)
     }
 
 }

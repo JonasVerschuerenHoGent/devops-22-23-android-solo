@@ -1,45 +1,46 @@
-package com.example.test.screens.customers
+package com.example.test.screens.project
 
 import android.os.Bundle
-import android.view.*
+import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.DividerItemDecoration
-import com.example.test.domain.CustomerMock
 import com.example.test.R
-import com.example.test.databinding.CustomerDetailFragmentBinding
-import com.example.test.domain.Customer
-import com.example.test.screens.virtual_machines.*
+import com.example.test.databinding.ProjectDetailFragmentBinding
+import com.example.test.screens.virtual_machines.VirtualMachineListFragmentDirections
+import com.example.test.screens.virtual_machines.VirtualMachineListener
+import com.example.test.screens.virtual_machines.VirtualMachinesAdapter
 
-class CustomerFragment : Fragment() {
+class ProjectFragment: Fragment() {
 
-    //binding
-    private lateinit var binding: CustomerDetailFragmentBinding
+    private lateinit var binding: ProjectDetailFragmentBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?): View? {
-        val args = CustomerFragmentArgs.fromBundle(requireArguments())
 
-        // Inflate view and obtain an instance of the binding class
+        val args = ProjectFragmentArgs.fromBundle(requireArguments())
+
         binding = DataBindingUtil.inflate(
             inflater,
-            R.layout.customer_detail_fragment,
+            R.layout.project_detail_fragment,
             container,
             false
         )
 
-        //viewModels
+        //viewmodel
         val application = requireNotNull(this.activity).application
-
-        val viewModelFactory = CustomerViewModelFactory(application, args.customerId)
-        val viewModel: CustomerViewModel by viewModels{viewModelFactory}
-        binding.customersViewModel = viewModel
+//        Log.i("ProjectFragment", "PRINTING PROJECT ID")
+//        Log.i("ProjectFragment", args.projectId.toString())
+        val viewModelFactory = ProjectViewModelFactory(application, args.projectId)
+        val viewModel: ProjectViewModel by viewModels { viewModelFactory }
+        binding.projectViewModel = viewModel
 
         binding.lifecycleOwner = this
 
@@ -51,19 +52,16 @@ class CustomerFragment : Fragment() {
                 virtualMachineID
             ))
         })
-
         val recyclerView = binding.virtualMachineList
         recyclerView.adapter = adapter
 
-        //TODO: URGENT Change so that the vms of the customer are displayed
-        viewModel.listVms.observe(viewLifecycleOwner, Observer {
+
+        viewModel.listVms?.observe(viewLifecycleOwner, Observer {
             println("List got ${it.size}")
-            adapter.submitList(it)
-        })
+            adapter.submitList(it) })
 
         return binding.root
     }
-
 
 
 }

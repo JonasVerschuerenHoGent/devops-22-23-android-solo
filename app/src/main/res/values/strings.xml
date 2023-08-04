@@ -67,4 +67,9 @@
     <string name="admin">Admin</string>
     <string name="manager">Manager</string>
     <string name="viewer">Viewer</string>
+    <string name="aantal_virtuele_machines">Aantal Virtuele Machines</string>
+    <string name="totale_opslag_alle_vms">Totale opslag (alle VMs)</string>
+    <string name="totaal_aantal_vcpus">Totaal aantal vCPUs</string>
+    <string name="totaal_geheugen">Totaal geheugen</string>
+    <string name="virtuele_machines_gelinkt_aan_dit_project">Virtuele Machines gelinkt aan dit project</string>
 </resources>
