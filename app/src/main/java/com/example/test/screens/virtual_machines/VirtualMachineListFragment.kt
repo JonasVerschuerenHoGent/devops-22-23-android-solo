@@ -2,8 +2,10 @@ package com.example.test.screens.virtual_machines
 
 import android.os.Bundle
 import android.view.*
+import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.test.R
@@ -41,6 +43,30 @@ class VirtualMachineListFragment : Fragment() {
         viewModel.listVms.observe(viewLifecycleOwner) {
             println("List got ${it.size}")
             adapter.submitList(it)
+        }
+
+
+        // For searching the list
+        binding.searchVmSv.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                val list = adapter.currentList.filter {
+                    it.name.lowercase().contains(query.toString().lowercase())
+                }
+                adapter.submitList(list)
+                return true
+            }
+            override fun onQueryTextChange(newText: String?): Boolean {
+                val list = adapter.currentList.filter {
+                    it.name.lowercase().contains(newText.toString().lowercase())
+                }
+                adapter.submitList(list)
+                return true
+            }
+        })
+
+        binding.searchVmSv.setOnCloseListener {
+            viewModel.listVms.observe(viewLifecycleOwner, Observer { adapter.submitList(it) })
+            true
         }
 
         return binding.root

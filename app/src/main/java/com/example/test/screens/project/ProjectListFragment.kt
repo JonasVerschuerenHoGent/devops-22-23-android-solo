@@ -1,7 +1,10 @@
 package com.example.test.screens.project
 
 import android.os.Bundle
+import android.util.Log
 import android.view.*
+import android.widget.SearchView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -10,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.example.test.R
 import com.example.test.databinding.ProjectFragmentItemListBinding
+import kotlinx.android.synthetic.main.project_fragment_item_list.view.*
 
 class ProjectListFragment : Fragment() {
 
@@ -39,6 +43,29 @@ class ProjectListFragment : Fragment() {
 
         viewModel.listProjects.observe(viewLifecycleOwner, Observer { adapter.submitList(it) })
 
+
+        // For searching the list
+        binding.searchProjectSv.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                val list = adapter.currentList.filter {
+                    it.name.lowercase().contains(query.toString().lowercase())
+                }
+                adapter.submitList(list)
+                return true
+            }
+            override fun onQueryTextChange(newText: String?): Boolean {
+                 val list = adapter.currentList.filter {
+                    it.name.lowercase().contains(newText.toString().lowercase())
+                }
+                adapter.submitList(list)
+                return true
+            }
+        })
+
+        binding.searchProjectSv.setOnCloseListener {
+            viewModel.listProjects.observe(viewLifecycleOwner, Observer { adapter.submitList(it) })
+            true
+        }
 
         return binding.root
     }

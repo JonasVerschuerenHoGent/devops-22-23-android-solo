@@ -28,16 +28,7 @@ class VirtualMachinesAdapter(val clickListener: VirtualMachineListener) : ListAd
 class VirtualMachineViewHolder(val binding: VmItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(clickListener: VirtualMachineListener, item : VirtualMachine) {
-
-        if(item.beginDate.isBefore(LocalDateTime.now().plusDays(1)) && //startDate is in past
-            item.endDate.isAfter(LocalDateTime.now()) && //endDate is in future
-            item.beginDate.isBefore(item.endDate)//startdate is before enddate
-        ){
-            binding.vmActiveTextview.text = "actief"
-        }
-        else{
-            binding.vmActiveTextview.text = "inactief"
-        }
+        binding.vmActiveTextview.text = item.state.toString()
 
         binding.vmNameTextview.text = item.name
 

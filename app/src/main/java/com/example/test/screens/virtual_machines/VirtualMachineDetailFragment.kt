@@ -36,9 +36,6 @@ class VirtualMachineDetailFragment : Fragment() {
             false
         )
 
-        val myVM = VirtualMachineMock().virtualMachines[args.vmId]
-        //binding.myVm = myVM
-
         //code for overflow menu
         val menuHost = requireActivity()
         menuHost.addMenuProvider(object: MenuProvider {
@@ -78,39 +75,8 @@ class VirtualMachineDetailFragment : Fragment() {
         // data in the VieWModel
         binding.virtualMachineViewModel = viewModel
 
-        // Specify the current activity as the lifecycle owner of the binding. This is used so that
-        // the binding can observe LiveData updates
-        //binding.lifecycleOwner = this
-
-
-
-        //some manual binding stuff
-        //============================================
-        var backupText = ""
-        backupText += when(myVM.backupFrequency){
-            "0" -> "none"
-            "1" -> "daily"
-            "7" -> "weekly"
-            "14" -> "bi-weekly"
-            "30" -> "monthly"
-            else -> "every ${myVM.backupFrequency} days"
-        }
-        binding.textviewBackup.text = backupText
-
-
-        if(myVM.beginDate <= LocalDateTime.now() && //startDate is in past
-            myVM.endDate > LocalDateTime.now()&& //endDate is in future
-            myVM.beginDate < myVM.endDate//startdate is before enddate
-        ){
-            binding.textviewState.text =  "actief"
-        }
-        else{
-            binding.textviewState.text = "inactief"
-        }
-        //============================================
 
         binding.lifecycleOwner = this
-
         return binding.root
     }
 }

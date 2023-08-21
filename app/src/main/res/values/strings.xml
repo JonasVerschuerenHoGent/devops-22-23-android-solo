@@ -72,4 +72,8 @@
     <string name="totaal_aantal_vcpus">Totaal aantal vCPUs</string>
     <string name="totaal_geheugen">Totaal geheugen</string>
     <string name="virtuele_machines_gelinkt_aan_dit_project">Virtuele Machines gelinkt aan dit project</string>
+    <string name="Beschikbaarheid">Beschikbaarheid</string>
+    <string name="Technische_details">Technische details</string>
+    <string name="Datums">Datums</string>
+    <string name="Netwerk">Netwerk</string>
 </resources>

@@ -9,343 +9,446 @@
             type="com.example.test.screens.virtual_machines.VirtualMachineViewModel"/>
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="56dp"
-        tools:context=".HomeFragment">
+        android:layout_height="match_parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".HomeFragment">
 
-        <TextView
-            android:id="@+id/projectName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/spacing_normal"
-            android:layout_marginLeft="@dimen/spacing_normal"
-            android:text="@{virtualMachineViewModel.vm.name}"
-            app:layout_constraintBaseline_toBaselineOf="@+id/textview_name_label"
-            app:layout_constraintStart_toEndOf="@+id/textview_name_label"
-            tools:text="VM name" />
+            <TextView
+                android:id="@+id/textview_beschikbaarheid"
+                style="@style/TextAppearance.Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_normal"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:text="@string/Beschikbaarheid"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout1" />
 
-        <TextView
-            android:id="@+id/textview_backup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/spacing_normal"
-            android:layout_marginLeft="@dimen/spacing_normal"
-            app:layout_constraintBaseline_toBaselineOf="@+id/textview_backup_label"
-            app:layout_constraintStart_toEndOf="@+id/textview_backup_label"
-            tools:text="backup" />
+            <TextView
+                android:id="@+id/textview_datums"
+                style="@style/TextAppearance.Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_normal"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:text="@string/Datums"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
-        <TextView
-            android:id="@+id/textview_availability"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/spacing_normal"
-            android:layout_marginLeft="@dimen/spacing_normal"
-            android:text="@{virtualMachineViewModel.vm.availability.printableName}"
-            app:layout_constraintBaseline_toBaselineOf="@+id/textview_availability_label"
-            app:layout_constraintStart_toEndOf="@+id/textview_availability_label"
-            tools:text="availability" />
+            <TextView
+                android:id="@+id/textview_netwerk"
+                style="@style/TextAppearance.Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_normal"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:text="@string/Netwerk"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
 
-        <TextView
-            android:id="@+id/textview_host"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/spacing_normal"
-            android:layout_marginLeft="@dimen/spacing_normal"
-            android:layout_marginTop="@dimen/spacing_normal"
-            android:text="@{virtualMachineViewModel.vm.hostServer}"
-            app:layout_constraintStart_toEndOf="@+id/textview_host_label"
-            app:layout_constraintTop_toBottomOf="@+id/textview_backup"
-            tools:text="host" />
+            <TextView
+                android:id="@+id/projectName"
+                style="@style/TextAppearance.Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_padding_large"
+                android:text="@{virtualMachineViewModel.vm.name}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="VM name" />
 
-        <TextView
-            android:id="@+id/textview_state"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/spacing_normal"
-            android:layout_marginLeft="@dimen/spacing_normal"
-            android:text="@{virtualMachineViewModel.vm.state.printableName}"
-            app:layout_constraintBaseline_toBaselineOf="@+id/textview_state_label"
-            app:layout_constraintStart_toEndOf="@+id/textview_state_label"
-            tools:text="state" />
-
-        <TextView
-            android:id="@+id/textview_name_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/spacing_normal"
-            android:layout_marginLeft="@dimen/spacing_normal"
-            android:layout_marginTop="@dimen/spacing_normal"
-            android:text="@string/naam_vm"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/textview_hostname_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/spacing_normal"
-            android:layout_marginTop="@dimen/spacing_normal"
-            android:text="@string/hostnaam"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textview_requestdate_label" />
-
-        <TextView
-            android:id="@+id/textview_hostname"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/spacing_normal"
-            android:layout_marginLeft="@dimen/spacing_normal"
-            android:text="@{virtualMachineViewModel.vm.hostname}"
-            app:layout_constraintBaseline_toBaselineOf="@+id/textview_hostname_label"
-            app:layout_constraintStart_toEndOf="@+id/textview_hostname_label"
-            tools:text="VM hostname" />
-
-        <TextView
-            android:id="@+id/textview_fqdn_label"
-            android:layout_width="wrap_content"
-            android:layout_height="19dp"
-            android:layout_marginStart="@dimen/spacing_normal"
-            android:layout_marginLeft="@dimen/spacing_normal"
-            android:layout_marginTop="@dimen/spacing_normal"
-            android:text="@string/fqdn"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textview_hostname_label" />
-
-        <TextView
-            android:id="@+id/textview_fqdn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/spacing_normal"
-            android:layout_marginLeft="@dimen/spacing_normal"
-            android:text="@{virtualMachineViewModel.vm.fqdn}"
-            app:layout_constraintBaseline_toBaselineOf="@+id/textview_fqdn_label"
-            app:layout_constraintStart_toEndOf="@+id/textview_fqdn_label"
-            tools:text="fqdn" />
-
-        <TextView
-            android:id="@+id/textview_state_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/spacing_normal"
-            android:layout_marginLeft="@dimen/spacing_normal"
-            android:layout_marginTop="@dimen/spacing_normal"
-            android:text="@string/status"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textview_name_label" />
+            <TextView
+                android:id="@+id/textview_state"
+                style="@style/TextAppearance.Subtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="@{virtualMachineViewModel.vm.state.printableName}"
+                android:textStyle="italic"
+                app:circularflow_defaultRadius="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/projectName"
+                tools:text="actief" />
 
 
-        <TableLayout
-            android:id="@+id/tableLayout"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/spacing_normal"
-            android:layout_marginLeft="@dimen/spacing_normal"
-            android:layout_marginTop="@dimen/spacing_normal"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textview_state_label">
+            <TextView
+                android:id="@+id/textview_technische_details"
+                style="@style/TextAppearance.Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_normal"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:text="@string/Technische_details"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textview_state" />
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+            <LinearLayout
+                android:id="@+id/linearLayout1"
+                android:layout_width="0dp"
+                android:layout_height="87dp"
+                android:layout_marginStart="@dimen/spacing_small"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:layout_marginEnd="@dimen/spacing_small"
+                android:background="@drawable/shape_for_vm_listitem"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textview_technische_details">
 
-                <TextView
-                    android:id="@+id/textview_vcpu_label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="32dp"
-                    android:layout_marginRight="32dp"
-                    android:text="@string/aantal_vcpus"
-                    android:textStyle="bold"
-                    tools:layout_editor_absoluteX="189dp"
-                    tools:layout_editor_absoluteY="420dp"
-                    tools:text="Aantal VCPUs" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-                <TextView
-                    android:id="@+id/textview_storage_label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="32dp"
-                    android:layout_marginRight="32dp"
-                    android:text="@string/opslag_gb"
-                    android:textStyle="bold"
-                    tools:layout_editor_absoluteX="248dp"
-                    tools:layout_editor_absoluteY="425dp"
-                    tools:text="Opslag (GB)" />
+                    <TextView
+                        android:id="@+id/textview_vcpu_label"
+                        style="@style/TextAppearance.Subtitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_large"
+                        android:layout_marginTop="24dp"
+                        android:text="@string/aantal_vcpus"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="Aantal VCPUs" />
 
-                <TextView
-                    android:id="@+id/textview_memory_label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/geheugen_gb"
-                    android:textStyle="bold"
-                    tools:layout_editor_absoluteX="217dp"
-                    tools:layout_editor_absoluteY="450dp"
-                    tools:text="Geheugen (GB)" />
-            </TableRow>
+                    <TextView
+                        android:id="@+id/textview_storage_label"
+                        style="@style/TextAppearance.Subtitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/opslag_gb"
+                        android:textStyle="bold"
+                        app:layout_constraintBaseline_toBaselineOf="@+id/textview_vcpu_label"
+                        app:layout_constraintEnd_toStartOf="@+id/textview_memory_label"
+                        app:layout_constraintStart_toEndOf="@+id/textview_vcpu_label"
+                        tools:text="Opslag (GB)" />
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/textview_memory_label"
+                        style="@style/TextAppearance.Subtitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/spacing_large"
+                        android:text="@string/geheugen_gb"
+                        android:textStyle="bold"
+                        app:layout_constraintBaseline_toBaselineOf="@+id/textview_vcpu_label"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        tools:text="Geheugen (GB)" />
 
-                <TextView
-                    android:id="@+id/textview_vcpu"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginEnd="32dp"
-                    android:layout_marginRight="32dp"
-                    android:text="@{Integer.toString(virtualMachineViewModel.vm.VCPUAmount)}"
-                    tools:layout_editor_absoluteX="189dp"
-                    tools:layout_editor_absoluteY="420dp"
-                    tools:text="vcpu" />
+                    <TextView
+                        android:id="@+id/textview_vcpu"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_padding_small"
+                        android:text="@{Integer.toString(virtualMachineViewModel.vm.VCPUAmount)}"
+                        android:textSize="16sp"
+                        app:layout_constraintEnd_toEndOf="@+id/textview_vcpu_label"
+                        app:layout_constraintStart_toStartOf="@+id/textview_vcpu_label"
+                        app:layout_constraintTop_toBottomOf="@+id/textview_vcpu_label"
+                        tools:text="vcpu" />
 
-                <TextView
-                    android:id="@+id/textview_storage"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginEnd="32dp"
-                    android:layout_marginRight="32dp"
-                    android:text="@{Integer.toString(virtualMachineViewModel.vm.storageAmount)}"
-                    tools:layout_editor_absoluteX="248dp"
-                    tools:layout_editor_absoluteY="425dp"
-                    tools:text="storage" />
+                    <TextView
+                        android:id="@+id/textview_storage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{Integer.toString(virtualMachineViewModel.vm.storageAmount)}"
+                        android:textSize="16sp"
+                        app:layout_constraintBaseline_toBaselineOf="@+id/textview_vcpu"
+                        app:layout_constraintEnd_toEndOf="@+id/textview_storage_label"
+                        app:layout_constraintStart_toStartOf="@+id/textview_storage_label"
+                        tools:text="storage" />
 
-                <TextView
-                    android:id="@+id/textview_memory"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:text="@{Integer.toString(virtualMachineViewModel.vm.memoryAmount)}"
-                    tools:layout_editor_absoluteX="217dp"
-                    tools:layout_editor_absoluteY="450dp"
-                    tools:text="memory" />
-            </TableRow>
-        </TableLayout>
+                    <TextView
+                        android:id="@+id/textview_memory"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{Integer.toString(virtualMachineViewModel.vm.memoryAmount)}"
+                        android:textSize="16sp"
+                        app:layout_constraintBaseline_toBaselineOf="@+id/textview_storage"
+                        app:layout_constraintEnd_toEndOf="@+id/textview_memory_label"
+                        app:layout_constraintStart_toStartOf="@+id/textview_memory_label"
+                        tools:text="memory" />
 
-        <TextView
-            android:id="@+id/textview_availability_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/spacing_normal"
-            android:text="@string/availability"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="390dp" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <TextView
-            android:id="@+id/textview_backup_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/spacing_normal"
-            android:layout_marginLeft="@dimen/spacing_normal"
-            android:layout_marginTop="@dimen/spacing_normal"
-            android:text="@string/backups"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textview_availability_label" />
+            </LinearLayout>
 
-        <TextView
-            android:id="@+id/textview_host_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/spacing_normal"
-            android:layout_marginLeft="@dimen/spacing_normal"
-            android:layout_marginTop="@dimen/spacing_normal"
-            android:text="@string/host_server"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textview_backup_label" />
+            <LinearLayout
+                android:id="@+id/linearLayout2"
+                android:layout_width="0dp"
+                android:layout_height="87dp"
+                android:layout_marginStart="@dimen/spacing_small"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:layout_marginEnd="@dimen/spacing_small"
+                android:background="@drawable/shape_for_vm_listitem"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textview_beschikbaarheid">
 
-        <TextView
-            android:id="@+id/textview_mode_template_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/spacing_normal"
-            android:layout_marginTop="@dimen/spacing_normal"
-            android:text="@string/modus"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textview_fqdn_label" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/textview_mode"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/spacing_normal"
-            android:text="@{virtualMachineViewModel.vm.mode.printableName}"
-            app:layout_constraintBaseline_toBaselineOf="@+id/textview_mode_template_label"
-            app:layout_constraintStart_toEndOf="@+id/textview_mode_template_label"
-            tools:text="mode" />
+                    <TextView
+                        android:id="@+id/textview_mode_template_label"
+                        style="@style/TextAppearance.Subtitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_large"
+                        android:layout_marginTop="@dimen/spacing_large"
+                        android:text="@string/modus"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/textview_begindate_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/spacing_normal"
-            android:layout_marginTop="@dimen/spacing_normal"
-            android:text="@string/startdatum"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tableLayout"
-            tools:text="Startdatum:" />
+                    <TextView
+                        android:id="@+id/textview_mode"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_padding_small"
+                        android:text="@{virtualMachineViewModel.vm.mode.printableName}"
+                        android:textSize="16sp"
+                        app:layout_constraintEnd_toEndOf="@+id/textview_mode_template_label"
+                        app:layout_constraintStart_toStartOf="@+id/textview_mode_template_label"
+                        app:layout_constraintTop_toBottomOf="@+id/textview_mode_template_label"
+                        tools:text="mode" />
 
-        <TextView
-            android:id="@+id/textView_endDate_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/spacing_normal"
-            android:layout_marginTop="@dimen/spacing_normal"
-            android:text="@string/einddatum"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textview_begindate_label" />
+                    <TextView
+                        android:id="@+id/textview_backup_label"
+                        style="@style/TextAppearance.Subtitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/backups"
+                        android:textStyle="bold"
+                        app:layout_constraintBaseline_toBaselineOf="@+id/textview_mode_template_label"
+                        app:layout_constraintEnd_toStartOf="@+id/textview_availability_label"
+                        app:layout_constraintStart_toEndOf="@+id/textview_mode_template_label" />
 
-        <TextView
-            android:id="@+id/textview_requestdate_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/spacing_normal"
-            android:layout_marginTop="@dimen/spacing_normal"
-            android:text="@string/datum_aanvraag"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView_endDate_label" />
+                    <TextView
+                        android:id="@+id/textview_backup"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:text="@{virtualMachineViewModel.vm.backupFrequency}"
+                        app:layout_constraintBaseline_toBaselineOf="@+id/textview_mode"
+                        app:layout_constraintEnd_toEndOf="@+id/textview_backup_label"
+                        app:layout_constraintStart_toStartOf="@+id/textview_backup_label"
+                        tools:text="backup" />
 
-        <TextView
-            android:id="@+id/textview_begindate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/spacing_normal"
-            android:text="@{virtualMachineViewModel.vm.beginDate.toString()}"
-            app:layout_constraintBaseline_toBaselineOf="@+id/textview_begindate_label"
-            app:layout_constraintStart_toEndOf="@+id/textview_begindate_label"
-            tools:text="start date" />
+                    <TextView
+                        android:id="@+id/textview_availability_label"
+                        style="@style/TextAppearance.Subtitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/spacing_large"
+                        android:text="@string/availability"
+                        android:textStyle="bold"
+                        app:layout_constraintBaseline_toBaselineOf="@+id/textview_mode_template_label"
+                        app:layout_constraintEnd_toEndOf="parent" />
 
-        <TextView
-            android:id="@+id/textview_enddate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/spacing_normal"
-            android:text="@{virtualMachineViewModel.vm.endDate.toString()}"
-            app:layout_constraintBaseline_toBaselineOf="@+id/textView_endDate_label"
-            app:layout_constraintStart_toEndOf="@+id/textView_endDate_label"
-            tools:text="end date" />
+                    <TextView
+                        android:id="@+id/textview_availability"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{virtualMachineViewModel.vm.availability.printableName}"
+                        android:textSize="16sp"
+                        app:layout_constraintBaseline_toBaselineOf="@+id/textview_mode"
+                        app:layout_constraintEnd_toEndOf="@+id/textview_availability_label"
+                        app:layout_constraintStart_toStartOf="@+id/textview_availability_label"
+                        tools:text="availability" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <TextView
-            android:id="@+id/textview_requestdate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/spacing_normal"
-            android:text="@{virtualMachineViewModel.vm.requestDate.toString()}"
-            app:layout_constraintBaseline_toBaselineOf="@+id/textview_requestdate_label"
-            app:layout_constraintStart_toEndOf="@+id/textview_requestdate_label"
-            tools:text="request date" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout3"
+                android:layout_width="0dp"
+                android:layout_height="87dp"
+                android:layout_marginStart="@dimen/spacing_small"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:layout_marginEnd="@dimen/spacing_small"
+                android:background="@drawable/shape_for_vm_listitem"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textview_datums">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/textview_requestdate_label"
+                        style="@style/TextAppearance.Subtitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_large"
+                        android:layout_marginTop="@dimen/margin_padding_large"
+                        android:text="@string/datum_aanvraag"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/textview_requestdate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_padding_small"
+                        android:text="@{virtualMachineViewModel.vm.requestDate.toLocalDate().toString()}"
+                        android:textSize="16sp"
+                        app:layout_constraintEnd_toEndOf="@+id/textview_requestdate_label"
+                        app:layout_constraintStart_toStartOf="@+id/textview_requestdate_label"
+                        app:layout_constraintTop_toBottomOf="@+id/textview_requestdate_label"
+                        tools:text="request date" />
+
+                    <TextView
+                        android:id="@+id/textview_begindate_label"
+                        style="@style/TextAppearance.Subtitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/startdatum"
+                        android:textStyle="bold"
+                        app:layout_constraintBaseline_toBaselineOf="@+id/textview_requestdate_label"
+                        app:layout_constraintEnd_toStartOf="@+id/textView_endDate_label"
+                        app:layout_constraintStart_toEndOf="@+id/textview_requestdate_label"
+                        tools:text="Startdatum:" />
+
+                    <TextView
+                        android:id="@+id/textview_begindate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{virtualMachineViewModel.vm.beginDate.toLocalDate().toString()}"
+                        android:textSize="16sp"
+                        app:layout_constraintBaseline_toBaselineOf="@+id/textview_requestdate"
+                        app:layout_constraintEnd_toEndOf="@+id/textview_begindate_label"
+                        app:layout_constraintStart_toStartOf="@+id/textview_begindate_label"
+                        tools:text="start date" />
+
+                    <TextView
+                        android:id="@+id/textView_endDate_label"
+                        style="@style/TextAppearance.Subtitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/spacing_large"
+                        android:text="@string/einddatum"
+                        android:textStyle="bold"
+                        app:layout_constraintBaseline_toBaselineOf="@+id/textview_requestdate_label"
+                        app:layout_constraintEnd_toEndOf="parent" />
+
+                    <TextView
+                        android:id="@+id/textview_enddate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{virtualMachineViewModel.vm.endDate.toLocalDate().toString()}"
+                        android:textSize="16sp"
+                        app:layout_constraintBaseline_toBaselineOf="@+id/textview_requestdate"
+                        app:layout_constraintEnd_toEndOf="@+id/textView_endDate_label"
+                        app:layout_constraintStart_toStartOf="@+id/textView_endDate_label"
+                        tools:text="end date" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout4"
+                android:layout_width="0dp"
+                android:layout_height="87dp"
+                android:layout_marginStart="@dimen/spacing_small"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:layout_marginEnd="@dimen/spacing_small"
+                android:background="@drawable/shape_for_vm_listitem"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textview_netwerk">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/textview_fqdn_label"
+                        style="@style/TextAppearance.Subtitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="19dp"
+                        android:layout_marginStart="@dimen/spacing_large"
+                        android:layout_marginTop="@dimen/spacing_large"
+                        android:text="@string/fqdn"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/textview_fqdn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_padding_small"
+                        android:text="@{virtualMachineViewModel.vm.fqdn}"
+                        android:textSize="16sp"
+                        app:layout_constraintEnd_toEndOf="@+id/textview_fqdn_label"
+                        app:layout_constraintStart_toStartOf="@+id/textview_fqdn_label"
+                        app:layout_constraintTop_toBottomOf="@+id/textview_fqdn_label"
+                        tools:text="fqdn" />
+
+                    <TextView
+                        android:id="@+id/textview_host_label"
+                        style="@style/TextAppearance.Subtitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/host_server"
+                        android:textStyle="bold"
+                        app:layout_constraintBaseline_toBaselineOf="@+id/textview_fqdn_label"
+                        app:layout_constraintEnd_toStartOf="@+id/textview_hostname_label"
+                        app:layout_constraintStart_toEndOf="@+id/textview_fqdn_label" />
+
+                    <TextView
+                        android:id="@+id/textview_host"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{virtualMachineViewModel.vm.hostServer}"
+                        android:textSize="16sp"
+                        app:layout_constraintBaseline_toBaselineOf="@+id/textview_fqdn"
+                        app:layout_constraintEnd_toEndOf="@+id/textview_host_label"
+                        app:layout_constraintStart_toStartOf="@+id/textview_host_label"
+                        tools:text="host" />
+
+                    <TextView
+                        android:id="@+id/textview_hostname_label"
+                        style="@style/TextAppearance.Subtitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/spacing_large"
+                        android:text="@string/hostnaam"
+                        android:textStyle="bold"
+                        app:layout_constraintBaseline_toBaselineOf="@+id/textview_fqdn_label"
+                        app:layout_constraintEnd_toEndOf="parent" />
+
+                    <TextView
+                        android:id="@+id/textview_hostname"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{virtualMachineViewModel.vm.hostname}"
+                        android:textSize="16sp"
+                        app:layout_constraintBaseline_toBaselineOf="@+id/textview_fqdn"
+                        app:layout_constraintEnd_toEndOf="@+id/textview_hostname_label"
+                        app:layout_constraintStart_toStartOf="@+id/textview_hostname_label"
+                        tools:text="VM hostname" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </ScrollView>
+
 </layout>
